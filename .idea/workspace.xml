@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c7f4d183-790e-49aa-9bdb-9f6d7edbd6ad" name="Default Changelist" comment="" />
+    <list default="true" id="c7f4d183-790e-49aa-9bdb-9f6d7edbd6ad" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/game/src/MalikCommit.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="chris" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -76,9 +85,13 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="507" y="104" key="CommitChangelistDialog2/0.0.1680.1010@0.0.1680.1010" timestamp="1598547646269" />
-    <state x="562" y="308" key="git4idea.merge.GitPullDialog" timestamp="1598547673489">
+    <state x="552" y="222" key="MultipleFileMergeDialog" timestamp="1598548625272">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="562" y="308" key="git4idea.merge.GitPullDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1598547673489" />
+    <state x="552" y="222" key="MultipleFileMergeDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1598548625272" />
+    <state x="562" y="308" key="git4idea.merge.GitPullDialog" timestamp="1598548611000">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="562" y="308" key="git4idea.merge.GitPullDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1598548611000" />
   </component>
 </project>
