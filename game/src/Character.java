@@ -4,6 +4,9 @@ public class Character {
     String name;
     int health;
     ArrayList<String> inventory = new ArrayList<String>();
+    public Character(){
+
+    };
 
     public Character(String name) {
         setName(name);
