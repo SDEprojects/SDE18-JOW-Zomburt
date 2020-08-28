@@ -1,0 +1,114 @@
+---
+zomburt:
+
+  menu:
+  	flavorText: 
+      'New Game
+       Resume
+       Tutorial & Available Commands
+       High Scores
+       Exit (enter the text ‘Exit’ to end your game and return to the menu)'
+  	tutorial:
+    	'Zomburt is a text based adventure that tries its best to let you interact with the world of August 13th 2021.  Think DnD meets Zombie Hack n’ Slash meets Zork.  Your choices are intentionally left open ended, but your best bet for a ‘useful’ command is to type in ‘verb noun’ such as ‘look up’ or ‘shoot nerfgun.’  
+
+Here are some suggested commands you can type in to get you started (but be warned, there are more waiting to be discovered!)
+ > move north
+ > move south
+ > move east
+ > move west
+ > look left (/right)
+ > pick up stick
+ > tie shoes
+ > search area
+ > scream help
+
+If the text you enter isn’t recognized by the game, then no worries!  You’ll get another chance to type in a command after our bot politely lets you know that it has no idea what you’re trying to do.
+
+And don’t forget, if you can’t hack it you can type “Exit” at anytime.  But you wouldn’t chicken out like that… would you?
+
+Welcome to the world of August 13th, 2021.  Best of luck champ.  You’ll need it.'
+
+  scenes:
+    parkingLot:
+    	flavorText:
+      	'Your Toyota Bronco chugs to a stop as you open the door and step down to the sun cracked parking lot.  The faint NORTHerly breeze brings the scent of Malik’s Combination Taco & Schnitzel Restaurant.  Somehow that place is still open.  Only thing you’ve ever tried from there is the Vegan Carnitas Quesa-Double - which, despite its name was a somewhat respectable 72/100.
+        
+	To your EAST… is a store
+  
+	To your WEST…[coming soon]
+  
+	To the SOUTH is an open field.  There appears to be an orderly protest going on over there.  For some reason everyone looks to be stumbling.  And they’re not really chanting so much as they’re moaning and groaning.  Maybe it was a marathon overnight Protest Ultra? 
+
+	For reasons that are totally not based on the limitations of the code written thus far for this game you feel drawn to the store, don’t you?'
+      y: 
+      	text: '...moving towards the stores WEST entrance'
+        path: 'zomburt.scenes.store.greeter'
+      n:
+      	text:
+        	- You’ve tripped and hurt your knee.  Now you need a bandaid.  Guess you should go to the store huh?
+          - Look buddy, work with us here ok?  The store is really cool and we worked real hard on it.
+          - Ohhh, so its like that?  Well fine.  How bout this.  You’re dead.  Game over.  Divoc takes over the world and you’ve saved nothing.  How do you like that punk??
+          - Ok ok, we’re sorry.  Please don’t go.  Its just that those other levels aren’t ready yet.  Soon we’ll have a cool “Freemium” prompt that will let you purchase access, but the payment gateway setup is tricky so let’s just go the store, ok?
+
+        path: null
+
+    store:
+      greeter: 
+        flavorText:      
+          'A torrent of air billows out around you as your bare feet pad their way past the still functioning automatic sliding doors.  Though some daylight still speckles the sky, dusk is approaching and any normal store in Capitalist RusUsa would have a flood of lights on specifically tuned to encourage your support of the oligarchinaires money vaults.
+
+          No such luck today.  Despite the lack of light you can make out your two goals for entering the store.  Forward and to your LEFT is the pharmacy while forward and to your RIGHT is sporting goods.'
+        look: 
+          'Good choice, always perform a 5-point room scan, and don’t forget to double-tap. 
+
+  You see a shimmering slippery substance trailing deeper into the store that ends in a pool near you.  Sitting in that pool of i-don’t-wanna-know-what sits a NERF BLASTER.  Its just the basic model, but it looks like you might be able to mod it…'
+        search: 
+          'Just look with your eyes!'
+        move: 
+          'Wow, you really are brave, huh?  Are you sure you don’t want to LOOK around or PICK UP things nearby?'
+
+      pharmacy: 
+        flavorText: 'bandaids and alcohol wipes'
+        look: ''
+        search: ''
+
+      sporting goods: 
+        flavorText: 'knives and guns'
+        look: ''
+        search: ''
+
+    Maliks:
+      hostess stand: 
+      dining room: 
+      kitchen: 
+    protest:
+      field: 
+      crowd: 
+      police line: 
+
+  weapons:
+    conditions: 
+    	- poor
+      - upgraded
+      - damaged
+      - broken
+    nerf blaster:
+      poor:
+        rof: '1'
+        dmg: '1'
+      upgraded:
+        rof: '3'
+        dmg: '3'
+    trebuchet:
+      poor:
+        rof: '0.1'
+        dmg: '3'
+      upgraded:
+        invalid: invalid
+  reusable:
+    badInput:
+      - 'What? Try typint that again'
+      - 'Still no clue what you want...'
+      - 'Are you ok? I think maybe you want to MOVE or LOOK?'
+    pickUpA: 'CONGRATULATIONS brave warrior. You have now added the '
+    pickUpB: ' to your inventory.  Would you like to INSPECT it?'
