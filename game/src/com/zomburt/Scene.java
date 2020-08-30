@@ -1,3 +1,5 @@
+package com.zomburt;
+
 import java.util.ArrayList;
 
 public class Scene {

@@ -3,7 +3,7 @@ zomburt:
 
   menu:
   	flavorText: 
-      'New Game
+      'New com.zomburt.Game
        Resume
        Tutorial & Available Commands
        High Scores
@@ -40,14 +40,14 @@ Welcome to the world of August 13th, 2021.  Best of luck champ.  You’ll need i
 	To the SOUTH is an open field.  There appears to be an orderly protest going on over there.  For some reason everyone looks to be stumbling.  And they’re not really chanting so much as they’re moaning and groaning.  Maybe it was a marathon overnight Protest Ultra? 
 
 	For reasons that are totally not based on the limitations of the code written thus far for this game you feel drawn to the store, don’t you?'
-      y: 
+      y:
       	text: '...moving towards the stores WEST entrance'
         path: 'zomburt.scenes.store.greeter'
       n:
       	text:
         	- You’ve tripped and hurt your knee.  Now you need a bandaid.  Guess you should go to the store huh?
           - Look buddy, work with us here ok?  The store is really cool and we worked real hard on it.
-          - Ohhh, so its like that?  Well fine.  How bout this.  You’re dead.  Game over.  Divoc takes over the world and you’ve saved nothing.  How do you like that punk??
+          - Ohhh, so its like that?  Well fine.  How bout this.  You’re dead.  com.zomburt.Game over.  Divoc takes over the world and you’ve saved nothing.  How do you like that punk??
           - Ok ok, we’re sorry.  Please don’t go.  Its just that those other levels aren’t ready yet.  Soon we’ll have a cool “Freemium” prompt that will let you purchase access, but the payment gateway setup is tricky so let’s just go the store, ok?
 
         path: null
@@ -105,9 +105,10 @@ Welcome to the world of August 13th, 2021.  Best of luck champ.  You’ll need i
         dmg: '3'
       upgraded:
         invalid: invalid
+
   reusable:
     badInput:
-      - 'What? Try typint that again'
+      - 'What? Try typing that again'
       - 'Still no clue what you want...'
       - 'Are you ok? I think maybe you want to MOVE or LOOK?'
     pickUpA: 'CONGRATULATIONS brave warrior. You have now added the '
