@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9f77ca2c-8f6c-4b91-8220-988e2af9630f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/game/src/EndGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/com/zomburt/EndGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,14 +126,22 @@
       <option name="project" value="LOCAL" />
       <updated>1598911132977</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Updated com">
+      <created>1598977623888</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1598977623888</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Commit" />
     <MESSAGE value="testing remote commit" />
     <MESSAGE value="Created EndGame Class Win/Lose Scene with ASCII Art" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created EndGame Class Win/Lose Scene with ASCII Art" />
+    <MESSAGE value="Updated com" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated com" />
   </component>
   <component name="WindowStateProjectService">
     <state x="691" y="397" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1598549032890">
@@ -144,10 +152,10 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1598910411041" />
-    <state x="507" y="104" key="CommitChangelistDialog2" timestamp="1598911129074">
+    <state x="507" y="104" key="CommitChangelistDialog2" timestamp="1598977621085">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="507" y="104" key="CommitChangelistDialog2/0.0.1680.1010@0.0.1680.1010" timestamp="1598911129074" />
+    <state x="507" y="104" key="CommitChangelistDialog2/0.0.1680.1010@0.0.1680.1010" timestamp="1598977621085" />
     <state width="1637" height="532" key="GridCell.Tab.0.bottom" timestamp="1598963550090">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
@@ -172,10 +180,10 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="320" y="82" key="SettingsEditor/0.0.1680.1010@0.0.1680.1010" timestamp="1598549253163" />
-    <state x="432" y="241" width="1023" height="528" key="Vcs.Push.Dialog.v2" timestamp="1598977414319">
+    <state x="432" y="241" width="1023" height="528" key="Vcs.Push.Dialog.v2" timestamp="1598977634193">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="432" y="241" width="1023" height="528" key="Vcs.Push.Dialog.v2/0.0.1680.1010@0.0.1680.1010" timestamp="1598977414319" />
+    <state x="432" y="241" width="1023" height="528" key="Vcs.Push.Dialog.v2/0.0.1680.1010@0.0.1680.1010" timestamp="1598977634193" />
     <state x="562" y="308" key="git4idea.merge.GitPullDialog" timestamp="1598977464413">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
