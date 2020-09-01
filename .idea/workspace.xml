@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9f77ca2c-8f6c-4b91-8220-988e2af9630f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/src/EndGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/EndGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/src/EndGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/com/zomburt/EndGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +50,7 @@
   </component>
   <component name="RunManager" selected="Application.Game">
     <configuration name="EndGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="EndGame" />
+      <option name="MAIN_CLASS_NAME" value="com.zomburt.EndGame" />
       <module name="game" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -174,14 +172,14 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="320" y="82" key="SettingsEditor/0.0.1680.1010@0.0.1680.1010" timestamp="1598549253163" />
-    <state x="432" y="241" width="1023" height="528" key="Vcs.Push.Dialog.v2" timestamp="1598549071827">
+    <state x="432" y="241" width="1023" height="528" key="Vcs.Push.Dialog.v2" timestamp="1598977414319">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="432" y="241" width="1023" height="528" key="Vcs.Push.Dialog.v2/0.0.1680.1010@0.0.1680.1010" timestamp="1598549071827" />
-    <state x="562" y="308" key="git4idea.merge.GitPullDialog" timestamp="1598548611000">
+    <state x="432" y="241" width="1023" height="528" key="Vcs.Push.Dialog.v2/0.0.1680.1010@0.0.1680.1010" timestamp="1598977414319" />
+    <state x="562" y="308" key="git4idea.merge.GitPullDialog" timestamp="1598977464413">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="562" y="308" key="git4idea.merge.GitPullDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1598548611000" />
+    <state x="562" y="308" key="git4idea.merge.GitPullDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1598977464413" />
     <state x="489" y="131" key="new project wizard" timestamp="1598845602294">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>

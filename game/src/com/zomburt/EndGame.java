@@ -1,3 +1,5 @@
+package com.zomburt;
+
 public class EndGame {
 
    public void win() {
