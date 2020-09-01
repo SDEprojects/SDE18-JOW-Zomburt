@@ -1,7 +1,6 @@
 public class EndGame {
 
    public void win() {
-
     System.out.println("\n" +
             " ________   ______   __       __  _______   __    __  _______   ________            \n" +
             "|        \\ /      \\ |  \\     /  \\|       \\ |  \\  |  \\|       \\ |        \\           \n" +
@@ -40,7 +39,6 @@ public class EndGame {
             "                         \\$$    $$                 \\$$    $$                        \n" +
             "                          \\$$$$$$                   \\$$$$$$                         \n" +
             "                                                                                    \n");
-
   }
   public void lose() {
     System.out.println("\n" +
@@ -78,6 +76,5 @@ public class EndGame {
             "                    |  $$$$$$/                |  $$$$$$/                        \n" +
             "                     \\______/                  \\______/                         \n" +
             "                                                                                \n");
-
   }
 }
