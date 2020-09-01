@@ -8,9 +8,9 @@ public class SceneFactory {
         return new Scene(name);
     }
 
-    public static ArrayList<Scene> createUniverse(String name) {
-        // reach into api for scene data based on name
-    }
+//    public static ArrayList<Scene> createUniverse(String name) {
+//        // reach into api for scene data based on name
+//    }
 
     // @Override (kind of) of toString
     public static StringBuilder universeMap(ArrayList<Scene> currentGame) {
