@@ -3,15 +3,12 @@ public class Zombie extends Character{
 
   public Zombie(){
     name = "Zombie";
-//    setHealth();
-    inventory.add("Hat");
+//  setHealth();
+    String inventory.add("Hat");
   }
 
-  public Zombie(String name){
 
-  }
 
-  
   public static void main(String[] args) {
     Zombie z = new Zombie("Zombie");
     z.inventory.add("Hat1");

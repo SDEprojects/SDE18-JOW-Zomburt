@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9f77ca2c-8f6c-4b91-8220-988e2af9630f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/src/com/zomburt/Zombie.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/com/zomburt/Zombie.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +50,11 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\StudentWork\IntmJ\Zomburt\game\src\com\zomburt" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.Game">
     <configuration name="EndGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.zomburt.EndGame" />
@@ -57,8 +64,9 @@
       </method>
     </configuration>
     <configuration name="Game" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="14" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="Game" />
-      <module name="game" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -126,28 +134,44 @@
       <option name="project" value="LOCAL" />
       <updated>1598911132977</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Removed Fight method">
+      <created>1598980263434</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1598980263435</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Commit" />
     <MESSAGE value="testing remote commit" />
     <MESSAGE value="Created EndGame Class Win/Lose Scene with ASCII Art" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created EndGame Class Win/Lose Scene with ASCII Art" />
+    <MESSAGE value="Removed Fight method" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed Fight method" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="691" y="397" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1598549032890">
+    <state x="566" y="173" key="#Game" timestamp="1598980793711">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="691" y="397" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1598549032890" />
+    <state x="566" y="173" key="#Game/0.0.1680.1010@0.0.1680.1010" timestamp="1598980793711" />
+    <state x="569" y="294" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1598980674774">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="569" y="294" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1598980674774" />
+    <state x="691" y="397" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1598980293502">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="691" y="397" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1598980293502" />
     <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1598910411041">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1598910411041" />
-    <state x="507" y="104" key="CommitChangelistDialog2" timestamp="1598911129074">
+    <state x="507" y="104" key="CommitChangelistDialog2" timestamp="1598980258999">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="507" y="104" key="CommitChangelistDialog2/0.0.1680.1010@0.0.1680.1010" timestamp="1598911129074" />
+    <state x="507" y="104" key="CommitChangelistDialog2/0.0.1680.1010@0.0.1680.1010" timestamp="1598980258999" />
     <state width="1637" height="532" key="GridCell.Tab.0.bottom" timestamp="1598963550090">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
@@ -180,10 +204,10 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="621" y="221" key="git4idea.branch.GitSmartOperationDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1598979704003" />
-    <state x="562" y="308" key="git4idea.merge.GitPullDialog" timestamp="1598977464413">
+    <state x="562" y="308" key="git4idea.merge.GitPullDialog" timestamp="1598981138571">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="562" y="308" key="git4idea.merge.GitPullDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1598977464413" />
+    <state x="562" y="308" key="git4idea.merge.GitPullDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1598981138571" />
     <state x="489" y="131" key="new project wizard" timestamp="1598845602294">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
