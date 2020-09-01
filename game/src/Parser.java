@@ -6,7 +6,7 @@ public class Parser {
     public static void runCommands(String input){
         ArrayList<String> commands = parse(input.toLowerCase().trim());
         if(commands == null)
-            System.out.println("That's not a valid command. For a list of available commands input \"help\"");
+            System.out.println("That's not a valid command. For a list of available commands input \" help\"");
         else if(commands.get(0).contains("help"))
             help();
         else

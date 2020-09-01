@@ -19,7 +19,7 @@ public class Game {
         // Print a char from the array, then sleep for 1/25 second
         for (int i = 0; i < chars.length; i++){
             System.out.print(chars[i]);
-//            Thread.sleep(25);
+            Thread.sleep(25);
         }
         System.out.println();
 
