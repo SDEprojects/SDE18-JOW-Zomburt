@@ -11,15 +11,7 @@ public class Zombie extends Character{
 
   }
 
-  public void fight(){
-    int fightHealth = health;
-    int damage = 0;
-    if(health > 0) {
-      fightHealth -= damage;
-    }
-  }
-
-
+  
   public static void main(String[] args) {
     Zombie z = new Zombie("Zombie");
     z.inventory.add("Hat1");
