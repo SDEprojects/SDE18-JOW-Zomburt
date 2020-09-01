@@ -3,16 +3,15 @@ package com.zomburt;
 import java.util.ArrayList;
 
 public class Character {
-    String name;
-    int health;
-    ArrayList<String> inventory = new ArrayList<String>();
-    public Character(){
+    public String name;
+    public int health;
+    public ArrayList<String> inventory = new ArrayList<String>();
 
-    };
+    public Character() { }
 
     public Character(String name) {
         setName(name);
-        setHealth(50);
+        setHealth(100);
     }
 
     public String getName() {
@@ -23,13 +22,20 @@ public class Character {
         this.name = name;
     }
 
-
     public int getHealth() {
         return health;
     }
 
     public void setHealth(int health) {
         this.health = health;
+    }
+
+    public void loseHealth(int damage) {
+        this.health -= damage;
+    }
+
+    public void addHealth(int amount) {
+        this.health += amount;
     }
 
     public ArrayList<String> getInventory() {

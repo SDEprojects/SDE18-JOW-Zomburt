@@ -27,14 +27,14 @@ public class Scene {
         }
     }
 
-    String printYAML() {
-        System.out.println();
-    }
-
-    public String getFlaovrText() {
-        return flavorText;
-    }
-//    private void setFlavorText(String name) {
-//        // access API
+//    String printYAML() {
+//        System.out.println();
 //    }
+
+//    public String getFlaovrText() {
+//        return flavorText;
+//    }
+////    private void setFlavorText(String name) {
+////        // access API
+////    }
 }
