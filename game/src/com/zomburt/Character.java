@@ -3,9 +3,11 @@ package com.zomburt;
 import java.util.ArrayList;
 
 public class Character {
-    String name;
-    int health;
-    ArrayList<String> inventory = new ArrayList<String>();
+    public String name;
+    public int health;
+    public ArrayList<String> inventory = new ArrayList<String>();
+
+    public Character() { }
 
     public Character(String name) {
         setName(name);
