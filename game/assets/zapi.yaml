@@ -29,6 +29,8 @@ And don’t forget, if you can’t hack it you can type “Exit” at anytime.  
 Welcome to the world of August 13th, 2021.  Best of luck champ.  You’ll need it.'
 
   scenes:
+    default:
+      flavorText: 'This is not the room you are looking for...'
     parkingLot:
     	flavorText:
       	'Your Toyota Bronco chugs to a stop as you open the door and step down to the sun cracked parking lot.  The faint NORTHerly breeze brings the scent of Malik’s Combination Taco & Schnitzel Restaurant.  Somehow that place is still open.  Only thing you’ve ever tried from there is the Vegan Carnitas Quesa-Double - which, despite its name was a somewhat respectable 72/100.
