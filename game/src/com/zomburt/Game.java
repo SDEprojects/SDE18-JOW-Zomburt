@@ -1,3 +1,5 @@
+package com.zomburt;
+
 import java.util.Scanner;
 
 public class Game {
