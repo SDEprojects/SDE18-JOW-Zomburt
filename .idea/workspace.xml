@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9f77ca2c-8f6c-4b91-8220-988e2af9630f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/game/src/EndGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/com/zomburt/EndGame.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="scenes" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="C:\StudentWork\IntmJ\Zomburt\.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1ge3kyqOysaXm5ltQCLaZliHzmL" />
+  <component name="ProjectViewState">
+    <option name="flattenPackages" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RunManager" selected="Application.Game">
+    <configuration name="EndGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.zomburt.EndGame" />
+      <module name="game" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Game" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Game" />
+      <module name="game" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Zombie" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Zombie" />
+      <module name="game" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Game" />
+        <item itemvalue="Application.EndGame" />
+        <item itemvalue="Application.Zombie" />
+        <item itemvalue="Application.Game" />
+        <item itemvalue="Application.Zombie" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9f77ca2c-8f6c-4b91-8220-988e2af9630f" name="Default Changelist" comment="" />
+      <created>1598461377575</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1598461377575</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Commit">
+      <created>1598545288397</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1598545288397</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Commit">
+      <created>1598547603200</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1598547603200</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Commit">
+      <created>1598547650146</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1598547650146</updated>
+    </task>
+    <task id="LOCAL-00004" summary="testing remote commit">
+      <created>1598548932599</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1598548932599</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Created EndGame Class Win/Lose Scene with ASCII Art">
+      <created>1598911132977</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1598911132977</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Commit" />
+    <MESSAGE value="testing remote commit" />
+    <MESSAGE value="Created EndGame Class Win/Lose Scene with ASCII Art" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created EndGame Class Win/Lose Scene with ASCII Art" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="691" y="397" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1598549032890">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="691" y="397" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1598549032890" />
+    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1598910411041">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1598910411041" />
+    <state x="507" y="104" key="CommitChangelistDialog2" timestamp="1598911129074">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="507" y="104" key="CommitChangelistDialog2/0.0.1680.1010@0.0.1680.1010" timestamp="1598911129074" />
+    <state width="1637" height="532" key="GridCell.Tab.0.bottom" timestamp="1598963550090">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state width="1637" height="532" key="GridCell.Tab.0.bottom/0.0.1680.1010@0.0.1680.1010" timestamp="1598963550090" />
+    <state width="1637" height="532" key="GridCell.Tab.0.center" timestamp="1598963550090">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state width="1637" height="532" key="GridCell.Tab.0.center/0.0.1680.1010@0.0.1680.1010" timestamp="1598963550090" />
+    <state width="1637" height="532" key="GridCell.Tab.0.left" timestamp="1598963550089">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state width="1637" height="532" key="GridCell.Tab.0.left/0.0.1680.1010@0.0.1680.1010" timestamp="1598963550089" />
+    <state width="1637" height="532" key="GridCell.Tab.0.right" timestamp="1598963550090">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state width="1637" height="532" key="GridCell.Tab.0.right/0.0.1680.1010@0.0.1680.1010" timestamp="1598963550090" />
+    <state x="552" y="222" key="MultipleFileMergeDialog" timestamp="1598548625272">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="552" y="222" key="MultipleFileMergeDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1598548625272" />
+    <state x="320" y="82" key="SettingsEditor" timestamp="1598549253163">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="320" y="82" key="SettingsEditor/0.0.1680.1010@0.0.1680.1010" timestamp="1598549253163" />
+    <state x="432" y="241" width="1023" height="528" key="Vcs.Push.Dialog.v2" timestamp="1598977414319">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="432" y="241" width="1023" height="528" key="Vcs.Push.Dialog.v2/0.0.1680.1010@0.0.1680.1010" timestamp="1598977414319" />
+    <state x="562" y="308" key="git4idea.merge.GitPullDialog" timestamp="1598977464413">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="562" y="308" key="git4idea.merge.GitPullDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1598977464413" />
+    <state x="489" y="131" key="new project wizard" timestamp="1598845602294">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="489" y="131" key="new project wizard/0.0.1680.1010@0.0.1680.1010" timestamp="1598845602294" />
+  </component>
+</project>
