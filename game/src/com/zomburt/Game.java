@@ -9,7 +9,7 @@ public class Game {
         Scanner in = new Scanner(System.in);
         System.out.println("What is your name?");
         Character player = new Character(in.nextLine());
-        EndGame eg = new EndGame();
+        EndGame endGame = new EndGame();
 
         String intro = "In the distant year of 2021, an advanced infectious airborne \n" +
                 "disease has turned the population into Divoc Zombies. \n" +
