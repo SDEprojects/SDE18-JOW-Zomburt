@@ -33,6 +33,7 @@
         },
         "pharmacy": {
           "flavorText": "bandaids and alcohol wipes",
+          "west": {"$ref": "#/sporting goods"},
           "look": "",
           "search": ""
         },
