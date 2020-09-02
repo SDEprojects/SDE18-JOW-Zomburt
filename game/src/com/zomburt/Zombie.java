@@ -6,13 +6,13 @@ public class Zombie extends Character{
   public Zombie(){
     name = "Zombie";
 //  setHealth();
-    String inventory.add("Hat");
+    inventory.add("Hat");
   }
 
 
 
   public static void main(String[] args) {
-    Zombie z = new Zombie("com.zomburt.Zombie");
+    Zombie z = new Zombie();
     z.inventory.add("Hat1");
     System.out.println(z.name);
     System.out.println(z.health);
