@@ -1,21 +1,27 @@
 package com.zomburt;
 
 public class Zombie extends Character{
-//  private inventory inventory = new inventory();
 
-  public Zombie(){
+
+  public Zombie() {
+    health = getHealth();
     name = "Zombie";
-//  setHealth();
     inventory.add("Hat");
   }
 
+//  public int getHealth() {
+//    return health;
+//  }
 
+  public void setHealth(int health){
+    this.health = getHealth();
+  }
 
   public static void main(String[] args) {
     Zombie z = new Zombie();
-    z.inventory.add("Hat1");
-    System.out.println(z.name);
-    System.out.println(z.health);
+
+    System.out.println(z.getHealth());
+    System.out.println(z);
   }
 
 }

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9f77ca2c-8f6c-4b91-8220-988e2af9630f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="9f77ca2c-8f6c-4b91-8220-988e2af9630f" name="Default Changelist" comment="Created 3txt files in assets">
+      <change afterPath="$PROJECT_DIR$/game/src/com/zomburt/GameStatus.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/src/com/zomburt/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/com/zomburt/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/src/com/zomburt/GameEnd.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/game/src/com/zomburt/Zombie.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/com/zomburt/Zombie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Zomburt/META-INF/Zomburt.kotlin_module" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +39,13 @@
       </set>
     </option>
   </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
   <component name="ProjectId" id="1ge3kyqOysaXm5ltQCLaZliHzmL" />
   <component name="ProjectViewState">
     <option name="flattenPackages" value="true" />
@@ -44,21 +54,55 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="project.structure.last.edited" value="SDKs" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Software/intellij-snakeyaml/lib/snakeyaml-1.17.jar!/" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\StudentWork\IntmJ\Zomburt\maven\src\main\java" />
+      <recent name="C:\StudentWork\IntmJ\Zomburt\game\assets" />
+      <recent name="C:\StudentWork\IntmJ\Zomburt\maven" />
       <recent name="C:\StudentWork\IntmJ\Zomburt\game\src\com\zomburt" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Game">
-    <configuration name="EndGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.zomburt.EndGame" />
-      <module name="game" />
+    <configuration name="Game" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.zomburt.Game" />
+      <module name="Zomburt" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zomburt.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameLose" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.zomburt.GameLose" />
+      <module name="Zomburt" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zomburt.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameStatus" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.zomburt.GameStatus" />
+      <module name="Zomburt" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -67,6 +111,7 @@
       <option name="ALTERNATIVE_JRE_PATH" value="14" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="Game" />
+      <module name="Zomburt" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -78,12 +123,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Zombie" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.zomburt.Zombie" />
+      <module name="Zomburt" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zomburt.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Game" />
-        <item itemvalue="Application.EndGame" />
-        <item itemvalue="Application.Zombie" />
-        <item itemvalue="Application.Game" />
+        <item itemvalue="Application.Zombie (1)" />
+        <item itemvalue="Application.GameLose" />
+        <item itemvalue="Application.GameStatus" />
         <item itemvalue="Application.Zombie" />
       </list>
     </recent_temporary>
@@ -141,7 +199,21 @@
       <option name="project" value="LOCAL" />
       <updated>1598980263435</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Updated gitignore with .idea.uiDesigner.xml">
+      <created>1598982073744</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1598982073744</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Created 3txt files in assets">
+      <created>1599017705323</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1599017705325</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -149,13 +221,27 @@
     <MESSAGE value="testing remote commit" />
     <MESSAGE value="Created EndGame Class Win/Lose Scene with ASCII Art" />
     <MESSAGE value="Removed Fight method" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed Fight method" />
+    <MESSAGE value="Updated gitignore with .idea.uiDesigner.xml" />
+    <MESSAGE value="Created 3txt files in assets" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created 3txt files in assets" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="566" y="173" key="#Game" timestamp="1598980793711">
+    <state x="566" y="173" key="#Game" timestamp="1598990717382">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="566" y="173" key="#Game/0.0.1680.1010@0.0.1680.1010" timestamp="1598980793711" />
+    <state x="566" y="173" key="#Game/0.0.1680.1010@0.0.1680.1010" timestamp="1598990717382" />
+    <state x="432" y="166" key="#Project_Structure" timestamp="1599067157562">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="432" y="166" key="#Project_Structure/0.0.1680.1010@0.0.1680.1010" timestamp="1599067157562" />
+    <state x="594" y="315" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1599013394921">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="594" y="315" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1680.1010@0.0.1680.1010" timestamp="1599013394921" />
+    <state x="645" y="224" key="#com.intellij.ide.util.MemberChooser" timestamp="1599055935583">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="645" y="224" key="#com.intellij.ide.util.MemberChooser/0.0.1680.1010@0.0.1680.1010" timestamp="1599055935583" />
     <state x="569" y="294" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1598980674774">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
@@ -164,34 +250,42 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="691" y="397" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1598980293502" />
-    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1598910411041">
+    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1599014786475">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1598910411041" />
-    <state x="507" y="104" key="CommitChangelistDialog2" timestamp="1598980258999">
+    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1599014786475" />
+    <state x="570" y="262" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog" timestamp="1599065659481">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="507" y="104" key="CommitChangelistDialog2/0.0.1680.1010@0.0.1680.1010" timestamp="1598980258999" />
-    <state width="1637" height="532" key="GridCell.Tab.0.bottom" timestamp="1598963550090">
+    <state x="570" y="262" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1599065659481" />
+    <state x="507" y="104" key="CommitChangelistDialog2" timestamp="1599017701462">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state width="1637" height="532" key="GridCell.Tab.0.bottom/0.0.1680.1010@0.0.1680.1010" timestamp="1598963550090" />
-    <state width="1637" height="532" key="GridCell.Tab.0.center" timestamp="1598963550090">
+    <state x="507" y="104" key="CommitChangelistDialog2/0.0.1680.1010@0.0.1680.1010" timestamp="1599017701462" />
+    <state x="761" y="429" key="FileChooserDialogImpl" timestamp="1599067084467">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state width="1637" height="532" key="GridCell.Tab.0.center/0.0.1680.1010@0.0.1680.1010" timestamp="1598963550090" />
-    <state width="1637" height="532" key="GridCell.Tab.0.left" timestamp="1598963550089">
+    <state x="761" y="429" key="FileChooserDialogImpl/0.0.1680.1010@0.0.1680.1010" timestamp="1599067084467" />
+    <state width="1637" height="483" key="GridCell.Tab.0.bottom" timestamp="1599076512423">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state width="1637" height="532" key="GridCell.Tab.0.left/0.0.1680.1010@0.0.1680.1010" timestamp="1598963550089" />
-    <state width="1637" height="532" key="GridCell.Tab.0.right" timestamp="1598963550090">
+    <state width="1637" height="483" key="GridCell.Tab.0.bottom/0.0.1680.1010@0.0.1680.1010" timestamp="1599076512423" />
+    <state width="1637" height="483" key="GridCell.Tab.0.center" timestamp="1599076512423">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state width="1637" height="532" key="GridCell.Tab.0.right/0.0.1680.1010@0.0.1680.1010" timestamp="1598963550090" />
-    <state x="552" y="222" key="MultipleFileMergeDialog" timestamp="1598548625272">
+    <state width="1637" height="483" key="GridCell.Tab.0.center/0.0.1680.1010@0.0.1680.1010" timestamp="1599076512423" />
+    <state width="1637" height="483" key="GridCell.Tab.0.left" timestamp="1599076512423">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="552" y="222" key="MultipleFileMergeDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1598548625272" />
+    <state width="1637" height="483" key="GridCell.Tab.0.left/0.0.1680.1010@0.0.1680.1010" timestamp="1599076512423" />
+    <state width="1637" height="483" key="GridCell.Tab.0.right" timestamp="1599076512423">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state width="1637" height="483" key="GridCell.Tab.0.right/0.0.1680.1010@0.0.1680.1010" timestamp="1599076512423" />
+    <state x="552" y="222" key="MultipleFileMergeDialog" timestamp="1598990550992">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="552" y="222" key="MultipleFileMergeDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1598990550992" />
     <state x="320" y="82" key="SettingsEditor" timestamp="1598549253163">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
@@ -200,17 +294,25 @@
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="432" y="241" width="1023" height="528" key="Vcs.Push.Dialog.v2/0.0.1680.1010@0.0.1680.1010" timestamp="1598977414319" />
-    <state x="621" y="221" key="git4idea.branch.GitSmartOperationDialog" timestamp="1598979704003">
+    <state x="544" y="406" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1599067155879">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="621" y="221" key="git4idea.branch.GitSmartOperationDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1598979704003" />
-    <state x="562" y="308" key="git4idea.merge.GitPullDialog" timestamp="1598981138571">
+    <state x="544" y="406" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1680.1010@0.0.1680.1010" timestamp="1599067155879" />
+    <state x="621" y="221" key="git4idea.branch.GitSmartOperationDialog" timestamp="1599058578904">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="562" y="308" key="git4idea.merge.GitPullDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1598981138571" />
-    <state x="489" y="131" key="new project wizard" timestamp="1598845602294">
+    <state x="621" y="221" key="git4idea.branch.GitSmartOperationDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1599058578904" />
+    <state x="562" y="308" key="git4idea.merge.GitPullDialog" timestamp="1598990617923">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
-    <state x="489" y="131" key="new project wizard/0.0.1680.1010@0.0.1680.1010" timestamp="1598845602294" />
+    <state x="562" y="308" key="git4idea.merge.GitPullDialog/0.0.1680.1010@0.0.1680.1010" timestamp="1598990617923" />
+    <state x="489" y="131" key="new project wizard" timestamp="1598996092445">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="489" y="131" key="new project wizard/0.0.1680.1010@0.0.1680.1010" timestamp="1598996092445" />
+    <state x="496" y="235" key="run.anything.popup" timestamp="1599016719415">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="496" y="235" key="run.anything.popup/0.0.1680.1010@0.0.1680.1010" timestamp="1599016719415" />
   </component>
 </project>
