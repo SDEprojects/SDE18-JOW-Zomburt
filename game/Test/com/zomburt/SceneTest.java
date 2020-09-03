@@ -21,5 +21,6 @@ public class SceneTest {
     @Test
     public void namedSceneGenerated() throws Exception {
         Scene scene1 = new Scene("west entrance");
+        System.out.println(scene1.toString());
     }
 }

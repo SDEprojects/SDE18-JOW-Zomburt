@@ -9,7 +9,12 @@
     },
     "look": "Good choice, always perform a 5-point room scan, and don’t forget to double-tap. You see a shimmering slippery substance trailing deeper into the store that ends in a pool near you.  Sitting in that pool of i-don’t-wanna-know-what sits a NERF BLASTER.  Its just the basic model, but it looks like you might be able to mod it…",
     "search": "Just as with the EAST entrance, the area just inside the store has been picked clean by looters. Nothing useful here.\"",
-    "move": "Wow, you really are brave, huh?  Are you sure you don’t want to LOOK around or PICK UP things nearby?"
+    "feature": ["list of zombies or special room features"],
+    "roomLoot": ["NERF BLASTER"],
+    "armoire": {
+      "door 1": "",
+      "chest 1": ""
+    }
   },
   "discount bin": {
     "flavorText": "$5.99 DVD's of '28 Days Later' and 'The Walking Dead'",
@@ -21,8 +26,8 @@
     },
     "look": "$5.99 DVD's of '28 Days Later' and 'The Walking Dead'",
     "search": "$5.99 DVD's of '28 Days Later' and 'The Walking Dead'",
-    "feature": ["list of zombies or special room features"],
-    "roomLoot": ["nothing here"],
+    "feature": [],
+    "roomLoot": [],
     "armoire": {
       "door 1": "",
       "chest 1": ""
@@ -32,14 +37,14 @@
     "flavorText": "bandaids and alcohol wipes",
     "movement": {
       "north": "",
-      "west": "sporting goods",
-      "south": "",
+      "west": "",
+      "south": "discount bin",
       "east": ""
     },
     "look": "you see some multi-colored loofas and realize you haven't showered since this all started... months ago",
-    "search": "some listerine sparkles in the shadow of the mostly empty shelving",
-    "feature": ["list of zombies or special room features"],
-    "roomLoot": ["listerine"],
+    "search": "some listerine sparkles in the shadow of the mostly empty shelving, next to BANDAIDs and ALCOHOL WIPES",
+    "feature": [],
+    "roomLoot": ["BANDAID", "ALCOHOL WIPES"],
     "armoire": {
       "door 1": "",
       "chest 1": ""
@@ -48,15 +53,15 @@
   "sporting goods": {
     "flavorText": "knives and guns are sold out, but they have nerf gun springs and kerosene soaked nerf darts still!",
     "movement": {
-      "north": "",
+      "north": "discount bin",
       "west": "",
       "south": "",
-      "east": "pharmacy"
+      "east": ""
     },
     "look": "behind the glass counter is a sign that reads 'Yes, you must wear a mask to buy a gun' and 'NO, you do not need to show your face to finalize the purchase #murica'",
-    "search": "seriously, there's no guns left",
+    "search": "seriously, there's no guns left... but you do see some of those IMPROVED NERF DARTs",
     "feature": ["list of zombies or special room features"],
-    "roomLoot": ["nothing here"],
+    "roomLoot": ["IMPROVED NERF DART"],
     "armoire": {
       "door 1": "",
       "chest 1": ""
