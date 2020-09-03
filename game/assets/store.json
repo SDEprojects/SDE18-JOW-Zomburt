@@ -18,7 +18,7 @@
     "look": "$5.99 DVD's of '28 Days Later' and 'The Walking Dead'",
     "search": "$5.99 DVD's of '28 Days Later' and 'The Walking Dead'",
     "feature": ["list of zombies or special room features"],
-    "room loot": ["nothing here"],
+    "roomLoot": ["nothing here"],
     "armoire": {
       "door 1": "",
       "chest 1": ""
@@ -33,7 +33,7 @@
     "look": "you see some multi-colored loofas and realize you haven't showered since this all started... months ago",
     "search": "some listerine sparkles in the shadow of the mostly empty shelving",
     "feature": ["list of zombies or special room features"],
-    "room loot": ["listerine"],
+    "roomLoot": ["listerine"],
     "armoire": {
       "door 1": "",
       "chest 1": ""
@@ -48,7 +48,7 @@
     "look": "behind the glass counter is a sign that reads 'Yes, you must wear a mask to buy a gun' and 'NO, you do not need to show your face to finalize the purchase #murica'",
     "search": "seriously, there's no guns left",
     "feature": ["list of zombies or special room features"],
-    "room loot": ["nothing here"],
+    "roomLoot": ["nothing here"],
     "armoire": {
       "door 1": "",
       "chest 1": ""
@@ -63,7 +63,7 @@
     "look": "Sunken eyes and gaping mouth... if only you had some way to cover their mouth AND nose...",
     "search": "Just as with the WEST entrance, the area just inside the store has been picked clean by looters. Nothing useful here.",
     "feature": ["DOVIC shambler", "DOVIC walker", "DOVIC cougher"],
-    "room loot": ["Hooah! bar"],
+    "roomLoot": ["Hooah! bar"],
     "armoire": {
       "door 1": "",
       "chest 1": ""
