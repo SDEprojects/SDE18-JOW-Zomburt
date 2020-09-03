@@ -12,9 +12,14 @@ public class SceneTest {
     public void setUp() throws Exception {
     }
 
+//    @Test
+//    public void noArgSceneGeneration() throws Exception {
+//        Scene scene1 = new Scene();
+//        System.out.println(scene1);
+//    }
+
     @Test
-    public void singleSceneGeneration() throws Exception {
-        Scene scene1 = new Scene();
-        System.out.println(scene1);
+    public void namedSceneGenerated() throws Exception {
+        Scene scene1 = new Scene("west entrance");
     }
 }
