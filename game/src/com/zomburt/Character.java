@@ -3,15 +3,17 @@ package com.zomburt;
 import java.util.ArrayList;
 
 public class Character {
-    public String name;
-    public int health;
-    public ArrayList<String> inventory = new ArrayList<String>();
-
-    public Character() { }
+    private String name;
+    private int health = 50;
+    private ArrayList<String> inventory = new ArrayList<String>();
 
     public Character(String name) {
         setName(name);
-        setHealth(100);
+    }
+
+    public Character(String name, int health) {
+        setName(name);
+        setHealth(health);
     }
 
     public String getName() {

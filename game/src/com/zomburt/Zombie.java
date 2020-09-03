@@ -1,32 +1,34 @@
 package com.zomburt;
 
-public class Zombie extends Character{
-//  private inventory inventory = new inventory();
+import java.util.Random;
 
-  public Zombie(){
-    name = "Zombie";
-//    setHealth();
-    inventory.add("Hat");
+public class Zombie extends Character {
+
+  public Zombie() {
+    super("Zombie");
+    addInventory("Zombie Teeth");
   }
 
-  public Zombie(String name){
-
-  }
-
-  public void fight(){
-    int fightHealth = health;
-    int damage = 0;
-    if(health > 0) {
-      fightHealth -= damage;
-    }
+  public String dropItem(){
+    Random rand = new Random();
+    int n = rand.nextInt(getInventory().size());
+    String drop = getInventory().get(n);
+    removeInventory(getInventory().get(n));
+    return drop;
   }
 
 
-  public static void main(String[] args) {
-    Zombie z = new Zombie("com.zomburt.Zombie");
-    z.inventory.add("Hat1");
-    System.out.println(z.name);
-    System.out.println(z.health);
-  }
+
+
+//  public static void main(String[] args) {
+//    Zombie z = new Zombie();
+//
+//    z.dropItem();
+//    System.out.println(z.getName());
+//    System.out.println(z.getHealth());
+//    System.out.println(z);
+//
+//
+//  }
 
 }
