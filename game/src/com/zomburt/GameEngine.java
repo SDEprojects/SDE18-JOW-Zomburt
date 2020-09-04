@@ -12,9 +12,10 @@ public class GameEngine {
   Character player;
   GameStatus gameStatus = new GameStatus();
   Scene currentScene;
+  Boolean newScene = true;
+  Boolean win = false, lose = false;
 
   public void run() throws FileNotFoundException, InterruptedException, Exception {
-      Boolean win = false, lose = false;
 
 //      gameStatus.start();
       currentScene = new Scene("west entrance");
@@ -28,13 +29,47 @@ public class GameEngine {
 //      intro();
 
       while (win == false || lose == false) {
+        if (newScene)
+          System.out.println(currentScene.getFlavorText());
         System.out.print(" > ");
         String input = in.nextLine();
         if (input.isEmpty()) {
+          newScene = false;
           continue;
         }
         runCommands(input);
       }
+//      if (win)
+//        gameStatus.win();
+//      else
+//        gameStatus.lose();
+  }
+
+  public void runCommands(String input) throws Exception {
+    newScene = false;
+    ArrayList<String> commands = Parser.parse(input.toLowerCase().trim());
+    System.out.println(commands.toString());
+    if(commands == null)
+      System.out.println("That's not a valid command. For a list of available commands input \" help\"");
+    else if(commands.get(0).contains("move")) {
+      try {
+        move(commands.get(1));
+      } catch (Exception e) {
+        System.out.println("Movement commands must be two words in length... Pick a direction!");
+      }
+    }
+    else if(commands.get(0).contains("help"))
+      help();
+    else if(commands.get(0).contains("quit") || commands.get(0).contains("exit"))
+      quit();
+    else if(commands.get(0).contains("search"))
+      search();
+    else if(commands.get(0).contains("look"))
+      look();
+    else if(commands.get(0).contains("inv"))
+      System.out.println(player.getName()+ "'s inventory is " + player.getInventory());
+    else
+      System.out.println(Arrays.toString(commands.toArray()));
   }
 
   public void quit() throws FileNotFoundException, InterruptedException {
@@ -61,32 +96,8 @@ public class GameEngine {
     System.out.println();
   }
 
-  public void runCommands(String input) throws Exception {
-    ArrayList<String> commands = Parser.parse(input.toLowerCase().trim());
-    if(commands == null)
-      System.out.println("That's not a valid command. For a list of available commands input \" help\"");
-    else if(commands.get(0).contains("move")) {
-      try {
-        move(commands.get(1));
-      } catch (Exception e) {
-        System.out.println("Movement commands must be two words in length... Pick a direction!");
-      }
-    }
-    else if(commands.get(0).contains("help"))
-      help();
-    else if(commands.get(0).contains("quit") || commands.get(0).contains("exit"))
-      quit();
-    else if(commands.get(0).contains("search") || commands.get(0).contains("look"))
-      search();
-    else if(commands.get(0).contains("inv"))
-      System.out.println(player.getName()+ "'s inventory is " + player.getInventory());
-    else
-      System.out.println(Arrays.toString(commands.toArray()));
-  }
-
   public void search(){
     System.out.println("Upon searching the room you see a skull");
-
   }
 
   public static void help() {
@@ -105,25 +116,24 @@ public class GameEngine {
     JSONObject moveSet = (JSONObject) currentScene.getMovement();
     String sceneCheck = (String) moveSet.get(moveDir);
     System.out.println("sceneCheck: " + sceneCheck);
-    if (sceneCheck != null) {
+    if (sceneCheck.equals("victory")) {
+      win = true;
+      gameStatus.win();
+    }
+    else if (sceneCheck != null) {
       currentScene = new Scene(sceneCheck);
       System.out.println(currentScene.toString()); // remove when not testing
-      System.out.println(currentScene.getFlavorText());
+//      System.out.println(currentScene.getFlavorText());
+      newScene = true;
     }
     else {
       System.out.println("You can't go that way...  Please try another cardinal direction.");
       System.out.println("Your available moves are: " + moveSet);
     }
   }
+
+  public void look() {
+    System.out.println("still need to implement 'look'");
+  }
+
 }
-
-
-
-
-
-
-
-
-
-
-
