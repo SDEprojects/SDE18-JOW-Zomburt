@@ -92,6 +92,7 @@ public class Scene {
 //            feature = null;
 //        }
         feature = new ArrayList<String>();
+        // class cast exception
         @SuppressWarnings("unchecked")
         List<String> strFeature = (List<String>) sceneObj.get("feature");
         feature.addAll(strFeature);
