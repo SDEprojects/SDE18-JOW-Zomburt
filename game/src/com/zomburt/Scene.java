@@ -35,7 +35,7 @@ public class Scene {
         setMovement();
         setLook();
         setSearch();
-//        setFeature();
+        setFeature();
         setRoomLoot();
     }
     public Object getSceneObj() {
