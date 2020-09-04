@@ -7,7 +7,7 @@ import java.io.FileReader;
 public class JSONinteract {
     public static void main(String[] args) throws Exception {
         // parsing file "JSONExample.json"
-        Object obj = new JSONParser().parse(new FileReader("./game/assets/zapi.json"));
+        Object obj = new JSONParser().parse(new FileReader(".\\game\\assets\\zapi.json"));
 
         // typecasting obj to JSONObject
         JSONObject jo = (JSONObject) obj;
