@@ -1,5 +1,7 @@
 package com.zomburt;
 
+import org.json.simple.JSONObject;
+
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,11 +11,13 @@ public class GameEngine {
 
   Character player;
   GameStatus gameStatus = new GameStatus();
+  Scene currentScene;
 
-  public void run() throws FileNotFoundException, InterruptedException {
+  public void run() throws FileNotFoundException, InterruptedException, Exception {
       Boolean win = false, lose = false;
 
-      gameStatus.start();
+//      gameStatus.start();
+      currentScene = new Scene("west entrance");
 
       Scanner in = new Scanner(System.in);
       System.out.println("What is your name?");
@@ -21,12 +25,12 @@ public class GameEngine {
 
       System.out.println();
 
-      intro();
+//      intro();
 
       while (win == false || lose == false) {
-        System.out.print(">");
+        System.out.print(" > ");
         String input = in.nextLine();
-        if(input.isEmpty()) {
+        if (input.isEmpty()) {
           continue;
         }
         runCommands(input);
@@ -35,7 +39,6 @@ public class GameEngine {
 
   public void quit() throws FileNotFoundException, InterruptedException {
     gameStatus.lose();
-
     System.exit(0);
   }
 
@@ -58,13 +61,20 @@ public class GameEngine {
     System.out.println();
   }
 
-  public void runCommands(String input) throws FileNotFoundException, InterruptedException {
+  public void runCommands(String input) throws Exception {
     ArrayList<String> commands = Parser.parse(input.toLowerCase().trim());
     if(commands == null)
       System.out.println("That's not a valid command. For a list of available commands input \" help\"");
+    else if(commands.get(0).contains("move")) {
+      try {
+        move(commands.get(1));
+      } catch (Exception e) {
+        System.out.println("Movement commands must be two words in length... Pick a direction!");
+      }
+    }
     else if(commands.get(0).contains("help"))
       help();
-    else if(commands.get(0).contains("quit"))
+    else if(commands.get(0).contains("quit") || commands.get(0).contains("exit"))
       quit();
     else if(commands.get(0).contains("search") || commands.get(0).contains("look"))
       search();
@@ -89,6 +99,21 @@ public class GameEngine {
             "-look/search-\n" +
             "-open/close- door-\n" +
             "-quit");
+  }
+
+  public void move(String moveDir) throws Exception {
+    JSONObject moveSet = (JSONObject) currentScene.getMovement();
+    String sceneCheck = (String) moveSet.get(moveDir);
+    System.out.println("sceneCheck: " + sceneCheck);
+    if (sceneCheck != null) {
+      currentScene = new Scene(sceneCheck);
+      System.out.println(currentScene.toString()); // remove when not testing
+      System.out.println(currentScene.getFlavorText());
+    }
+    else {
+      System.out.println("You can't go that way...  Please try another cardinal direction.");
+      System.out.println("Your available moves are: " + moveSet);
+    }
   }
 }
 
