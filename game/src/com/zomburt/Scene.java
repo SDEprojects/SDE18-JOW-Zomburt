@@ -5,7 +5,7 @@ import org.json.simple.parser.JSONParser;
 
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 public class Scene {
     JSONObject sceneObj;
@@ -19,16 +19,11 @@ public class Scene {
 
 //    public Scene() {
 //        no arg
-//        flavorText = "";
-//        movement = new Object();
-//        roomLoot = new ArrayList<String>();
-//        feature = new ArrayList<String>();
 //    }
 
     public Scene(String locationName) throws Exception {
         setSceneObject(locationName);
         setSceneName(locationName);
-
     }
 
     public void setSceneObject(String locationName) throws Exception {
@@ -40,8 +35,8 @@ public class Scene {
         setMovement();
         setLook();
         setSearch();
-        setFeature();
-//        setRoomLoot();
+//        setFeature();
+        setRoomLoot();
     }
     public Object getSceneObj() {
         return sceneObj;
@@ -87,33 +82,38 @@ public class Scene {
     }
     public void setFeature() {
 //        feature = new ArrayList<String> ((String) sceneObj.get("feature"))Arrays.asList(str.split(","));
-        try {
-            String[] strFeature = (String[]) sceneObj.get("feature");
-            feature = new ArrayList<String>(Arrays.asList(strFeature));
-        } catch (Exception e) {
-            feature = null;
-        }
+//        try {
+//            String[] strFeature = (String[]) sceneObj.get("feature");
+//            feature = new ArrayList<String>(Arrays.asList(strFeature));
+//        } catch (Exception e) {
+//            feature = null;
+//        }
+        feature = new ArrayList<String>();
+        @SuppressWarnings("unchecked")
+        List<String> strFeature = (List<String>) sceneObj.get("feature");
+        feature.addAll(strFeature);
     }
 
     public ArrayList<String> getRoomLoot() {
         return roomLoot;
     }
     public void setRoomLoot() {
-//        roomLoot = (ArrayList<String>) sceneObj.get("roomLoot");
-        String[] strRoomLoot = (String[]) sceneObj.get("roomLoot");
-        roomLoot = new ArrayList<String>(Arrays.asList(strRoomLoot));
+        roomLoot = new ArrayList<String>();
+        @SuppressWarnings("unchecked")
+        List<String> strRoomLoot = (List<String>) sceneObj.get("roomLoot");
+        roomLoot.addAll(strRoomLoot);
     }
 
     @Override
     public String toString() {
-        return "Scene{" +
-                "sceneObj=" + sceneObj +
-                ", flavorText='" + flavorText + '\'' +
-                ", movement=" + movement +
-                ", look='" + look + '\'' +
-                ", search='" + search + '\'' +
-                ", feature=" + feature +
-                ", roomLoot=" + roomLoot +
+        return sceneName.toUpperCase() + " { \n" +
+                " sceneObj = " + sceneObj + "; \n" +
+                " flavorText = " + flavorText + "; \n" +
+                " movement = " + movement + "; \n" +
+                " look = " + look + "; \n" +
+                " search = " + search + "; \n" +
+                " feature = " + feature + "; \n" +
+                " roomLoot = " + roomLoot +" \n" +
                 '}';
     }
 
