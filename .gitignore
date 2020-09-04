@@ -1,6 +1,9 @@
 # Compiled class file
 *.class
 
+# Staging Branch flags
+WARNING.md
+
 # Log file
 *.log
 
