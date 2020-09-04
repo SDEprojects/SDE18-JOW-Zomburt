@@ -23,6 +23,12 @@ public class SceneTest {
         Scene scene1 = new Scene("west entrance");
         System.out.println(scene1.toString());
         Scene scene2 = new Scene("discount bin");
+    }
 
+    @Test
+    public void reWriteJSON() throws Exception {
+        Scene scene1 = new Scene("west entrance");
+        scene1.updateRoomLoot();
+        System.out.println("done?");
     }
 }

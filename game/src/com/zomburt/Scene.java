@@ -1,9 +1,12 @@
 package com.zomburt;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -102,6 +105,28 @@ public class Scene {
         @SuppressWarnings("unchecked")
         List<String> strRoomLoot = (List<String>) sceneObj.get("roomLoot");
         roomLoot.addAll(strRoomLoot);
+    }
+
+    public void updateRoomLoot() throws Exception {
+        Object store2 = new JSONParser().parse(new FileReader("./game/assets/store.json"));
+        JSONObject joStore2 = (JSONObject) store2;
+
+        JSONObject a = (JSONObject) joStore2.get("discount bin");
+        JSONArray b = (JSONArray) a.get("roomLoot");
+
+        b.add("candy bar");
+        System.out.println("b: " + b);
+
+        //Write JSON file
+        try (FileWriter file = new FileWriter("./game/assets/store2.json", true)) {
+//            file.append("new line for funsies");
+            file.write("\n");
+            file.write(joStore2.toJSONString());
+            file.write("\n");
+            file.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
