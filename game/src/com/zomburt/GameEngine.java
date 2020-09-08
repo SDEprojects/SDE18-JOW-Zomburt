@@ -62,6 +62,8 @@ public class GameEngine {
       help();
     else if(commands.get(0).contains("quit") || commands.get(0).contains("exit"))
       quit();
+    else if(commands.get(0).contains("drop") || commands.get(0).contains("pick up"))
+      itemHandler(commands.get(0),  commands.get(1).toUpperCase());
     else if(commands.get(0).contains("search"))
       search();
     else if(commands.get(0).contains("look"))
@@ -70,6 +72,23 @@ public class GameEngine {
       System.out.println(player.getName()+ "'s inventory is " + player.getInventory());
     else
       System.out.println(Arrays.toString(commands.toArray()));
+  }
+
+  public void itemHandler(String action, String s) {
+    if (action.equals("drop")) {
+      if (player.getInventory().contains(s)) {
+        player.removeInventory(s);
+      } else {
+        System.out.println("You don't have that item");
+      }
+    }
+    if (action.equals("pick up")) {
+      if (currentScene.getRoomLoot().contains(s)) {
+        player.addInventory(s);
+        System.out.println(player.getInventory());
+      } else
+        System.out.println("That item isn't here");
+    }
   }
 
   public void quit() throws FileNotFoundException, InterruptedException {
