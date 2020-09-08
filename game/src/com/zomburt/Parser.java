@@ -8,9 +8,13 @@ public class Parser {
 
     public static ArrayList<String> parse(String input){
         ArrayList<String> options = new ArrayList<>(Arrays.asList(new String[]{"move", "pick up", "drop", "use", "look", "open", "help", "quit", "exit", "search", "inv"}));
-        ArrayList<String> commands = input.startsWith("pick up")
-                ? new ArrayList<>(Arrays.asList(input.split("(?<=up)")))
-                : new ArrayList<>(Arrays.asList(input.split(" ")));
+        ArrayList<String> commands;
+                if(input.startsWith("pick up"))
+                    commands = new ArrayList<>(Arrays.asList(input.split("(?<=up)")));
+                else if(input.startsWith("drop"))
+                    commands = new ArrayList<>(Arrays.asList(input.split("(?<=drop)")));
+                else
+                    commands = new ArrayList<>(Arrays.asList(input.split(" ")));
         return !options.contains(commands.get(0)) || commands.size() == 0 ? null : reduceArray(commands);
     }
 

@@ -17,7 +17,7 @@ public class GameEngine {
 
   public void run() throws FileNotFoundException, InterruptedException, Exception {
 
-      gameStatus.start();
+//      gameStatus.start();
       currentScene = new Scene("west entrance");
 
       Scanner in = new Scanner(System.in);
@@ -26,7 +26,7 @@ public class GameEngine {
 
       System.out.println();
 
-      intro();
+//      intro();
 
       while (win == false || lose == false) {
         if (newScene)
@@ -48,7 +48,7 @@ public class GameEngine {
   public void runCommands(String input) throws Exception {
     newScene = false;
     ArrayList<String> commands = Parser.parse(input.toLowerCase().trim());
-    System.out.println(commands.toString());
+//    System.out.println(commands.toString());
     if(commands == null)
       System.out.println("That's not a valid command. For a list of available commands input \" help\"");
     else if(commands.get(0).contains("move")) {
