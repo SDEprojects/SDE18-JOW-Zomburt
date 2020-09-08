@@ -6,7 +6,6 @@ import java.util.List;
 
 public class Parser {
 
-
     public static ArrayList<String> parse(String input){
         ArrayList<String> options = new ArrayList<>(Arrays.asList(new String[]{"move", "pick up", "drop", "use", "look", "open", "help", "quit", "exit", "search", "inv"}));
         ArrayList<String> commands = input.startsWith("pick up")
@@ -21,5 +20,4 @@ public class Parser {
         list.replaceAll(x -> x.trim());
         return (ArrayList<String>) list;
     }
-
 }
