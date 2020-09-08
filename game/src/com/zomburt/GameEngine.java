@@ -17,7 +17,7 @@ public class GameEngine {
 
   public void run() throws FileNotFoundException, InterruptedException, Exception {
 
-//      gameStatus.start();
+      gameStatus.start();
       currentScene = new Scene("west entrance");
 
       Scanner in = new Scanner(System.in);
@@ -26,7 +26,7 @@ public class GameEngine {
 
       System.out.println();
 
-//      intro();
+      intro();
 
       while (win == false || lose == false) {
         if (newScene)
