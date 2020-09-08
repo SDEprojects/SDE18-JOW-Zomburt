@@ -17,4 +17,11 @@ public class Zombie extends Character {
     return drop;
   }
 
+  public static void main(String[] args) {
+    Character z = new Zombie();
+    z.getHealth();
+
+  }
 }
+
+
