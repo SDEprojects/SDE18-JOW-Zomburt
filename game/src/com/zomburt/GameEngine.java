@@ -18,7 +18,7 @@ public class GameEngine {
   public void run() throws FileNotFoundException, InterruptedException, Exception {
 
 //      gameStatus.start();
-      currentScene = new Scene("west entrance");
+      currentScene = new Scene("parking lot");
 
       Scanner in = new Scanner(System.in);
       System.out.println("What is your name?");
@@ -48,14 +48,21 @@ public class GameEngine {
   public void runCommands(String input) throws Exception {
     newScene = false;
     ArrayList<String> commands = Parser.parse(input.toLowerCase().trim());
-//    System.out.println(commands.toString());
     if(commands == null)
       System.out.println("That's not a valid command. For a list of available commands input \" help\"");
     else if(commands.get(0).contains("move")) {
       try {
+        System.out.println(commands.get(1));
         move(commands.get(1));
       } catch (Exception e) {
-        System.out.println("Movement commands must be two words in length... Pick a direction!");
+        JSONObject dirCheck = (JSONObject) currentScene.getMovement();
+        try {
+          dirCheck.get(commands.get(1));
+          if (dirCheck.get(commands.get(1)).equals(""))
+            System.out.println("Not an available direction. Try again.");
+        } catch (Exception e2) {
+          System.out.println("Movement commands must be two recognized words in length... Pick a direction!");
+        }
       }
     }
     else if(commands.get(0).contains("help"))
@@ -63,7 +70,7 @@ public class GameEngine {
     else if(commands.get(0).contains("quit") || commands.get(0).contains("exit"))
       quit();
     else if(commands.get(0).contains("drop") || commands.get(0).contains("pick up"))
-      itemHandler(commands.get(0),  commands.get(1).toUpperCase());
+      itemHandler(commands.get(0), commands.get(1).toUpperCase());
     else if(commands.get(0).contains("search"))
       search();
     else if(commands.get(0).contains("look"))
@@ -71,6 +78,7 @@ public class GameEngine {
     else if(commands.get(0).contains("inv"))
       System.out.println(player.getName()+ "'s inventory is " + player.getInventory());
     else
+      System.out.println("final else block reached");
       System.out.println(Arrays.toString(commands.toArray()));
   }
 
@@ -103,7 +111,7 @@ public class GameEngine {
             "You must navigate through three heavily infected areas to find \n" +
             "the magical antidote and locate your friends and family to free them \n" +
             "from a life of Divoc Suffering. \n" +
-            "If you fail, you will become a Divoc .";
+            "If you fail, you will become a Divoc. \n";
 
     char[] chars = intro.toCharArray();
     // Print a char from the array, then sleep for 1/25 second
@@ -141,7 +149,7 @@ public class GameEngine {
     }
     else if (sceneCheck != null) {
       currentScene = new Scene(sceneCheck);
-      System.out.println(currentScene.toString()); // remove when not testing
+//      System.out.println(currentScene.toString()); // remove when not testing
 //      System.out.println(currentScene.getFlavorText());
       newScene = true;
     }

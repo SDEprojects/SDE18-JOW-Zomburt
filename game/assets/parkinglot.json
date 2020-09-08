@@ -1,16 +1,18 @@
 {
-  "flavorText": "Your Toyota Bronco chugs to a stop as you open the door and step down to the sun cracked parking lot.  The faint NORTHerly breeze brings the scent of Malik’s Combination Taco & Schnitzel Restaurant.  Somehow that place is still open.  Only thing you’ve ever tried from there is the Vegan Carnitas Quesa-Double - which, despite its name was a somewhat respectable 72/100.\nTo your EAST… is a store\nTo your WEST…[coming soon]\nTo the SOUTH is an open field.  There appears to be an orderly protest going on over there.  For some reason everyone looks to be stumbling.  And they’re not really chanting so much as they’re moaning and groaning.  Maybe it was a marathon overnight Protest Ultra?\nFor reasons that are totally not based on the limitations of the code written thus far for this game you feel drawn to the store, don’t you?",
-    "y": {
-      "text": "...moving towards the stores WEST entrance",
-      "path": "zomburt.scenes.store.greeter"
+  "parking lot": {
+    "flavorText": "In the distant year of 2021, an advanced infectious airborne \ndisease has turned the population into Divoc Zombies. \nAll that remains is you and a few of your fellow Faction members. \nYou must navigate through three heavily infected areas to find \nthe magical antidote and locate your friends and family to free them \nfrom a life of Divoc Suffering. \n\n  If you fail, you will become a Divoc. \n",
+    "movement": {
+      "north": "",
+      "west": "",
+      "south": "",
+      "east": "west entrance"
     },
-    "n": {
-      "text": [
-"You’ve tripped and hurt your knee.  Now you need a bandaid.  Guess you should go to the store huh?",
-"Look buddy, work with us here ok?  The store is really cool and we worked real hard on it.",
-"Ohhh, so its like that?  Well fine.  How bout this.  You’re dead.  com.zomburt.Game over.  Divoc takes over the world and you’ve saved nothing.  How do you like that punk??",
-"Ok ok, we’re sorry.  Please don’t go.  Its just that those other levels aren’t ready yet.  Soon we’ll have a cool “Freemium” prompt that will let you purchase access, but the payment gateway setup is tricky so let’s just go the store, ok?"
-      ],
-      "path": null
+    "look": "",
+    "feature": [],
+    "roomLoot": [],
+    "armoire": {
+      "door 1": "",
+      "chest 1": ""
     }
+  }
 }

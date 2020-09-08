@@ -30,7 +30,11 @@ public class Scene {
     }
 
     public void setSceneObject(String locationName) throws Exception {
-        Object store = new JSONParser().parse(new FileReader("./game/assets/store.json"));
+        Object store;
+        if (locationName == "parking lot")
+            store = new JSONParser().parse(new FileReader("./game/assets/parkinglot.json"));
+        else
+            store = new JSONParser().parse(new FileReader("./game/assets/store.json"));
         JSONObject joStore = (JSONObject) store;
         JSONObject sceneObj = (JSONObject) joStore.get(locationName);
         this.sceneObj = sceneObj;
