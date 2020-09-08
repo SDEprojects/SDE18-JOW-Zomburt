@@ -17,18 +17,11 @@ public class Zombie extends Character {
     return drop;
   }
 
+  public static void main(String[] args) {
+    Character z = new Zombie();
+    z.getHealth();
 
-
-
-//  public static void main(String[] args) {
-//    Zombie z = new Zombie();
-//
-//    z.dropItem();
-//    System.out.println(z.getName());
-//    System.out.println(z.getHealth());
-//    System.out.println(z);
-//
-//
-//  }
-
+  }
 }
+
+
