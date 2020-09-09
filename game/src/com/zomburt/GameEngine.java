@@ -1,5 +1,6 @@
 package com.zomburt;
 
+import com.zomburt.combat.Combat;
 import org.json.simple.JSONObject;
 
 import java.io.FileNotFoundException;
@@ -9,11 +10,11 @@ import java.util.Scanner;
 
 public class GameEngine {
 
-  Character player;
+  public static Character player;
   GameStatus gameStatus = new GameStatus();
   Scene currentScene;
   Boolean newScene = true;
-  Boolean win = false, lose = false;
+  Boolean win = false;
 
   public void run() throws FileNotFoundException, InterruptedException, Exception {
 
@@ -28,9 +29,12 @@ public class GameEngine {
 
 //      intro();
 
-      while (win == false || lose == false) {
+
+      while (win == false) {
         if (newScene)
           System.out.println(currentScene.getFlavorText());
+        if (currentScene.getFeature().contains("zombie"))
+          Combat.combat(player, new Zombie());
         System.out.print(" > ");
         String input = in.nextLine();
         if (input.isEmpty()) {
