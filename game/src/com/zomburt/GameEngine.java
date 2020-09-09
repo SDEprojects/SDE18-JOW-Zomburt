@@ -29,7 +29,7 @@ public class GameEngine {
       System.out.println("What is your name?");
       player = new Character(in.nextLine());
 
-      System.out.println();
+      System.out.print("\n" + player.getName() + ", ");
 
 //      intro();
 
@@ -64,7 +64,7 @@ public class GameEngine {
           if (dirCheck.get(commands.get(1)).equals(""))
             System.out.println("Not an available direction. Try again.");
         } catch (Exception e2) {
-          System.out.println("Movement commands must be two recognized words in length... Pick a direction!");
+          System.out.println("Movement commands must be two recognized words in length... Pick a cardinal direction!");
         }
       }
     }
@@ -80,8 +80,10 @@ public class GameEngine {
       look();
     else if (commands.get(0).contains("inv"))
       System.out.println(player.getName()+ "'s inventory is " + player.getInventory());
+    else if (commands.get(0).contains("hint"))
+      hint();
     else
-      System.out.println("final else block reached");
+//      System.out.println("final else block reached");
       System.out.println(Arrays.toString(commands.toArray()));
   }
 
@@ -126,7 +128,6 @@ public class GameEngine {
       System.out.print(chars[i]);
       Thread.sleep(25);
     }
-
     System.out.println();
   }
 
@@ -135,26 +136,26 @@ public class GameEngine {
   }
 
   public static void help() {
-    System.out.println("These are some commands you can perform: \n" +
-            "-move <direction>-\n" +
-            "-inv <view inventory>-" +
-            "-use <item>-\n" +
-            "-pick up <item>-\n" +
-            "-drop <item>-\n" +
-            "-look/search-\n" +
-            "-open/close- door-\n" +
-            "-quit");
+    System.out.println("\n  These are some commands you can perform: \n" +
+            "    -move <direction>-\n" +
+            "    -inv <view inventory>-\n" +
+//            "    -use <item>-\n" +
+            "    -pick up <item>-\n" +
+            "    -drop <item>-\n" +
+            "    -look/search-\n" +
+//            "    -open/close- door-\n" +
+            "    -quit\n");
   }
 
   public void move(String moveDir) throws Exception {
     JSONObject moveSet = (JSONObject) currentScene.getMovement();
     String sceneCheck = (String) moveSet.get(moveDir);
-    System.out.println("sceneCheck: " + sceneCheck);
     if (sceneCheck.equals("victory")) {
       win = true;
       gameStatus.win();
     }
     else if (sceneCheck != null) {
+      System.out.println("You move to the " + sceneCheck + ".");
       currentScene = gameUniverse.getScene(sceneCheck);
 //      System.out.println(currentScene.toString()); // remove when not testing
 //      System.out.println(currentScene.getFlavorText());
@@ -162,12 +163,23 @@ public class GameEngine {
     }
     else {
       System.out.println("You can't go that way...  Please try another cardinal direction.");
-      System.out.println("Your available moves are: " + moveSet);
     }
   }
 
   public void look() {
     currentScene.getLook();
   }
+
+  public void hint() {
+    JSONObject moves = (JSONObject) currentScene.getMovement();
+
+    System.out.println("Nearby rooms are: ");
+    for (Object move : moves.values())
+      if (move != "")
+        System.out.print("    " + move);
+    System.out.println();
+//    System.out.println(moves.keySet());
+  }
+
 
 }
