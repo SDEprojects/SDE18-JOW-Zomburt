@@ -15,6 +15,7 @@ public class GameEngine {
   Scene currentScene;
   Boolean newScene = true;
   Boolean win = false;
+  Universe gameUniverse = new Universe();
 
   public void run() throws FileNotFoundException, InterruptedException, Exception {
 
@@ -29,7 +30,6 @@ public class GameEngine {
 
 //      intro();
 
-
       while (win == false) {
         if (newScene)
           System.out.println(currentScene.getFlavorText());
@@ -43,18 +43,14 @@ public class GameEngine {
         }
         runCommands(input);
       }
-//      if (win)
-//        gameStatus.win();
-//      else
-//        gameStatus.lose();
   }
 
   public void runCommands(String input) throws Exception {
     newScene = false;
     ArrayList<String> commands = Parser.parse(input.toLowerCase().trim());
-    if(commands == null)
+    if (commands == null)
       System.out.println("That's not a valid command. For a list of available commands input \" help\"");
-    else if(commands.get(0).contains("move")) {
+    else if (commands.get(0).contains("move")) {
       try {
         System.out.println(commands.get(1));
         move(commands.get(1));
@@ -69,17 +65,17 @@ public class GameEngine {
         }
       }
     }
-    else if(commands.get(0).contains("help"))
+    else if (commands.get(0).contains("help"))
       help();
-    else if(commands.get(0).contains("quit") || commands.get(0).contains("exit"))
+    else if (commands.get(0).contains("quit") || commands.get(0).contains("exit"))
       quit();
-    else if(commands.get(0).contains("drop") || commands.get(0).contains("pick up"))
+    else if (commands.get(0).contains("drop") || commands.get(0).contains("pick up"))
       itemHandler(commands.get(0), commands.get(1).toUpperCase());
-    else if(commands.get(0).contains("search"))
+    else if (commands.get(0).contains("search"))
       search();
-    else if(commands.get(0).contains("look"))
+    else if (commands.get(0).contains("look"))
       look();
-    else if(commands.get(0).contains("inv"))
+    else if (commands.get(0).contains("inv"))
       System.out.println(player.getName()+ "'s inventory is " + player.getInventory());
     else
       System.out.println("final else block reached");
