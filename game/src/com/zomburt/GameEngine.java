@@ -86,6 +86,8 @@ public class GameEngine {
     if (action.equals("drop")) {
       if (player.getInventory().contains(s)) {
         player.removeInventory(s);
+        currentScene.addRoomLoot(s);
+        System.out.println("current roomLoot: " + currentScene.getRoomLoot());
       } else {
         System.out.println("You don't have that item");
       }
@@ -93,7 +95,9 @@ public class GameEngine {
     if (action.equals("pick up")) {
       if (currentScene.getRoomLoot().contains(s)) {
         player.addInventory(s);
-        System.out.println(player.getInventory());
+        currentScene.removeRoomLoot(s);
+        System.out.println("current roomLoot: " + currentScene.getRoomLoot());
+//        System.out.println(player.getInventory());
       } else
         System.out.println("That item isn't here");
     }
@@ -124,7 +128,7 @@ public class GameEngine {
   }
 
   public void search(){
-    System.out.println("Upon searching the room you see a skull");
+    currentScene.getSearch();
   }
 
   public static void help() {
@@ -160,7 +164,7 @@ public class GameEngine {
   }
 
   public void look() {
-    System.out.println("still need to implement 'look'");
+    currentScene.getLook();
   }
 
 }

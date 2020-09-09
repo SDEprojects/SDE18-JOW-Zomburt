@@ -70,15 +70,15 @@ public class Scene {
         movement = (Object) sceneObj.get("movement");
     }
 
-    public String getLook() {
-        return look;
+    public void getLook() {
+        System.out.println(look);
     }
     public void setLook() {
         look = (String) sceneObj.get("look");
     }
 
-    public String getSearch() {
-        return search;
+    public void getSearch() {
+        System.out.println(search);
     }
     public void setSearch() {
         search = (String) sceneObj.get("search");
@@ -112,7 +112,23 @@ public class Scene {
         roomLoot.addAll(strRoomLoot);
     }
 
-    public void updateRoomLoot() throws Exception {
+    public void addRoomLoot(String lootItem) {
+        if (getRoomLoot().contains(lootItem)) {
+            System.out.println("Item already in that room");
+        } else {
+            getRoomLoot().add(lootItem);
+        }
+    }
+
+    public void removeRoomLoot(String lootItem) {
+        if (getRoomLoot().contains(lootItem)) {
+            getRoomLoot().remove(lootItem);
+        } else {
+            System.out.println("Can't remove that item from the game-world");
+        }
+    }
+
+    public void updateRoomLootJSON() throws Exception {
         Object store2 = new JSONParser().parse(new FileReader("./game/assets/store.json"));
         JSONObject joStore2 = (JSONObject) store2;
 
