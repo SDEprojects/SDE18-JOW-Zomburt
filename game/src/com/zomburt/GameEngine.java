@@ -17,7 +17,10 @@ public class GameEngine {
   Boolean win = false;
   Universe gameUniverse = new Universe();
 
-  public void run() throws FileNotFoundException, InterruptedException, Exception {
+  public GameEngine() throws Exception {
+  }
+
+  public void run() throws Exception {
 
 //      gameStatus.start();
       currentScene = new Scene("parking lot");
@@ -152,7 +155,7 @@ public class GameEngine {
       gameStatus.win();
     }
     else if (sceneCheck != null) {
-      currentScene = new Scene(sceneCheck);
+      currentScene = gameUniverse.getScene(sceneCheck);
 //      System.out.println(currentScene.toString()); // remove when not testing
 //      System.out.println(currentScene.getFlavorText());
       newScene = true;

@@ -79,6 +79,7 @@ public class Scene {
 
     public void getSearch() {
         System.out.println(search);
+        System.out.println(getRoomLoot());
     }
     public void setSearch() {
         search = (String) sceneObj.get("search");
