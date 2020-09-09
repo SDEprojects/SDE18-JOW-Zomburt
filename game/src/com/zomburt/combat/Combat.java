@@ -1,11 +1,12 @@
 package com.zomburt.combat;
 
-import com.zomburt.*;
 import com.zomburt.Character;
+import com.zomburt.GameStatus;
+import com.zomburt.Parser;
+import com.zomburt.Zombie;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -13,8 +14,9 @@ public class Combat {
 
   public static void combat(Character player, Zombie zombie) throws FileNotFoundException, InterruptedException, Exception {
     Scanner fn = new Scanner(System.in);
-    System.out.println("You have encountered a zombie!");
-    while (player.getHealth() > 0 && zombie.getHealth() >0) {
+    System.out.println();
+    System.out.println("You have encountered a zombie! Prepare your self and ");
+    while (player.getHealth() > 0 && zombie.getHealth() > 0) {
       System.out.print(" > ");
       String input = fn.nextLine();
       System.out.println();
@@ -36,7 +38,7 @@ public class Combat {
     else if (commands.get(0).contains("fight"))
       fight(player, zombie);
     else
-      System.out.println(Arrays.toString(commands.toArray()));
+      System.out.println("You are in combat that isn't a valid command");
   }
 
   public static void fight(Character player, Zombie zombie) throws FileNotFoundException, InterruptedException {
