@@ -112,22 +112,39 @@ public class Scene {
         roomLoot.addAll(strRoomLoot);
     }
 
-    public void updateRoomLoot() throws Exception {
+    public void updateRoomLoot(String lootItem, String sceneName) throws Exception {
         Object store2 = new JSONParser().parse(new FileReader("./game/assets/store.json"));
         JSONObject joStore2 = (JSONObject) store2;
 
-        JSONObject a = (JSONObject) joStore2.get("discount bin");
+        JSONObject a = (JSONObject) joStore2.get(sceneName);
         JSONArray b = (JSONArray) a.get("roomLoot");
 
-        b.add("candy bar");
-        System.out.println("b: " + b);
+        b.add(lootItem);
+//        System.out.println("b: " + b);
+//        System.out.println("JOSTORE2: \n" + joStore2);
 
         //Write JSON file
-        try (FileWriter file = new FileWriter("./game/assets/store2.json", true)) {
+        try (FileWriter file = new FileWriter("./game/assets/store2.json")) {
 //            file.append("new line for funsies");
-            file.write("\n");
+//            file.write("\n");
             file.write(joStore2.toJSONString());
-            file.write("\n");
+//            file.write("\n");
+            file.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void removeRoomLoot(String lootItem, String sceneName) throws Exception {
+        Object storeObj = new JSONParser().parse(new FileReader("./game/assets/store.json"));
+        JSONObject storeJSON = (JSONObject) storeObj;
+        JSONObject a = (JSONObject) storeJSON.get(sceneName);
+        JSONArray b = (JSONArray) a.get("roomLoot");
+
+        b.remove(lootItem);
+
+        try (FileWriter file = new FileWriter("./game/assets/store3.json")) {
+            file.write(storeJSON.toJSONString());
             file.flush();
         } catch (IOException e) {
             e.printStackTrace();

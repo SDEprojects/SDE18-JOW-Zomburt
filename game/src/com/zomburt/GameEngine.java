@@ -93,6 +93,7 @@ public class GameEngine {
     if (action.equals("pick up")) {
       if (currentScene.getRoomLoot().contains(s)) {
         player.addInventory(s);
+//        currentScene.
         System.out.println(player.getInventory());
       } else
         System.out.println("That item isn't here");
