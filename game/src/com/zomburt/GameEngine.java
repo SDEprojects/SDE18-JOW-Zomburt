@@ -154,6 +154,7 @@ public class GameEngine {
     JSONObject moveSet = (JSONObject) currentScene.getMovement();
     String sceneCheck = (String) moveSet.get(moveDir);
     if (sceneCheck.equals("victory")) {
+      System.out.println("Oh wow.  Did you survive?  I guess you make it out of the store then...");
       win = true;
       gameStatus.win();
     }
