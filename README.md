@@ -9,7 +9,7 @@ A Zork-inspired (text/console based) Zombie survival game.
 To play Zomburt...
 
 *Pre-req:
-  We recommend using a 2020 version of IntelliJ for now - proper .tar coming soon*
+  We recommend using a 2020 version of IntelliJ for now --- proper .tar coming soon*
 
 **First:**
 ```
@@ -17,7 +17,7 @@ To play Zomburt...
   clone locally
 ```
 
-**Then** *(in separate terminal tabs)***:**
+**Then:**
 ```
   open Zomburt in IntelliJ
   run Game.main()
