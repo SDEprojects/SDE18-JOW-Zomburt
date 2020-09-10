@@ -1,11 +1,4 @@
-
-**Git Hub Repo:** [Zomburt](https://github.com/JavaTeamSix/Zomburt)
-
-_A Zork-like (text/console based) Zombie survival game._
-
-
 # Zomburt 
-_(readme.md info below)_
 
 Fight Zombies, survive, and make the world great again.
 
