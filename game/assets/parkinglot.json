@@ -1,13 +1,14 @@
 {
   "parking lot": {
-    "flavorText": "In the distant year of 2021, an advanced infectious airborne \ndisease has turned the population into Divoc Zombies. \nAll that remains is you and a few of your fellow Faction members. \nYou must navigate through three heavily infected areas to find \nthe magical antidote and locate your friends and family to free them \nfrom a life of Divoc Suffering. \n\n  If you fail, you will become a Divoc. \n",
+    "flavorText": "in the distant year of 2021, an advanced infectious airborne \ndisease has turned the population into Divoc Zombies. \n\nAll that remains are you and a few of your fellow Faction members. \nYou must navigate through three heavily infected areas to find \nthe magical antidote and locate your friends and family to free them \nfrom a life of Divoc Suffering. \n\n  If you fail, you become a Divoc Zombie. \n\nWhat would you like to do? \n(For a list of available commands input \"help\" at anytime)",
     "movement": {
       "north": "",
       "west": "",
       "south": "",
       "east": "west entrance"
     },
-    "look": "",
+    "look": "Nothing to see here. Best move into the store.",
+    "search": "Seriously, nothing here. Let's go into the store.",
     "feature": [],
     "roomLoot": [],
     "armoire": {
