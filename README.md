@@ -1,4 +1,12 @@
-# Zomburt
+
+**Git Hub Repo:** [Zomburt](https://github.com/JavaTeamSix/Zomburt)
+
+_A Zork-like (text/console based) Zombie survival game._
+
+
+# Zomburt 
+_(readme.md info below)_
+
 Fight Zombies, survive, and make the world great again.
 
 A Zork-inspired (text/console based) Zombie survival game.
@@ -35,7 +43,7 @@ To play Zomburt...
 
 ## Project Roadmap 
 This is an MVP, conceived and produced across Agile development iterations (3-day sprints).  For more about that process check out:
- * Project Board: (dev.azure.com)[https://dev.azure.com/SDE18/Java%20Team%20Six]
+ * Project Board: [dev.azure.com](https://dev.azure.com/SDE18/Java%20Team%20Six)
  
  - - - 
 
@@ -45,5 +53,5 @@ This is an MVP, conceived and produced across Agile development iterations (3-da
  * Matthew Beckerleg - [github.com/itsOrD](https://github.com/itsOrD)
  
 ### License
- * This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+ * This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/JavaTeamSix/Zomburt/blob/master/LICENSE) file for details.
  
