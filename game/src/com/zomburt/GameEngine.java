@@ -31,8 +31,6 @@ public class GameEngine {
 
       System.out.print("\n" + player.getName() + ", ");
 
-//      intro();
-
       while (win == false) {
         if (newScene)
           System.out.println(currentScene.getFlavorText());
