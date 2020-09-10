@@ -15,7 +15,7 @@ public class Combat {
   public static void combat(Character player, Zombie zombie) throws FileNotFoundException, InterruptedException, Exception {
     Scanner fn = new Scanner(System.in);
     System.out.println();
-    System.out.println("You have encountered a zombie! Prepare your self and ");
+//    System.out.println("You have encountered a zombie! Prepare your self");
     while (player.getHealth() > 0 && zombie.getHealth() > 0) {
       System.out.print(" > ");
       String input = fn.nextLine();
@@ -76,11 +76,11 @@ public class Combat {
 
   public static void help() {
     System.out.println("These are some commands you can perform: \n" +
-            "-inv <view inventory>-" +
-            "-use <item>-\n" +
-            "fight \n" +
-            "Run Away \n" +
-            "-quit");
+//            "-inv <view inventory>-\n" +
+//            "-use <item>-\n" +
+            "-fight- \n" +
+//            "run away \n" +
+            "-quit-");
   }
 
 

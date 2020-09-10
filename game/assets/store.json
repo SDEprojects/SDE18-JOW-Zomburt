@@ -68,7 +68,7 @@
     }
   },
   "east entrance": {
-    "flavorText": "\n  CONGRATULATIONS! You’ve traversed the store and are ready to make a run through the \nparking lot.  But, somehow inevitably, a shuffling shadow blocks your path.  The \ngruesome smell of entitlement thickens the air around you and the one thing all Divoc \nZombies can still say changes from a mumble to screech as it sees you: \n\n‘You can’t \nmake me wear a mask!’  \n\nThere’s no time to rush past it.  You must FIGHT or FLEE \n\n(and make sure you don’t freeze!)\n",
+    "flavorText": "\n  CONGRATULATIONS! You’ve traversed the store and are ready to make a run through the \nparking lot.  But, somehow inevitably, a shuffling shadow blocks your path.  The \ngruesome smell of entitlement thickens the air around you and the one thing all Divoc \nZombies can still say changes from a mumble to screech as it sees you: \n\n‘You can’t \nmake me wear a mask!’  \n\nThere’s no time to rush past it.  You are already in combat.  You best FIGHT!",
     "movement": {
       "north": "",
       "west": "discount bin",

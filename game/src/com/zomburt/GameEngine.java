@@ -22,7 +22,7 @@ public class GameEngine {
 
   public void run() throws Exception {
 
-//      gameStatus.start();
+      gameStatus.start();
       currentScene = new Scene("parking lot");
 
       Scanner in = new Scanner(System.in);
@@ -55,7 +55,7 @@ public class GameEngine {
       System.out.println("That's not a valid command. For a list of available commands input \" help\"");
     else if (commands.get(0).contains("move")) {
       try {
-        System.out.println(commands.get(1));
+//        System.out.println(commands.get(1));
         move(commands.get(1));
       } catch (Exception e) {
         JSONObject dirCheck = (JSONObject) currentScene.getMovement();
@@ -72,8 +72,10 @@ public class GameEngine {
       help();
     else if (commands.get(0).contains("quit") || commands.get(0).contains("exit"))
       quit();
-    else if (commands.get(0).contains("drop") || commands.get(0).contains("pick up"))
-      itemHandler(commands.get(0), commands.get(1).toUpperCase());
+    else if (commands.get(0).contains("drop") || commands.get(0).contains("pick up")) {
+      if (commands.size() > 1)
+        itemHandler(commands.get(0), commands.get(1).toUpperCase());
+    }
     else if (commands.get(0).contains("search"))
       search();
     else if (commands.get(0).contains("look"))
@@ -92,7 +94,8 @@ public class GameEngine {
       if (player.getInventory().contains(s)) {
         player.removeInventory(s);
         currentScene.addRoomLoot(s);
-        System.out.println("current roomLoot: " + currentScene.getRoomLoot());
+//        System.out.println("current roomLoot: " + currentScene.getRoomLoot());
+        System.out.println("You've dropped " + s);
       } else {
         System.out.println("You don't have that item");
       }
@@ -100,8 +103,10 @@ public class GameEngine {
     if (action.equals("pick up")) {
       if (currentScene.getRoomLoot().contains(s)) {
         player.addInventory(s);
+        System.out.println("You've successfully picked up: " + s);
+        System.out.println("HINT: type 'inv' to see your inventory");
         currentScene.removeRoomLoot(s);
-        System.out.println("current roomLoot: " + currentScene.getRoomLoot());
+        System.out.println("The room currently contains: " + currentScene.getRoomLoot());
 //        System.out.println(player.getInventory());
       } else
         System.out.println("That item isn't here");
@@ -154,8 +159,8 @@ public class GameEngine {
       win = true;
       gameStatus.win();
     }
-    else if (sceneCheck != null) {
-      System.out.println("You move to the " + sceneCheck + ".");
+    else if (sceneCheck.length() > 0) {
+      System.out.println("You move to the " + sceneCheck);
       currentScene = gameUniverse.getScene(sceneCheck);
 //      System.out.println(currentScene.toString()); // remove when not testing
 //      System.out.println(currentScene.getFlavorText());
