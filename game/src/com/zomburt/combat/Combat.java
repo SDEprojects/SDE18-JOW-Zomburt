@@ -25,6 +25,8 @@ public class Combat {
       }
       combatCommands(input, player, zombie);
     }
+    if(zombie.getHealth() <= 0)
+      System.out.println("Congratulations you've beaten the zombie and are able to progress.");
   }
 
   public static void combatCommands(String input, Character player, Zombie zombie) throws Exception {
@@ -33,6 +35,8 @@ public class Combat {
       System.out.println("That's not a valid command. For a list of available commands input \" help\"");
     else if (commands.get(0).contains("help"))
       help();
+    else if (commands.get(0).contains("inv"))
+      System.out.println(player.getName()+ "'s inventory is " + player.getInventory());
     else if (commands.get(0).contains("quit") || commands.get(0).contains("exit"))
       quit();
     else if (commands.get(0).contains("fight"))
@@ -42,26 +46,33 @@ public class Combat {
   }
 
   public static void fight(Character player, Zombie zombie) throws FileNotFoundException, InterruptedException {
-    Random playerDamage = new Random();
-    Random ZombieDamage = new Random();
+    int playerDamage = new Random().nextInt(50) + 1;
+    int ZombieDamage = new Random().nextInt(50) + 1;
+    if(player.getInventory().contains("NERF BLASTER")) {
+      playerDamage += 2;
+      if (player.getInventory().contains("IMPROVED NERF DART"))
+        playerDamage += 2;
+    }
 
     if (player.getHealth() > 0 && zombie.getHealth() > 0) {
       System.out.println("You attack.....");
-      zombie.loseHealth(playerDamage.nextInt(50) + 1);
-      System.out.println("Zombie sustained damage of: " + ZombieDamage);
+      zombie.loseHealth(playerDamage);
+      System.out.println("Zombie sustained damage of: " +  ZombieDamage);
+      if(zombie.getHealth() < 0)
+        zombie.setHealth(0);
       System.out.println("Zombie current Health is: " + zombie.getHealth());
     }
 
     if (player.getHealth() > 0 && zombie.getHealth() > 0) {
       System.out.println("Zombie attacks.....");
-      player.loseHealth(playerDamage.nextInt(50) + 1);
+      player.loseHealth(playerDamage);
       System.out.println("You sustained damage of: " + playerDamage);
       System.out.println("You current Health is: " + player.getHealth());
     }
     if (player.getHealth() <= 0)
       quit();
 
-    System.out.println("Your Health: "  + player.getHealth() + " Zombie: " + zombie.getHealth() + "   ");
+    System.out.println("Your health: "  + player.getHealth() + "       Zombie's health: " + zombie.getHealth() + "   ");
   }
 
 //  public void runaway(){
@@ -76,7 +87,7 @@ public class Combat {
 
   public static void help() {
     System.out.println("These are some commands you can perform: \n" +
-//            "-inv <view inventory>-\n" +
+            "-inv <view inventory>-\n" +
 //            "-use <item>-\n" +
             "-fight- \n" +
 //            "run away \n" +
