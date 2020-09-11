@@ -83,7 +83,4 @@
          </children>
     </AnchorPane>
   </children>
-  <stylesheets>
-    <URL value="@BasicApplication.css" />
-  </stylesheets>
 </VBox>
