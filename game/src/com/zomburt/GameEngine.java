@@ -116,7 +116,7 @@ public class GameEngine {
     System.exit(0);
   }
 
-  public void intro() throws InterruptedException {
+  /*public void intro() throws InterruptedException {
     String intro = player.getName() + ", In the distant year of 2021, an advanced infectious airborne \n" +
             "disease has turned the population into Divoc Zombies. \n" +
             "All that remains is you and a few of your fellow Faction members. \n" +
@@ -132,7 +132,7 @@ public class GameEngine {
       Thread.sleep(25);
     }
     System.out.println();
-  }
+  }*/
 
   public void search(){
     currentScene.getSearch();
