@@ -1,5 +1,6 @@
 package com.zomburt;
 
+import com.zomburt.gui.GameApp;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -19,10 +20,6 @@ public class Scene {
     String search;
     ArrayList<String> feature;
     ArrayList<String> roomLoot;
-
-//    public Scene() {
-//        no arg
-//    }
 
     public Scene(String locationName) throws Exception {
         setSceneObject(locationName);
@@ -71,18 +68,17 @@ public class Scene {
     }
 
     public void getLook() {
-        System.out.println(look);
+        GameApp.getInstance().appendToCurActivity(look);
     }
     public void setLook() {
         look = (String) sceneObj.get("look");
     }
 
     public void getSearch() {
-        System.out.println(search);
+        GameApp.getInstance().appendToCurActivity(search);
         if (!getRoomLoot().isEmpty())
             for (String i : getRoomLoot())
-                System.out.println("  " + i);
-//        System.out.println(getRoomLoot());
+                GameApp.getInstance().appendToCurActivity("  " + i);
     }
     public void setSearch() {
         search = (String) sceneObj.get("search");
@@ -92,13 +88,6 @@ public class Scene {
         return feature;
     }
     public void setFeature() {
-//        feature = new ArrayList<String> ((String) sceneObj.get("feature"))Arrays.asList(str.split(","));
-//        try {
-//            String[] strFeature = (String[]) sceneObj.get("feature");
-//            feature = new ArrayList<String>(Arrays.asList(strFeature));
-//        } catch (Exception e) {
-//            feature = null;
-//        }
         feature = new ArrayList<String>();
         // class cast exception
         @SuppressWarnings("unchecked")
@@ -118,7 +107,7 @@ public class Scene {
 
     public void addRoomLoot(String lootItem) {
         if (getRoomLoot().contains(lootItem)) {
-            System.out.println("Item already in that room");
+            GameApp.getInstance().appendToCurActivity("Item already in that room");
         } else {
             getRoomLoot().add(lootItem);
         }
@@ -128,7 +117,7 @@ public class Scene {
         if (getRoomLoot().contains(lootItem)) {
             getRoomLoot().remove(lootItem);
         } else {
-            System.out.println("Can't remove that item from the game-world");
+            GameApp.getInstance().appendToCurActivity("Can't remove that item from the game-world");
         }
     }
 
@@ -140,11 +129,10 @@ public class Scene {
         JSONArray b = (JSONArray) a.get("roomLoot");
 
         b.add("candy bar");
-        System.out.println("b: " + b);
+        GameApp.getInstance().appendToCurActivity("b: " + b);
 
         //Write JSON file
         try (FileWriter file = new FileWriter("./game/assets/store2.json", true)) {
-//            file.append("new line for funsies");
             file.write("\n");
             file.write(joStore2.toJSONString());
             file.write("\n");
