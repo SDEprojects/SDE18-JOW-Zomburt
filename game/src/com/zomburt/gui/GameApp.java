@@ -70,14 +70,8 @@ public class GameApp extends Application {
                             GridPane gameLayout = gameViewLoader.load();
                             //load pictures
                             try {
-                                gameController.getImage1().setImage(new Image("file:./game/assets/parkinglot1.jpg"));
-                                gameLayout.add(gameController.getImage1(), 4, 1, 7, 9);
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                            try {
-                                gameController.getImage2().setImage(new Image("file:./game/assets/shoppingmall.jpg"));
-                                gameLayout.add(gameController.getImage2(), 8, 1, 11, 9);
+                                gameController.getImage1().setImage(new Image("file:./game/assets/ParkingLot1.jpg"));
+                                gameController.getImage2().setImage(new Image("file:./game/assets/ShoppingMall.jpg"));
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
@@ -91,7 +85,6 @@ public class GameApp extends Application {
                                     GridPane mapLayout = mapViewLoader.load();
                                     try {
                                         mapController.getGameMap().setImage(new Image("file:./game/assets/new_map_Zomburt.png"));
-                                        mapLayout.add(mapController.getGameMap(), 0, 0, 2, 2);
                                     } catch (Exception exception) {
                                         exception.printStackTrace();
                                     }
