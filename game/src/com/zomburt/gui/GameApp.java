@@ -43,7 +43,6 @@ public class GameApp extends Application {
         introLoader.setController(introController);
         introLoader.setLocation(com.zomburt.gui.GameApp.class.getResource("intro.fxml"));
         FlowPane introLayout = introLoader.load();
-        //  getIntro(new File("./game/assets/GameStartFile.txt"));
         try {
             introController.getIntro().setImage(new Image("file:./game/assets/zombie.png"));
         } catch (Exception e) {

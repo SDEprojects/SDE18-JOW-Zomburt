@@ -34,6 +34,7 @@ public class Scene {
             store = new JSONParser().parse(new FileReader("./game/assets/store.json"));
         JSONObject joStore = (JSONObject) store;
         JSONObject sceneObj = (JSONObject) joStore.get(locationName);
+
         this.sceneObj = sceneObj;
         setFlavorText();
         setMovement();
