@@ -1,4 +1,4 @@
-package com.zomburt;
+package com.zomburt.characters;
 
 import java.util.ArrayList;
 
@@ -54,7 +54,7 @@ public class Character {
 
     @Override
     public String toString() {
-        return "com.zomburt.Character{" +
+        return "com.zomburt.characters.Character{" +
                 "name='" + name + '\'' +
                 ", health=" + health +
                 ", inventory=" + inventory +
