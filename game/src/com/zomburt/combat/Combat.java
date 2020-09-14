@@ -1,48 +1,45 @@
 package com.zomburt.combat;
 
-import com.zomburt.Character;
-import com.zomburt.GameStatus;
-import com.zomburt.Parser;
-import com.zomburt.Zombie;
+import com.zomburt.characters.Character;
+import com.zomburt.characters.Zombie;
+import com.zomburt.gui.GameApp;
+import com.zomburt.utility.GameStatus;
+import com.zomburt.utility.Parser;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Combat {
 
   public static void combat(Character player, Zombie zombie) throws FileNotFoundException, InterruptedException, Exception {
-    Scanner fn = new Scanner(System.in);
-    System.out.println();
-//    System.out.println("You have encountered a zombie! Prepare your self");
+//    GameApp.getInstance().appendToCurActivity("You have encountered a zombie! Prepare yourself");
     while (player.getHealth() > 0 && zombie.getHealth() > 0) {
-      System.out.print(" > ");
-      String input = fn.nextLine();
-      System.out.println();
+      GameApp.getInstance().appendToCurActivity(" > ");
+      String input = GameApp.getInstance().getInput();
       if (input.isEmpty()) {
         continue;
       }
       combatCommands(input, player, zombie);
     }
     if(zombie.getHealth() <= 0)
-      System.out.println("Congratulations you've beaten the zombie and are able to progress.");
+    GameApp.getInstance().appendToCurActivity("Congratulations! You've killed the zombie and are able to progress.");
   }
 
   public static void combatCommands(String input, Character player, Zombie zombie) throws Exception {
     ArrayList<String> commands = Parser.parse(input.toLowerCase().trim());
     if (commands == null)
-      System.out.println("That's not a valid command. For a list of available commands input \" help\"");
+        GameApp.getInstance().appendToCurActivity("That's not a valid command. For a list of available commands input \" help\"");
     else if (commands.get(0).contains("help"))
       help();
     else if (commands.get(0).contains("inv"))
-      System.out.println(player.getName()+ "'s inventory is " + player.getInventory());
+      GameApp.getInstance().appendToCurActivity(player.getName() + "'s inventory is " + player.getInventory());
     else if (commands.get(0).contains("quit") || commands.get(0).contains("exit"))
       quit();
     else if (commands.get(0).contains("fight"))
       fight(player, zombie);
     else
-      System.out.println("You are in combat that isn't a valid command");
+      GameApp.getInstance().appendToCurActivity("You are in combat that isn't a valid command");
   }
 
   public static void fight(Character player, Zombie zombie) throws FileNotFoundException, InterruptedException {
@@ -55,24 +52,24 @@ public class Combat {
     }
 
     if (player.getHealth() > 0 && zombie.getHealth() > 0) {
-      System.out.println("You attack.....");
+      GameApp.getInstance().appendToCurActivity("You attack.....");
       zombie.loseHealth(playerDamage);
-      System.out.println("Zombie sustained damage of: " +  ZombieDamage);
+      GameApp.getInstance().appendToCurActivity("Zombie sustained damage of: " + ZombieDamage);
       if(zombie.getHealth() < 0)
         zombie.setHealth(0);
-      System.out.println("Zombie current Health is: " + zombie.getHealth());
+      GameApp.getInstance().appendToCurActivity("Zombie current Health is: " + zombie.getHealth());
     }
 
     if (player.getHealth() > 0 && zombie.getHealth() > 0) {
-      System.out.println("Zombie attacks.....");
+      GameApp.getInstance().appendToCurActivity("Zombie attacks.....");
       player.loseHealth(playerDamage);
-      System.out.println("You sustained damage of: " + playerDamage);
-      System.out.println("You current Health is: " + player.getHealth());
+      GameApp.getInstance().appendToCurActivity("You sustained damage of: " + playerDamage);
+      GameApp.getInstance().appendToCurActivity("You current Health is: " + player.getHealth());
     }
     if (player.getHealth() <= 0)
       quit();
 
-    System.out.println("Your health: "  + player.getHealth() + "       Zombie's health: " + zombie.getHealth() + "   ");
+    GameApp.getInstance().appendToCurActivity("Your health: " + player.getHealth() + "       Zombie's health: " + zombie.getHealth() + "   ");
   }
 
 //  public void runaway(){
@@ -82,11 +79,11 @@ public class Combat {
   public static void quit() throws FileNotFoundException, InterruptedException {
     GameStatus loser = new GameStatus();
     loser.lose();
-    System.exit(0);
+   // System.exit(0);
   }
 
   public static void help() {
-    System.out.println("These are some commands you can perform: \n" +
+    GameApp.getInstance().appendToCurActivity("These are some commands you can perform: \n" +
             "-inv <view inventory>-\n" +
 //            "-use <item>-\n" +
             "-fight- \n" +

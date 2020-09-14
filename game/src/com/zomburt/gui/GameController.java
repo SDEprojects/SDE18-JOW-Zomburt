@@ -1,10 +1,7 @@
 package com.zomburt.gui;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 
 
@@ -12,10 +9,13 @@ public class GameController {
     @FXML private TextField health;
     @FXML private TextField hydration;
     @FXML private ListView inventory;
-    @FXML private ImageView image;
+    @FXML private ImageView image1;
+    @FXML private ImageView image2;
+
     @FXML private TextArea output;
-    @FXML private TextArea input;
+    @FXML private TextField input;
     @FXML private Button enter;
+    @FXML private Button mapButton;
 
     public TextField getHealth() {
         return health;
@@ -29,19 +29,33 @@ public class GameController {
         return inventory;
     }
 
-    public ImageView getImage() {
-        return image;
+    public ImageView getImage1() {
+        return image1;
+    }
+
+    public void setImage1(ImageView image1) {
+        this.image1 = image1;
+    }
+
+    public ImageView getImage2() {
+        return image2;
+    }
+
+    public void setImage2(ImageView image2) {
+        this.image2 = image2;
     }
 
     public TextArea getOutput() {
         return output;
     }
 
-    public TextArea getInput() {
+    public TextField getInput() {
         return input;
     }
 
     public Button getEnter() {
         return enter;
     }
+
+    public Button getMapButton() {return mapButton;}
 }
