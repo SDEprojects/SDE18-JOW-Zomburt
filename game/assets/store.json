@@ -27,7 +27,7 @@
     "look": "Good choice, always perform a 5-point room scan, and don’t forget to double-tap. \nYou see a shimmering slippery substance trailing deeper into the store that ends in a pool near you.  \nDivoc Zombies are likely in the store.",
     "search": "Just as with the EAST entrance, the area just inside the store has been picked clean by looters. Nothing useful here...",
     "feature": [],
-    "roomLoot": [],
+    "roomLoot": ["BUTCHER KNIFE", "FORK"],
     "armoire": {
       "door 1": "",
       "chest 1": ""
@@ -44,7 +44,7 @@
     "look": "Good choice, always perform a 5-point room scan, and don’t forget to double-tap. \nYou see a shimmering slippery substance trailing deeper into the store that ends in a pool near you.  \nDivoc Zombies are likely in the store.",
     "search": "Just as with the EAST entrance, the area just inside the store has been picked clean by looters. Nothing useful here...",
     "feature": [],
-    "roomLoot": [],
+    "roomLoot": ["M16", "AMMO", "HAND GRENADE"],
     "armoire": {
       "door 1": "",
       "chest 1": ""
@@ -158,12 +158,12 @@
       "north": "",
       "west": "",
       "south": "gas station",
-      "east": "east entrance"
+      "east": ""
     },
     "look": "Sunken eyes and gaping uncovered mouth... if only you had some way to cover their mouth AND nose...",
     "search": "Just as with the WEST entrance, the area just inside the store has been picked clean by looters. Nothing useful here.",
     "feature": [],
-    "roomLoot": [],
+    "roomLoot": ["HONDA CIVIC", "FORD F-150"],
     "armoire": {
       "door 1": "",
       "chest 1": ""
@@ -180,7 +180,7 @@
     "look": "Sunken eyes and gaping uncovered mouth... if only you had some way to cover their mouth AND nose...",
     "search": "Just as with the WEST entrance, the area just inside the store has been picked clean by looters. Nothing useful here.",
     "feature": [],
-    "roomLoot": [],
+    "roomLoot": ["GAS","LIGHTER"],
     "armoire": {
       "door 1": "",
       "chest 1": ""

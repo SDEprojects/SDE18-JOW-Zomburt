@@ -1,6 +1,6 @@
 package com.zomburt.combat;
 
-import com.zomburt.characters.Character;
+import com.zomburt.characters.Characters;
 import com.zomburt.characters.Zombie;
 import com.zomburt.gui.GameApp;
 import com.zomburt.utility.GameStatus;
@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class Combat {
 
-  public static void combat(Character player, Zombie zombie) throws FileNotFoundException, InterruptedException, Exception {
+  public static void combat(Characters player, Zombie zombie) throws FileNotFoundException, InterruptedException, Exception {
 //    GameApp.getInstance().appendToCurActivity("You have encountered a zombie! Prepare yourself");
     while (player.getHealth() > 0 && zombie.getHealth() > 0) {
       GameApp.getInstance().appendToCurActivity(" > ");
@@ -26,7 +26,7 @@ public class Combat {
     GameApp.getInstance().appendToCurActivity("Congratulations! You've killed the zombie and are able to progress.");
   }
 
-  public static void combatCommands(String input, Character player, Zombie zombie) throws Exception {
+  public static void combatCommands(String input, Characters player, Zombie zombie) throws Exception {
     ArrayList<String> commands = Parser.parse(input.toLowerCase().trim());
     if (commands == null)
         GameApp.getInstance().appendToCurActivity("That's not a valid command. For a list of available commands input \" help\"");
@@ -42,7 +42,7 @@ public class Combat {
       GameApp.getInstance().appendToCurActivity("You are in combat that isn't a valid command");
   }
 
-  public static void fight(Character player, Zombie zombie) throws FileNotFoundException, InterruptedException {
+  public static void fight(Characters player, Zombie zombie) throws FileNotFoundException, InterruptedException {
     int playerDamage = new Random().nextInt(50) + 1;
     int ZombieDamage = new Random().nextInt(50) + 1;
     if(player.getInventory().contains("NERF BLASTER")) {
