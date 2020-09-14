@@ -71,9 +71,9 @@
     "flavorText": "\n  Slim pickings in the Pharmacy. Oddly the Midol is locked up and untouched, which  \nmakes no sense since its just ibuprofen and caffeine, but people are weird - even  \nbefore being turned into Divoc Zombies.  Since you’re here you might as well     \nLOOK around.",
     "movement": {
       "north": "",
-      "west": "",
+      "west": "restaurant",
       "south": "discount bin",
-      "east": ""
+      "east": "restroom"
     },
     "look": "You see some multi-colored loofas and realize you haven't showered since this all started... months ago..",
     "search": "Some listerine sparkles in the shadow of the mostly empty shelving, and there may be something else there...",
@@ -102,29 +102,12 @@
     }
   },
   "east entrance": {
-    "flavorText": "\n  CONGRATULATIONS! You’ve traversed the store and are ready to make a run through the \nlast parking lot.  But, somehow inevitably, a shuffling shadow blocks your path.  The \ngruesome smell of entitlement thickens the air around you and the one thing all Divoc \nZombies can still say changes from a mumble to screech as it sees you: \n\n‘You can’t \nmake me wear a mask!’  \n\nThere’s no time to rush past it.  You are already in combat.  You best FIGHT!",
+    "flavorText": "\n  Somehow inevitably, a shuffling shadow blocks your path.  The \ngruesome smell of entitlement thickens the air around you and the one thing all Divoc \nZombies can still say changes from a mumble to screech as it sees you: \n\n‘You can’t \nmake me wear a mask!’  \n\nThere’s no time to rush past it.  You are already in combat.  You best FIGHT!",
     "movement": {
       "north": "restroom",
       "west": "discount bin",
       "south": "starbucks",
-      "east": "last parking"
-    },
-    "look": "Sunken eyes and gaping uncovered mouth... if only you had some way to cover their mouth AND nose...",
-    "search": "Just as with the WEST entrance, the area just inside the store has been picked clean by looters. Nothing useful here.",
-    "feature": ["DOVIC shambler", "DOVIC walker", "DOVIC cougher", "zombie"],
-    "roomLoot": ["Hooah! bar"],
-    "armoire": {
-      "door 1": "",
-      "chest 1": ""
-    }
-  },
-  "last parking": {
-    "flavorText": "\n  CONGRATULATIONS! Oops.. not yet. You have one last battle remaining before collecting your rewards. ",
-    "movement": {
-      "north": "",
-      "west": "",
-      "south": "gas station",
-      "east": ""
+      "east": "parking lot 2"
     },
     "look": "Sunken eyes and gaping uncovered mouth... if only you had some way to cover their mouth AND nose...",
     "search": "Just as with the WEST entrance, the area just inside the store has been picked clean by looters. Nothing useful here.",
@@ -136,24 +119,24 @@
     }
   },
   "restroom": {
-    "flavorText": "\n  CONGRATULATIONS! You’ve traversed the store and are ready to make a run through the \nparking lot.  But, somehow inevitably, a shuffling shadow blocks your path.  The \ngruesome smell of entitlement thickens the air around you and the one thing all Divoc \nZombies can still say changes from a mumble to screech as it sees you: \n\n‘You can’t \nmake me wear a mask!’  \n\nThere’s no time to rush past it.  You are already in combat.  You best FIGHT!",
+    "flavorText": "\n time to answer the nature's call....",
     "movement": {
       "north": "",
       "west": "discount bin",
-      "south": "",
-      "east": "victory"
+      "south": "east entrance",
+      "east": ""
     },
     "look": "Sunken eyes and gaping uncovered mouth... if only you had some way to cover their mouth AND nose...",
     "search": "Just as with the WEST entrance, the area just inside the store has been picked clean by looters. Nothing useful here.",
-    "feature": ["DOVIC shambler", "DOVIC walker", "DOVIC cougher", "zombie"],
-    "roomLoot": ["Hooah! bar"],
+    "feature": [],
+    "roomLoot": [],
     "armoire": {
       "door 1": "",
       "chest 1": ""
     }
   },
   "starbucks": {
-    "flavorText": "\n  CONGRATULATIONS! You’ve traversed the store and are ready to make a run through the \nparking lot.  But, somehow inevitably, a shuffling shadow blocks your path.  The \ngruesome smell of entitlement thickens the air around you and the one thing all Divoc \nZombies can still say changes from a mumble to screech as it sees you: \n\n‘You can’t \nmake me wear a mask!’  \n\nThere’s no time to rush past it.  You are already in combat.  You best FIGHT!",
+    "flavorText": "\n  Need some coffee?",
     "movement": {
       "north": "east entrance",
       "west": "sporting goods",
@@ -162,8 +145,42 @@
     },
     "look": "Sunken eyes and gaping uncovered mouth... if only you had some way to cover their mouth AND nose...",
     "search": "Just as with the WEST entrance, the area just inside the store has been picked clean by looters. Nothing useful here.",
-    "feature": ["DOVIC shambler", "DOVIC walker", "DOVIC cougher", "zombie"],
-    "roomLoot": ["Hooah! bar"],
+    "feature": [],
+    "roomLoot": [],
+    "armoire": {
+      "door 1": "",
+      "chest 1": ""
+    }
+  },
+  "parking lot 2": {
+    "flavorText": "\n  CONGRATULATIONS! Oops.. not yet. You have one last battle remaining before collecting your rewards. ",
+    "movement": {
+      "north": "",
+      "west": "",
+      "south": "gas station",
+      "east": "east entrance"
+    },
+    "look": "Sunken eyes and gaping uncovered mouth... if only you had some way to cover their mouth AND nose...",
+    "search": "Just as with the WEST entrance, the area just inside the store has been picked clean by looters. Nothing useful here.",
+    "feature": [],
+    "roomLoot": [],
+    "armoire": {
+      "door 1": "",
+      "chest 1": ""
+    }
+  },
+  "gas station": {
+    "flavorText": "\n  CONGRATULATIONS! Oops.. not yet. You have one last battle remaining before collecting your rewards. ",
+    "movement": {
+      "north": "",
+      "west": "",
+      "south": "",
+      "east": "victory"
+    },
+    "look": "Sunken eyes and gaping uncovered mouth... if only you had some way to cover their mouth AND nose...",
+    "search": "Just as with the WEST entrance, the area just inside the store has been picked clean by looters. Nothing useful here.",
+    "feature": [],
+    "roomLoot": [],
     "armoire": {
       "door 1": "",
       "chest 1": ""
