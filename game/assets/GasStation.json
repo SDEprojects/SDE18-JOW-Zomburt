@@ -1,0 +1,19 @@
+{
+  "gas station": {
+    "flavorText": "\n  CONGRATULATIONS! Oops.. not yet. You have one last battle remaining before collecting your rewards. ",
+    "movement": {
+      "north": "",
+      "west": "",
+      "south": "",
+      "east": "victory"
+    },
+    "look": "Sunken eyes and gaping uncovered mouth... if only you had some way to cover their mouth AND nose...",
+    "search": "Just as with the WEST entrance, the area just inside the store has been picked clean by looters. Nothing useful here.",
+    "feature": ["zombie"],
+    "roomLoot": [],
+    "armoire": {
+      "door 1": "",
+      "chest 1": ""
+    }
+  }
+}

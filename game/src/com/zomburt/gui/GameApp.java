@@ -43,7 +43,6 @@ public class GameApp extends Application {
         introLoader.setController(introController);
         introLoader.setLocation(com.zomburt.gui.GameApp.class.getResource("intro.fxml"));
         FlowPane introLayout = introLoader.load();
-        //  getIntro(new File("./game/assets/GameStartFile.txt"));
         try {
             introController.getIntro().setImage(new Image("file:./game/assets/zombie.png"));
         } catch (Exception e) {
@@ -70,12 +69,8 @@ public class GameApp extends Application {
                             GridPane gameLayout = gameViewLoader.load();
                             //load pictures
                             try {
-                                gameController.getImage1().setImage(new Image("file:./game/assets/parkinglot1.jpg"));
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                            try {
-                                gameController.getImage2().setImage(new Image("file:./game/assets/shoppingmall.jpg"));
+                                gameController.getImage1().setImage(new Image("file:./game/assets/ParkingLot1.jpg"));
+                                gameController.getImage2().setImage(new Image("file:./game/assets/ShoppingMall.jpg"));
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }

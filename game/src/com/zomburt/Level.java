@@ -1,6 +1,5 @@
 package com.zomburt;
 
-import com.zomburt.characters.GameCharacter;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 

@@ -1,7 +1,5 @@
 package com.zomburt;
 
-import com.zomburt.characters.GameCharacter;
-
 public class Easy extends Level {
     private static Easy easy = null;
 
