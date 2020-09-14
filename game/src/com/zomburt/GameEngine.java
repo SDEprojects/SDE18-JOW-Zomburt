@@ -1,7 +1,7 @@
 package com.zomburt;
 
-import com.zomburt.characters.Character;
-import com.zomburt.characters.Zombie;
+import com.zomburt.characters.Characters;
+import com.zomburt.characters.ZombieFactory;
 import com.zomburt.combat.Combat;
 import com.zomburt.gui.GameApp;
 import com.zomburt.utility.GameStatus;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class GameEngine {
-  public static Character player;
+  public static Characters player;
   GameStatus gameStatus = new GameStatus();
   Scene currentScene;
   Boolean newScene = true;
@@ -28,13 +28,16 @@ public class GameEngine {
       currentScene = new Scene("parking lot");
 
       GameApp.getInstance().appendToCurActivity("What is your name?");
-      player = new Character(GameApp.getInstance().getInput());
+      player = new Characters(GameApp.getInstance().getInput(), 50);
       GameApp.getInstance().appendToCurActivity("\n" + player.getName() + ", ");
+//      GameApp.getInstance().appendToCurActivity("Which level do you want to play: Easy or Hard?");
+//      gameUniverse = new Universe(GameApp.getInstance().getInput());
       while (win == false) {
         if (newScene)
           GameApp.getInstance().appendToCurActivity(currentScene.getFlavorText());
+          Thread.sleep(200);
         if (currentScene.getFeature().contains("zombie"))
-          Combat.combat(player, new Zombie());
+          Combat.combat(player, ZombieFactory.createZombie("EASY"));
         GameApp.getInstance().appendToCurActivity(" > ");
         String input = GameApp.getInstance().getInput();
 
@@ -91,6 +94,7 @@ public class GameEngine {
         player.removeInventory(s);
         currentScene.addRoomLoot(s);
         GameApp.getInstance().appendToCurActivity("You've dropped " + s);
+        GameApp.getInstance().appendToCurActivity("The room currently contains: " + currentScene.getRoomLoot());
       } else {
         GameApp.getInstance().appendToCurActivity("You don't have that item");
       }
@@ -98,9 +102,9 @@ public class GameEngine {
     if (action.equals("pick up")) {
       if (currentScene.getRoomLoot().contains(s)) {
         player.addInventory(s);
+        currentScene.removeRoomLoot(s);
         GameApp.getInstance().appendToCurActivity("You've successfully picked up: " + s);
         GameApp.getInstance().appendToCurActivity("HINT: type 'inv' to see your inventory");
-        currentScene.removeRoomLoot(s);
         GameApp.getInstance().appendToCurActivity("The room currently contains: " + currentScene.getRoomLoot());
       } else {
         GameApp.getInstance().appendToCurActivity("That item isn't here");
@@ -111,23 +115,6 @@ public class GameEngine {
   public void quit() throws FileNotFoundException, InterruptedException {
     gameStatus.lose();
 //    System.exit(0);
-  }
-
-  public void intro() throws InterruptedException {
-    String intro = player.getName() + ", In the distant year of 2021, an advanced infectious airborne \n" +
-            "disease has turned the population into Divoc Zombies. \n" +
-            "All that remains is you and a few of your fellow Faction members. \n" +
-            "You must navigate through three heavily infected areas to find \n" +
-            "the magical antidote and locate your friends and family to free them \n" +
-            "from a life of Divoc Suffering. \n" +
-            "If you fail, you will become a Divoc. \n";
-
-    char[] chars = intro.toCharArray();
-    // Print a char from the array, then sleep for 1/25 second
-    for (int i = 0; i < chars.length; i++) {
-      GameApp.getInstance().appendToCurActivity(Integer.toString(chars[i]));
-      Thread.sleep(25);
-    }
   }
 
   public void search(){

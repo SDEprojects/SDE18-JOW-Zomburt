@@ -11,7 +11,7 @@ public class GameStatus {
 
   public void start() throws FileNotFoundException, InterruptedException {
     File startFile = new File("../Zomburt/game/assets/intro.txt");
-    Scanner scan = new Scanner(startFile).useDelimiter("\\s+");
+    Scanner scan = new Scanner(startFile);
     while (scan.hasNextLine()) {
       GameApp.getInstance().appendToCurActivity(scan.nextLine());
       Thread.sleep(90);

@@ -1,12 +1,16 @@
 package com.zomburt.characters;
 
+import java.util.ArrayList;
 import java.util.Random;
 
-public class Zombie extends Character {
+public class Zombie extends Characters {
 
-  public Zombie() {
-    super("Zombie");
-    addInventory("Zombie Teeth");
+  public Zombie(String name, int health) {
+    super(name, health);
+  }
+
+  public Zombie(String name, int health, ArrayList<String> inventory){
+    super(name, health, inventory);
   }
 
   public String dropItem(){

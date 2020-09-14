@@ -2,18 +2,20 @@ package com.zomburt.characters;
 
 import java.util.ArrayList;
 
-public class Character {
+public class Characters {
     private String name;
     private int health = 50;
     private ArrayList<String> inventory = new ArrayList<String>();
 
-    public Character(String name) {
-        setName(name);
-    }
-
-    public Character(String name, int health) {
+    public Characters(String name, int health) {
         setName(name);
         setHealth(health);
+    }
+
+    public Characters(String name, int health, ArrayList<String> inventory) {
+        setName(name);
+        setHealth(health);
+        setInventory(inventory);
     }
 
     public String getName() {
@@ -43,6 +45,8 @@ public class Character {
     public ArrayList<String> getInventory() {
         return inventory;
     }
+
+    public void setInventory(ArrayList<String> inventory) {this.inventory = inventory;}
 
     public void addInventory(String item) {
         this.inventory.add(item);
