@@ -9,7 +9,7 @@ zomburt:
        High Scores
        Exit (enter the text ‘Exit’ to end your game and return to the menu)'
   	tutorial:
-    	'Zomburt is a text based adventure that tries its best to let you interact with the world of August 13th 2021.  Think DnD meets com.zomburt.Zombie Hack n’ Slash meets Zork.  Your choices are intentionally left open ended, but your best bet for a ‘useful’ command is to type in ‘verb noun’ such as ‘look up’ or ‘shoot nerfgun.’
+    	'Zomburt is a text based adventure that tries its best to let you interact with the world of August 13th 2021.  Think DnD meets com.zomburt.characters.Zombie Hack n’ Slash meets Zork.  Your choices are intentionally left open ended, but your best bet for a ‘useful’ command is to type in ‘verb noun’ such as ‘look up’ or ‘shoot nerfgun.’
 
 Here are some suggested commands you can type in to get you started (but be warned, there are more waiting to be discovered!)
  > move north
