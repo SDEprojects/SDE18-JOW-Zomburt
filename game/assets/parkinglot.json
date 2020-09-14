@@ -1,6 +1,6 @@
 {
   "parking lot": {
-    "flavorText": "in the distant year of 2021, an advanced infectious airborne \ndisease has turned the population into Divoc Zombies. \n\nAll that remains are you and a few of your fellow Faction members. \nYou must navigate through three heavily infected areas to find \nthe magical antidote and locate your friends and family to free them \nfrom a life of Divoc Suffering. \n\n  If you fail, you become a Divoc Zombie. \n\nWhat would you like to do? \n(For a list of available commands input \"help\" at anytime)",
+    "flavorText": "You move to the west entrance of the shopping mall.",
     "movement": {
       "north": "",
       "west": "",

@@ -11,6 +11,7 @@ public class GameController {
     @FXML private ListView inventory;
     @FXML private ImageView image1;
     @FXML private ImageView image2;
+    @FXML private ImageView victory;
 
     @FXML private TextArea output;
     @FXML private TextField input;
@@ -58,4 +59,6 @@ public class GameController {
     }
 
     public Button getMapButton() {return mapButton;}
+
+    public ImageView getVictory() {return victory;}
 }

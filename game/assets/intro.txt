@@ -1,0 +1,9 @@
+In the distant year of 2021, an advanced infectious airborne disease has turned the population into Divoc Zombies.
+
+All that remains are you and a few of your fellow Faction members. You must navigate through three heavily infected areas to find the magical antidote and locate your friends and family to free them
+from a life of Divoc Suffering.
+
+If you fail, you become a Divoc Zombie.
+
+What would you like to do?
+(For a list of available commands input "help" at anytime)
