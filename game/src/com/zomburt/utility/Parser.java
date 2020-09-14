@@ -1,4 +1,4 @@
-package com.zomburt;
+package com.zomburt.utility;
 
 import java.util.ArrayList;
 import java.util.Arrays;

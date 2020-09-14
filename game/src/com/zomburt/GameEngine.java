@@ -1,7 +1,11 @@
 package com.zomburt;
 
+import com.zomburt.characters.Character;
+import com.zomburt.characters.Zombie;
 import com.zomburt.combat.Combat;
 import com.zomburt.gui.GameApp;
+import com.zomburt.utility.GameStatus;
+import com.zomburt.utility.Parser;
 import org.json.simple.JSONObject;
 
 import java.io.FileNotFoundException;
@@ -106,7 +110,7 @@ public class GameEngine {
 
   public void quit() throws FileNotFoundException, InterruptedException {
     gameStatus.lose();
-    System.exit(0);
+//    System.exit(0);
   }
 
   public void intro() throws InterruptedException {
@@ -166,7 +170,7 @@ public class GameEngine {
     JSONObject moves = (JSONObject) currentScene.getMovement();
     GameApp.getInstance().appendToCurActivity("Nearby rooms are: ");
     for (Object move : moves.values())
-      if (move != "") {
+      if (move != "o") {
         GameApp.getInstance().appendToCurActivity("    " + move);
       }
     GameApp.getInstance().appendToCurActivity("\n");

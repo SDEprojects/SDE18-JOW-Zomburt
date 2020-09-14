@@ -1,4 +1,4 @@
-package com.zomburt;
+package com.zomburt.characters;
 
 import java.util.Random;
 
@@ -15,12 +15,6 @@ public class Zombie extends Character {
     String drop = getInventory().get(n);
     removeInventory(getInventory().get(n));
     return drop;
-  }
-
-  public static void main(String[] args) {
-    Character z = new Zombie();
-    z.getHealth();
-
   }
 }
 
