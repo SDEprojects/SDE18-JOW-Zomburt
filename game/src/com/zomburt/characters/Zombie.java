@@ -2,7 +2,7 @@ package com.zomburt.characters;
 
 import java.util.Random;
 
-public class Zombie extends Character {
+public class Zombie extends GameCharacter {
 
   public Zombie() {
     super("Zombie");

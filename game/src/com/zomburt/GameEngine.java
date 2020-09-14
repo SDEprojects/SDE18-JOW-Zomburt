@@ -1,6 +1,6 @@
 package com.zomburt;
 
-import com.zomburt.characters.Character;
+import com.zomburt.characters.GameCharacter;
 import com.zomburt.characters.Zombie;
 import com.zomburt.combat.Combat;
 import com.zomburt.gui.GameApp;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class GameEngine {
-  public static Character player;
+  public static GameCharacter player;
   GameStatus gameStatus = new GameStatus();
   Scene currentScene;
   Boolean newScene = true;
@@ -28,7 +28,7 @@ public class GameEngine {
       currentScene = new Scene("parking lot");
 
       GameApp.getInstance().appendToCurActivity("What is your name?");
-      player = new Character(GameApp.getInstance().getInput());
+      player = new GameCharacter(GameApp.getInstance().getInput());
       GameApp.getInstance().appendToCurActivity("\n" + player.getName() + ", ");
       while (win == false) {
         if (newScene)
