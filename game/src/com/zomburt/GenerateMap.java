@@ -1,6 +1,5 @@
 package com.zomburt;
 
-import com.zomburt.characters.Characters;
 import com.zomburt.characters.ZombieFactory;
 import com.zomburt.combat.Weapon;
 import com.zomburt.utility.RandomCreate;
@@ -15,22 +14,22 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.Set;
 
-public class Easy extends Level {
-    private static Easy easy = null;
+public class GenerateMap {
+    private static Mode mode;
     private static FileWriter file;
-    private Easy(Mode mode) {
-        super(mode);
+    private static GenerateMap generateMap = null;
+    public GenerateMap(Mode mode){
+        this.mode = mode;
     }
-    public static Easy getInstance() {
-        if (easy == null) {
-            easy = new Easy(Mode.EASY);
+    public Mode getMode() {
+        return mode;
+    }
+
+    public static GenerateMap getInstance() {
+        if (generateMap == null) {
+            generateMap = new GenerateMap(mode);
         }
-        return easy;
-    }
-    @Override
-    public Characters createPlayer() {
-        Characters player = new Characters(100);
-        return player;
+        return generateMap;
     }
 
     public Object createMap(String path) {
@@ -54,8 +53,21 @@ public class Easy extends Level {
             features.clear();
             // clear out the roomLoot
             roomLoot.clear();
-            int numberZombie = RandomCreate.randNum(Mode.EASY);
-            int numberWeapon = RandomCreate.randNum(Mode.HARD);
+            int numberZombie = 0;
+            int numberWeapon = 0;
+            if (mode == Mode.EASY) {
+                numberZombie = RandomCreate.randNum(Mode.EASY);
+                numberWeapon = RandomCreate.randNum(Mode.HARD);
+            }
+            else if (mode == Mode.MEDIAN) {
+                numberZombie = RandomCreate.randNum(Mode.MEDIAN);
+                numberWeapon = RandomCreate.randNum(Mode.MEDIAN);
+            }
+            else if (mode == Mode.HARD) {
+                numberZombie = RandomCreate.randNum(Mode.HARD);
+                numberWeapon = RandomCreate.randNum(Mode.EASY);
+            }
+
             // add new zombies to feature
             for (int i = 0; i < numberZombie; i++) {
                 features.add(ZombieFactory.createZombie(Mode.EASY).getName());
@@ -92,4 +104,6 @@ public class Easy extends Level {
         }
         return map;
     }
+
+
 }

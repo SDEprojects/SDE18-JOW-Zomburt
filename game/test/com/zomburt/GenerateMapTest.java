@@ -5,15 +5,19 @@ import org.json.simple.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.FileWriter;
 import java.util.Set;
 
-class EasyTest {
+class GenerateMapTest<string> {
+    private static Mode mode;
+    private static FileWriter file;
+    private static GenerateMap generateMap = null;
     JSONObject mapJson;
+    private String path = "./game/assets/store.json";
     @BeforeEach
     void setUp() {
-        String path = "./game/assets/store.json";
-        Easy easy = Easy.getInstance();
-        Object map = easy.createMap(path);
+        generateMap = new GenerateMap(Mode.EASY);
+        Object map = generateMap.createMap(path);
         mapJson = (JSONObject) map;
     }
 
