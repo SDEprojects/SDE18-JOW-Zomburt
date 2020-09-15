@@ -1,14 +1,10 @@
 package com.zomburt;
 
-import com.zomburt.characters.Zombie;
-import com.zomburt.characters.ZombieFactory;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import java.awt.font.TextHitInfo;
 import java.io.FileReader;
 import java.util.HashMap;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Universe {
     public static HashMap<String, Scene> world = new HashMap<>();
