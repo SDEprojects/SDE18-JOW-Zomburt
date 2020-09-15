@@ -13,6 +13,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
@@ -22,6 +25,7 @@ import java.io.IOException;
 
 public class GameApp extends Application {
     private IntroController introController;
+    private VideoController videoController;
     private GameController gameController;
     private MapController mapController;
     private String currentInput;
@@ -51,6 +55,44 @@ public class GameApp extends Application {
         introLayout.getChildren().addAll(introController.getIntro(), introController.getStartGame());
         introLayout.setAlignment(Pos.CENTER);
 
+        // clear item in the list view
+        Platform.runLater(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            //show intro video when click button
+                            introController.getVideoButton().setOnAction(e->{
+                                FXMLLoader videoViewLoader = new FXMLLoader();
+                                try {
+                                    videoController = new VideoController();
+                                    videoViewLoader.setController(videoController);
+                                    videoViewLoader.setLocation(GameApp.class.getResource("video.fxml"));
+                                    GridPane videoLayout = videoViewLoader.load();
+                                    Media media = new Media("https://www.youtube.com/watch?v=KitsWREpumU");
+                                    //   Media media = new Media("file:./game/assets/test.mp4");
+                                    MediaPlayer player = new MediaPlayer(media);
+                                    player.setAutoPlay(true);
+                                    try {
+                                        videoController.getIntroVideo().setMediaPlayer(player);
+                                    } catch (Exception exception) {
+                                        exception.printStackTrace();
+                                    }
+                                    player.setOnError(()-> System.out.println("media error: " + player.getError().toString()));
+                                    Scene videoScene = new Scene(videoLayout);
+                                    Stage videoStage = new Stage();
+                                    videoStage.setScene(videoScene);
+                                    videoStage.show();
+                                    player.play();
+                                } catch (IOException ioException) {
+                                    ioException.printStackTrace();
+                                }
+                            });
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
         // Show the scene containing the intro layout.
         Scene introScene = new Scene(introLayout);
         primaryStage.setScene(introScene);
