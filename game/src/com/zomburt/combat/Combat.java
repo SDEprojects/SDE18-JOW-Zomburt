@@ -1,6 +1,7 @@
 package com.zomburt.combat;
 
 import com.zomburt.characters.Characters;
+import com.zomburt.characters.Player;
 import com.zomburt.characters.Zombie;
 import com.zomburt.gui.GameApp;
 import com.zomburt.utility.GameStatus;
@@ -12,8 +13,9 @@ import java.util.Random;
 
 public class Combat {
 
-  public static void combat(Characters player, Zombie zombie) throws FileNotFoundException, InterruptedException, Exception {
+  public static void combat(Player player, Zombie zombie) throws FileNotFoundException, InterruptedException, Exception {
 //    GameApp.getInstance().appendToCurActivity("You have encountered a zombie! Prepare yourself");
+    int score = player.getScore();
     while (player.getHealth() > 0 && zombie.getHealth() > 0) {
       GameApp.getInstance().appendToCurActivity(" > ");
       String input = GameApp.getInstance().getInput();
@@ -23,10 +25,12 @@ public class Combat {
       combatCommands(input, player, zombie);
     }
     if(zombie.getHealth() <= 0)
-    GameApp.getInstance().appendToCurActivity("Congratulations! You've killed the zombie and are able to progress.");
+      score+=10;
+      player.setScore(score);
+      GameApp.getInstance().appendToCurActivity("Congratulations! You've killed the " + zombie.getName() + " and are able to progress.");
   }
 
-  public static void combatCommands(String input, Characters player, Zombie zombie) throws Exception {
+  public static void combatCommands(String input, Player player, Zombie zombie) throws Exception {
     ArrayList<String> commands = Parser.parse(input.toLowerCase().trim());
     if (commands == null)
         GameApp.getInstance().appendToCurActivity("That's not a valid command. For a list of available commands input \" help\"");
@@ -42,34 +46,35 @@ public class Combat {
       GameApp.getInstance().appendToCurActivity("You are in combat that isn't a valid command");
   }
 
-  public static void fight(Characters player, Zombie zombie) throws FileNotFoundException, InterruptedException {
-    int playerDamage = new Random().nextInt(50) + 1;
-    int ZombieDamage = new Random().nextInt(50) + 1;
+  public static void fight(Player player, Zombie zombie) throws FileNotFoundException, InterruptedException {
+    int playerDamage = new Random().nextInt(20) + 1;
+    int ZombieDamage = new Random().nextInt(20) + 1;
     if(player.getInventory().contains("NERF BLASTER")) {
+
       playerDamage += 2;
       if (player.getInventory().contains("IMPROVED NERF DART"))
         playerDamage += 2;
     }
 
     if (player.getHealth() > 0 && zombie.getHealth() > 0) {
-      GameApp.getInstance().appendToCurActivity("You attack.....");
+      GameApp.getInstance().appendToCurActivity(player.getName() + " attack.....");
       zombie.loseHealth(playerDamage);
-      GameApp.getInstance().appendToCurActivity("Zombie sustained damage of: " + ZombieDamage);
+      GameApp.getInstance().appendToCurActivity(zombie.getName() + " sustained damage of: " + ZombieDamage);
       if(zombie.getHealth() < 0)
         zombie.setHealth(0);
-      GameApp.getInstance().appendToCurActivity("Zombie current Health is: " + zombie.getHealth());
+      GameApp.getInstance().appendToCurActivity(zombie.getName() + " current Health is: " + zombie.getHealth());
     }
 
     if (player.getHealth() > 0 && zombie.getHealth() > 0) {
-      GameApp.getInstance().appendToCurActivity("Zombie attacks.....");
+      GameApp.getInstance().appendToCurActivity(zombie.getName() + " attacks.....");
       player.loseHealth(playerDamage);
-      GameApp.getInstance().appendToCurActivity("You sustained damage of: " + playerDamage);
-      GameApp.getInstance().appendToCurActivity("You current Health is: " + player.getHealth());
+      GameApp.getInstance().appendToCurActivity(player.getName() + " sustained damage of: " + playerDamage);
+      GameApp.getInstance().appendToCurActivity(player.getName() + " current Health is: " + player.getHealth());
     }
     if (player.getHealth() <= 0)
       quit();
 
-    GameApp.getInstance().appendToCurActivity("Your health: " + player.getHealth() + "       Zombie's health: " + zombie.getHealth() + "   ");
+    GameApp.getInstance().appendToCurActivity(player.getName()+"'s health: " + player.getHealth() +"\n"+ zombie.getName()+"'s health: " + zombie.getHealth() + "   ");
   }
 
 //  public void runaway(){
