@@ -1,31 +1,20 @@
 package com.zomburt;
 
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Objects;
+import com.zomburt.characters.Characters;
 
 public abstract class Level {
     private Mode mode;
     private Object gameMap;
-    private GameCharacter player;
+    private Characters player;
 
-    public Level(Mode mode) {
+    public Level(Mode mode){
         this.mode = mode;
     }
-    public void createMap(String path) {
-        try {
-            gameMap = (Objects) new JSONParser().parse(new FileReader(path));
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-    }
 
-    public abstract GameCharacter createPlayer();
+
+    public abstract Object createMap(String path);
+
+    public abstract Characters createPlayer();
 
     public Mode getMode() {
         return mode;
@@ -33,9 +22,9 @@ public abstract class Level {
 
     public Object getGameMap() {
         return gameMap;
-    }
+   }
 
-    public GameCharacter getPlayer() {
+    public Characters getPlayer() {
         player = createPlayer();
         return player;
     }
