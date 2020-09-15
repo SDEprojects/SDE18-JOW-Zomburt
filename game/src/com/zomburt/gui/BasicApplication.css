@@ -1,0 +1,40 @@
+.menu-bar {
+    -fx-background-color: #aeb5ba, linear-gradient(to bottom, #ecf4fa 0%, #ced4d9 100%);
+    -fx-background-insets: 0, 0 0 1 0;
+}
+
+.menu-bar .menu {
+    -fx-text-fill: #2d3e4c;
+}
+
+.radio-button {
+    -fx-font: 14px "Arial Black";
+    -fx-content-display: "right";
+}
+
+.text-area {
+   -fx-font: 16px "Courier";
+}
+
+#input {
+   -fx-font-family: "Chalkduster";
+   -fx-font-size: 14px;
+}
+
+.label {
+   -fx-font-size: 12px;
+   -fx-font-family: "Arial Black";
+   -fx-fill: #818181;
+}
+
+.button {
+  -fx-font: 13px "Arial Black";
+}
+
+#startGame {
+ -fx-font: 18px "Arial Black";
+}
+
+#introduction {
+ -fx-font: 18px "Arial Black";
+}

@@ -50,6 +50,7 @@ public class Combat {
     int playerDamage = new Random().nextInt(20) + 1;
     int ZombieDamage = new Random().nextInt(20) + 1;
     if(player.getInventory().contains("NERF BLASTER")) {
+
       playerDamage += 2;
       if (player.getInventory().contains("IMPROVED NERF DART"))
         playerDamage += 2;
@@ -73,7 +74,7 @@ public class Combat {
     if (player.getHealth() <= 0)
       quit();
 
-    GameApp.getInstance().appendToCurActivity(player.getName()+"'s health: \n" + player.getHealth() + zombie.getName()+"'s health: " + zombie.getHealth() + "   ");
+    GameApp.getInstance().appendToCurActivity(player.getName()+"'s health: " + player.getHealth() +"\n"+ zombie.getName()+"'s health: " + zombie.getHealth() + "   ");
   }
 
 //  public void runaway(){

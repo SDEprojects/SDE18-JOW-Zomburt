@@ -2,6 +2,7 @@ package com.zomburt;
 
 import com.zomburt.characters.ZombieFactory;
 import com.zomburt.combat.Weapon;
+import com.zomburt.gui.GameApp;
 import com.zomburt.utility.RandomCreate;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -27,7 +28,7 @@ public class GenerateMap {
 
     public static GenerateMap getInstance() {
         if (generateMap == null) {
-            generateMap = new GenerateMap(mode);
+            generateMap = new GenerateMap(GameApp.getInstance().getModeInput());
         }
         return generateMap;
     }

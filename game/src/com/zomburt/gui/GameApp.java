@@ -1,21 +1,24 @@
 package com.zomburt.gui;
 
 import com.zomburt.GameEngine;
+import com.zomburt.Mode;
+import com.zomburt.characters.Player;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
@@ -29,6 +32,8 @@ public class GameApp extends Application {
     private GameController gameController;
     private MapController mapController;
     private String currentInput;
+    private Mode modeInput;
+    private Player player;
     private static com.zomburt.gui.GameApp instance;
 
     public GameApp() {
@@ -46,48 +51,68 @@ public class GameApp extends Application {
         introController = new IntroController();
         introLoader.setController(introController);
         introLoader.setLocation(com.zomburt.gui.GameApp.class.getResource("intro.fxml"));
-        FlowPane introLayout = introLoader.load();
+        VBox introLayout = introLoader.load();
         try {
             introController.getIntro().setImage(new Image("file:./game/assets/zombie.png"));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        introLayout.getChildren().addAll(introController.getIntro(), introController.getStartGame());
-        introLayout.setAlignment(Pos.CENTER);
 
 
         //show intro video when click button
-        introController.getVideoButton().setOnAction(e -> {
-            FXMLLoader videoViewLoader = new FXMLLoader();
-            try {
-                videoController = new VideoController();
-                videoViewLoader.setController(videoController);
-                videoViewLoader.setLocation(GameApp.class.getResource("video.fxml"));
-                GridPane videoLayout = videoViewLoader.load();
-                Media media = new Media("https://www.youtube.com/watch?v=KitsWREpumU");
-                //   Media media = new Media("file:./game/assets/test.mp4");
-                MediaPlayer player = new MediaPlayer(media);
-                player.setAutoPlay(true);
-                try {
-                    videoController.getIntroVideo().setMediaPlayer(player);
-                } catch (Exception exception) {
-                    exception.printStackTrace();
-                }
-                player.setOnError(() -> System.out.println("media error: " + player.getError().toString()));
-                Scene videoScene = new Scene(videoLayout);
-                Stage videoStage = new Stage();
-                videoStage.setScene(videoScene);
-                videoStage.show();
-                player.play();
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-        });
+//        introController.getVideoButton().setOnAction(e -> {
+//            FXMLLoader videoViewLoader = new FXMLLoader();
+//            try {
+//                videoController = new VideoController();
+//                videoViewLoader.setController(videoController);
+//                videoViewLoader.setLocation(GameApp.class.getResource("video.fxml"));
+//                GridPane videoLayout = videoViewLoader.load();
+//                Media media = new Media("https://www.youtube.com/watch?v=KitsWREpumU");
+//                //   Media media = new Media("file:./game/assets/test.mp4");
+//                MediaPlayer player = new MediaPlayer(media);
+//                player.setAutoPlay(true);
+//                try {
+//                    videoController.getIntroVideo().setMediaPlayer(player);
+//                } catch (Exception exception) {
+//                    exception.printStackTrace();
+//                }
+//                player.setOnError(() -> System.out.println("media error: " + player.getError().toString()));
+//                Scene videoScene = new Scene(videoLayout);
+//                Stage videoStage = new Stage();
+//                videoStage.setScene(videoScene);
+//                videoStage.show();
+//                player.play();
+//            } catch (IOException ioException) {
+//                ioException.printStackTrace();
+//            }
+//        });
 
         // Show the scene containing the intro layout.
         Scene introScene = new Scene(introLayout);
         primaryStage.setScene(introScene);
         primaryStage.show();
+
+        // config the radio button
+        introController.getEasyMode().selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) {
+                if (isNowSelected) {
+                    introController.getHardMode().setSelected(false);
+                    modeInput = Mode.EASY;
+
+                }
+            }
+        });
+
+        introController.getHardMode().selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) {
+                if (isNowSelected) {
+                    introController.getEasyMode().setSelected(false);
+                    modeInput = Mode.HARD;
+                }
+            }
+        });
 
         // config next button listener
         EventHandler<ActionEvent> nextHandler =
@@ -104,6 +129,12 @@ public class GameApp extends Application {
                             try {
                                 gameController.getImage1().setImage(new Image("file:./game/assets/ParkingLot1.jpg"));
                                 gameController.getImage2().setImage(new Image("file:./game/assets/ShoppingMall.jpg"));
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            //load player health in GUI text field
+                            try {
+                                gameController.getHealth().setText(new Integer(player.getHealth()).toString());
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
@@ -291,6 +322,10 @@ public class GameApp extends Application {
 
     public GameController getGameController() {
         return gameController;
+    }
+
+    public Mode getModeInput() {
+        return modeInput;
     }
 
     public MapController getMapController() {

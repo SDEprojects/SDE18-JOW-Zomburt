@@ -11,6 +11,7 @@ import org.json.simple.JSONObject;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class GameEngine {
   public static Player player;
@@ -93,30 +94,36 @@ public class GameEngine {
     else if (commands.get(0).contains("look"))
       look();
     else if (commands.get(0).contains("inv")) {
-      GameApp.getInstance().appendToCurActivity(player.getName() + "'s inventory is " + player.getInventory());
+      GameApp.getInstance().appendToCurActivity(player.getName() + "'s inventory is " +
+              player.getInventory().stream().map(e->e.getName()).collect(Collectors.toList()));
     } else if (commands.get(0).contains("hint")) {
       hint();
-    } else {
+    } else if(commands.get(0).contains("check")) {
+      GameApp.getInstance().appendToCurActivity(player.getName() + "'s health is " + player.getHealth());
+      GameApp.getInstance().appendToCurActivity(player.getName() + "'s score is " + player.getScore());
+    }
+    else {
       GameApp.getInstance().appendToCurActivity(Arrays.toString(commands.toArray()));
     }
   }
 
-  public void itemHandler(String action, Weapon s) {
+  public void itemHandler(String action, Weapon weapon) {
+     String s = "[" + weapon.getName() + ", " + weapon.getDamage() + "]";
     if (action.equals("drop")) {
-      if (player.getInventory().contains(s)) {
-        player.removeInventory(s);
-        currentScene.addRoomLoot(s);
-        GameApp.getInstance().appendToCurActivity("You've dropped " + s);
+      if (player.getInventory().contains(weapon)) {
+        player.removeInventory(weapon);
+        currentScene.addRoomLoot(weapon);
+        GameApp.getInstance().appendToCurActivity(player.getName() + "'ve dropped " + s);
         GameApp.getInstance().appendToCurActivity("The room currently contains: " + currentScene.getRoomLoot());
       } else {
-        GameApp.getInstance().appendToCurActivity("You don't have that item");
+        GameApp.getInstance().appendToCurActivity(player.getName() + " doesn't have that item");
       }
     }
     if (action.equals("pick up")) {
-      if (currentScene.getRoomLoot().contains(s)) {
-        player.addInventory(s);
-        currentScene.removeRoomLoot(s);
-        GameApp.getInstance().appendToCurActivity("You've successfully picked up: " + s);
+      if (currentScene.getRoomLoot().contains(weapon)) {
+        player.addInventory(weapon);
+        currentScene.removeRoomLoot(weapon);
+        GameApp.getInstance().appendToCurActivity(player.getName() + "'ve successfully picked up: " + s);
         GameApp.getInstance().appendToCurActivity("HINT: type 'inv' to see your inventory");
         GameApp.getInstance().appendToCurActivity("The room currently contains: " + currentScene.getRoomLoot());
       } else {
