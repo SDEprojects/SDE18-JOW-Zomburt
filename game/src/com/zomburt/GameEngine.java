@@ -3,6 +3,7 @@ package com.zomburt;
 import com.zomburt.characters.Characters;
 import com.zomburt.characters.ZombieFactory;
 import com.zomburt.combat.Combat;
+import com.zomburt.combat.Weapon;
 import com.zomburt.gui.GameApp;
 import com.zomburt.utility.GameStatus;
 import com.zomburt.utility.Parser;
@@ -37,7 +38,7 @@ public class GameEngine {
           GameApp.getInstance().appendToCurActivity(currentScene.getFlavorText());
           Thread.sleep(200);
         if (currentScene.getFeature().contains("zombie"))
-          Combat.combat(player, ZombieFactory.createZombie("EASY"));
+          Combat.combat(player, ZombieFactory.createZombie(Mode.EASY));
         GameApp.getInstance().appendToCurActivity(" > ");
         String input = GameApp.getInstance().getInput();
 
@@ -73,8 +74,15 @@ public class GameEngine {
     else if (commands.get(0).contains("quit") || commands.get(0).contains("exit"))
       quit();
     else if (commands.get(0).contains("drop") || commands.get(0).contains("pick up")) {
-      if (commands.size() > 1)
-        itemHandler(commands.get(0), commands.get(1).toUpperCase());
+      if (commands.size() > 1) {
+        Weapon item = null;
+        for (Weapon weapon : Weapon.values()) {
+          if (weapon.getName().toUpperCase().equals(commands.get(1).toUpperCase())) {
+            item = weapon;
+          }
+        }
+        itemHandler(commands.get(0), item);
+      }
     } else if (commands.get(0).contains("search"))
       search();
     else if (commands.get(0).contains("look"))
@@ -88,7 +96,7 @@ public class GameEngine {
     }
   }
 
-  public void itemHandler(String action, String s) {
+  public void itemHandler(String action, Weapon s) {
     if (action.equals("drop")) {
       if (player.getInventory().contains(s)) {
         player.removeInventory(s);

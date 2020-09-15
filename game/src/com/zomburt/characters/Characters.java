@@ -1,18 +1,23 @@
 package com.zomburt.characters;
 
+import com.zomburt.combat.Weapon;
+
 import java.util.ArrayList;
 
 public class Characters {
     private String name;
     private int health = 50;
-    private ArrayList<String> inventory = new ArrayList<String>();
+    private ArrayList<Weapon> inventory = new ArrayList<Weapon>();
 
+    public Characters (int health) {
+        setHealth(health);
+    }
     public Characters(String name, int health) {
         setName(name);
         setHealth(health);
     }
 
-    public Characters(String name, int health, ArrayList<String> inventory) {
+    public Characters(String name, int health, ArrayList<Weapon> inventory) {
         setName(name);
         setHealth(health);
         setInventory(inventory);
@@ -38,21 +43,21 @@ public class Characters {
         this.health -= damage;
     }
 
-    public void addHealth(int amount) {
+    public void updateHealth(int amount) {
         this.health += amount;
     }
 
-    public ArrayList<String> getInventory() {
+    public ArrayList<Weapon> getInventory() {
         return inventory;
     }
 
-    public void setInventory(ArrayList<String> inventory) {this.inventory = inventory;}
+    public void setInventory(ArrayList<Weapon> inventory) {this.inventory = inventory;}
 
-    public void addInventory(String item) {
+    public void addInventory(Weapon item) {
         this.inventory.add(item);
     }
 
-    public void removeInventory(String item) {
+    public void removeInventory(Weapon item) {
         this.inventory.remove(item);
     }
 

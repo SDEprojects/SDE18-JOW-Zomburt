@@ -1,5 +1,7 @@
 package com.zomburt;
 
+import com.zomburt.characters.ZombieTypes;
+import com.zomburt.combat.Weapon;
 import com.zomburt.gui.GameApp;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -18,8 +20,8 @@ public class Scene {
     Object movement;
     String look;
     String search;
-    ArrayList<String> feature;
-    ArrayList<String> roomLoot;
+    ArrayList<ZombieTypes> feature;
+    ArrayList<Weapon> roomLoot;
 
     public Scene(String locationName) throws Exception {
         setSceneObject(locationName);
@@ -78,35 +80,47 @@ public class Scene {
     public void getSearch() {
         GameApp.getInstance().appendToCurActivity(search);
         if (!getRoomLoot().isEmpty())
-            for (String i : getRoomLoot())
+            for (Weapon i : getRoomLoot())
                 GameApp.getInstance().appendToCurActivity("  " + i);
     }
     public void setSearch() {
         search = (String) sceneObj.get("search");
     }
 
-    public ArrayList<String> getFeature() {
+    public ArrayList<ZombieTypes> getFeature() {
         return feature;
     }
     public void setFeature() {
-        feature = new ArrayList<String>();
+        feature = new ArrayList<ZombieTypes>();
         // class cast exception
         @SuppressWarnings("unchecked")
         List<String> strFeature = (List<String>) sceneObj.get("feature");
-        feature.addAll(strFeature);
+        for (ZombieTypes zombieTypes : ZombieTypes.values()) {
+            for (String item : strFeature) {
+                if (zombieTypes.getName().toUpperCase().equals(item.toUpperCase())) {
+                    feature.add(zombieTypes);
+                }
+            }
+        }
     }
 
-    public ArrayList<String> getRoomLoot() {
+    public ArrayList<Weapon> getRoomLoot() {
         return roomLoot;
     }
     public void setRoomLoot() {
-        roomLoot = new ArrayList<String>();
+        roomLoot = new ArrayList<Weapon>();
         @SuppressWarnings("unchecked")
         List<String> strRoomLoot = (List<String>) sceneObj.get("roomLoot");
-        roomLoot.addAll(strRoomLoot);
+        for (Weapon weapon : Weapon.values()) {
+            for (String item : strRoomLoot) {
+                if (weapon.getName().toUpperCase().equals(item.toUpperCase())) {
+                    roomLoot.add(weapon);
+                }
+            }
+        }
     }
 
-    public void addRoomLoot(String lootItem) {
+    public void addRoomLoot(Weapon lootItem) {
         if (getRoomLoot().contains(lootItem)) {
             GameApp.getInstance().appendToCurActivity("Item already in that room");
         } else {
@@ -114,7 +128,7 @@ public class Scene {
         }
     }
 
-    public void removeRoomLoot(String lootItem) {
+    public void removeRoomLoot(Weapon lootItem) {
         if (getRoomLoot().contains(lootItem)) {
             getRoomLoot().remove(lootItem);
         } else {
