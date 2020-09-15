@@ -7,7 +7,7 @@ import java.util.List;
 public class Parser {
 
     public static ArrayList<String> parse(String input){
-        ArrayList<String> options = new ArrayList<>(Arrays.asList(new String[]{"hint", "fight", "move", "pick up", "drop", "use", "look", "open", "help", "quit", "exit", "search", "inv"}));
+        ArrayList<String> options = new ArrayList<>(Arrays.asList(new String[]{"hint", "fight", "move", "pick up", "drop", "use", "look", "open", "help", "quit", "exit", "search", "inv", "check"}));
         ArrayList<String> commands;
                 if(input.startsWith("pick up"))
                     commands = new ArrayList<>(Arrays.asList(input.split("(?<=up)")));

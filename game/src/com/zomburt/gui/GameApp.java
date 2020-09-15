@@ -3,6 +3,7 @@ package com.zomburt.gui;
 import com.zomburt.GameEngine;
 import com.zomburt.GenerateMap;
 import com.zomburt.Mode;
+import com.zomburt.characters.Player;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -15,6 +16,9 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -25,10 +29,12 @@ import java.io.IOException;
 
 public class GameApp extends Application {
     private IntroController introController;
+    private VideoController videoController;
     private GameController gameController;
     private MapController mapController;
     private String currentInput;
     private Mode modeInput;
+    private Player player;
     private static com.zomburt.gui.GameApp instance;
 
     public GameApp() {
@@ -52,6 +58,35 @@ public class GameApp extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
+        //show intro video when click button
+//        introController.getVideoButton().setOnAction(e -> {
+//            FXMLLoader videoViewLoader = new FXMLLoader();
+//            try {
+//                videoController = new VideoController();
+//                videoViewLoader.setController(videoController);
+//                videoViewLoader.setLocation(GameApp.class.getResource("video.fxml"));
+//                GridPane videoLayout = videoViewLoader.load();
+//                Media media = new Media("https://www.youtube.com/watch?v=KitsWREpumU");
+//                //   Media media = new Media("file:./game/assets/test.mp4");
+//                MediaPlayer player = new MediaPlayer(media);
+//                player.setAutoPlay(true);
+//                try {
+//                    videoController.getIntroVideo().setMediaPlayer(player);
+//                } catch (Exception exception) {
+//                    exception.printStackTrace();
+//                }
+//                player.setOnError(() -> System.out.println("media error: " + player.getError().toString()));
+//                Scene videoScene = new Scene(videoLayout);
+//                Stage videoStage = new Stage();
+//                videoStage.setScene(videoScene);
+//                videoStage.show();
+//                player.play();
+//            } catch (IOException ioException) {
+//                ioException.printStackTrace();
+//            }
+//        });
 
         // Show the scene containing the intro layout.
         Scene introScene = new Scene(introLayout);
@@ -95,6 +130,12 @@ public class GameApp extends Application {
                             try {
                                 gameController.getImage1().setImage(new Image("file:./game/assets/ParkingLot1.jpg"));
                                 gameController.getImage2().setImage(new Image("file:./game/assets/ShoppingMall.jpg"));
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            //load player health in GUI text field
+                            try {
+                                gameController.getHealth().setText(new Integer(player.getHealth()).toString());
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }

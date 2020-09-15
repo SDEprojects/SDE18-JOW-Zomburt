@@ -1,7 +1,6 @@
 package com.zomburt;
 
-import com.zomburt.characters.Characters;
-import com.zomburt.characters.ZombieFactory;
+import com.zomburt.characters.*;
 import com.zomburt.combat.Combat;
 import com.zomburt.combat.Weapon;
 import com.zomburt.gui.GameApp;
@@ -12,9 +11,11 @@ import org.json.simple.JSONObject;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class GameEngine {
-  public static Characters player;
+  public static Player player;
+  public static Zombie zombie;
   GameStatus gameStatus = new GameStatus();
   Scene currentScene;
   Boolean newScene = true;
@@ -29,19 +30,24 @@ public class GameEngine {
       currentScene = new Scene("parking lot");
 
       GameApp.getInstance().appendToCurActivity("What is your name?");
-      player = new Characters(GameApp.getInstance().getInput(), 50);
-      GameApp.getInstance().appendToCurActivity("\n" + player.getName() + ", ");
-//      GameApp.getInstance().appendToCurActivity("Which level do you want to play: Easy or Hard?");
-//      gameUniverse = new Universe(GameApp.getInstance().getInput());
+      GameApp.getInstance().appendToCurActivity("\n" + GameApp.getInstance().getInput() + ", ");
+      player = PlayerFactory.createPlayer(Mode.EASY); //need to replace the "Mode.EASY" with player's choice from the radio button
+
+      String zombieName = null;
       while (win == false) {
-        if (newScene)
+        if (newScene) {
           GameApp.getInstance().appendToCurActivity(currentScene.getFlavorText());
           Thread.sleep(200);
-        if (currentScene.getFeature().contains("zombie"))
-          Combat.combat(player, ZombieFactory.createZombie(Mode.EASY));
+        }
+        if(currentScene.getFeature().size() > 0 ) {
+          zombieName = currentScene.getFeature().get(0).getName();
+          if (Arrays.stream(ZombieTypes.values()).map(e -> e.getName()).anyMatch(zombieName::equals)) {
+            zombie = ZombieFactory.createZombie(Mode.EASY); //need to replace the "Mode.EASY" with player's choice from the radio button
+            Combat.combat(player, zombie);
+          }
+        }
         GameApp.getInstance().appendToCurActivity(" > ");
         String input = GameApp.getInstance().getInput();
-
         if (input.isEmpty()) {
           newScene = false;
           continue;
@@ -88,30 +94,36 @@ public class GameEngine {
     else if (commands.get(0).contains("look"))
       look();
     else if (commands.get(0).contains("inv")) {
-      GameApp.getInstance().appendToCurActivity(player.getName() + "'s inventory is " + player.getInventory());
+      GameApp.getInstance().appendToCurActivity(player.getName() + "'s inventory is " +
+              player.getInventory().stream().map(e->e.getName()).collect(Collectors.toList()));
     } else if (commands.get(0).contains("hint")) {
       hint();
-    } else {
+    } else if(commands.get(0).contains("check")) {
+      GameApp.getInstance().appendToCurActivity(player.getName() + "'s health is " + player.getHealth());
+      GameApp.getInstance().appendToCurActivity(player.getName() + "'s score is " + player.getScore());
+    }
+    else {
       GameApp.getInstance().appendToCurActivity(Arrays.toString(commands.toArray()));
     }
   }
 
-  public void itemHandler(String action, Weapon s) {
+  public void itemHandler(String action, Weapon weapon) {
+     String s = "[" + weapon.getName() + ", " + weapon.getDamage() + "]";
     if (action.equals("drop")) {
-      if (player.getInventory().contains(s)) {
-        player.removeInventory(s);
-        currentScene.addRoomLoot(s);
-        GameApp.getInstance().appendToCurActivity("You've dropped " + s);
+      if (player.getInventory().contains(weapon)) {
+        player.removeInventory(weapon);
+        currentScene.addRoomLoot(weapon);
+        GameApp.getInstance().appendToCurActivity(player.getName() + "'ve dropped " + s);
         GameApp.getInstance().appendToCurActivity("The room currently contains: " + currentScene.getRoomLoot());
       } else {
-        GameApp.getInstance().appendToCurActivity("You don't have that item");
+        GameApp.getInstance().appendToCurActivity(player.getName() + " doesn't have that item");
       }
     }
     if (action.equals("pick up")) {
-      if (currentScene.getRoomLoot().contains(s)) {
-        player.addInventory(s);
-        currentScene.removeRoomLoot(s);
-        GameApp.getInstance().appendToCurActivity("You've successfully picked up: " + s);
+      if (currentScene.getRoomLoot().contains(weapon)) {
+        player.addInventory(weapon);
+        currentScene.removeRoomLoot(weapon);
+        GameApp.getInstance().appendToCurActivity(player.getName() + "'ve successfully picked up: " + s);
         GameApp.getInstance().appendToCurActivity("HINT: type 'inv' to see your inventory");
         GameApp.getInstance().appendToCurActivity("The room currently contains: " + currentScene.getRoomLoot());
       } else {

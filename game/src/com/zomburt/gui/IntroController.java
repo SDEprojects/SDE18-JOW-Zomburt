@@ -8,6 +8,9 @@ import javafx.scene.image.ImageView;
 public class IntroController {
 
     @FXML private Button startGame;
+
+    @FXML private Button videoButton;
+
     @FXML private ImageView intro;
     @FXML private RadioButton easyMode;
     @FXML private RadioButton hardMode;
@@ -18,6 +21,8 @@ public class IntroController {
     public Button getStartGame() {
         return startGame;
     }
+
+    public Button getVideoButton() {return videoButton;}
 
     public ImageView getIntro() {
         return intro;
