@@ -55,44 +55,35 @@ public class GameApp extends Application {
         introLayout.getChildren().addAll(introController.getIntro(), introController.getStartGame());
         introLayout.setAlignment(Pos.CENTER);
 
-        // clear item in the list view
-        Platform.runLater(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            //show intro video when click button
-                            introController.getVideoButton().setOnAction(e->{
-                                FXMLLoader videoViewLoader = new FXMLLoader();
-                                try {
-                                    videoController = new VideoController();
-                                    videoViewLoader.setController(videoController);
-                                    videoViewLoader.setLocation(GameApp.class.getResource("video.fxml"));
-                                    GridPane videoLayout = videoViewLoader.load();
-                                    Media media = new Media("https://www.youtube.com/watch?v=KitsWREpumU");
-                                    //   Media media = new Media("file:./game/assets/test.mp4");
-                                    MediaPlayer player = new MediaPlayer(media);
-                                    player.setAutoPlay(true);
-                                    try {
-                                        videoController.getIntroVideo().setMediaPlayer(player);
-                                    } catch (Exception exception) {
-                                        exception.printStackTrace();
-                                    }
-                                    player.setOnError(()-> System.out.println("media error: " + player.getError().toString()));
-                                    Scene videoScene = new Scene(videoLayout);
-                                    Stage videoStage = new Stage();
-                                    videoStage.setScene(videoScene);
-                                    videoStage.show();
-                                    player.play();
-                                } catch (IOException ioException) {
-                                    ioException.printStackTrace();
-                                }
-                            });
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
+
+        //show intro video when click button
+        introController.getVideoButton().setOnAction(e -> {
+            FXMLLoader videoViewLoader = new FXMLLoader();
+            try {
+                videoController = new VideoController();
+                videoViewLoader.setController(videoController);
+                videoViewLoader.setLocation(GameApp.class.getResource("video.fxml"));
+                GridPane videoLayout = videoViewLoader.load();
+                Media media = new Media("https://www.youtube.com/watch?v=KitsWREpumU");
+                //   Media media = new Media("file:./game/assets/test.mp4");
+                MediaPlayer player = new MediaPlayer(media);
+                player.setAutoPlay(true);
+                try {
+                    videoController.getIntroVideo().setMediaPlayer(player);
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
+                player.setOnError(() -> System.out.println("media error: " + player.getError().toString()));
+                Scene videoScene = new Scene(videoLayout);
+                Stage videoStage = new Stage();
+                videoStage.setScene(videoScene);
+                videoStage.show();
+                player.play();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
+
         // Show the scene containing the intro layout.
         Scene introScene = new Scene(introLayout);
         primaryStage.setScene(introScene);

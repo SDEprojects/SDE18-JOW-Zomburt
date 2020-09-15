@@ -1,7 +1,6 @@
 package com.zomburt;
 
-import com.zomburt.characters.Characters;
-import com.zomburt.characters.ZombieFactory;
+import com.zomburt.characters.*;
 import com.zomburt.combat.Combat;
 import com.zomburt.combat.Weapon;
 import com.zomburt.gui.GameApp;
@@ -14,7 +13,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class GameEngine {
-  public static Characters player;
+  public static Player player;
+  public static Zombie zombie;
   GameStatus gameStatus = new GameStatus();
   Scene currentScene;
   Boolean newScene = true;
@@ -29,19 +29,24 @@ public class GameEngine {
       currentScene = new Scene("parking lot");
 
       GameApp.getInstance().appendToCurActivity("What is your name?");
-      player = new Characters(GameApp.getInstance().getInput(), 50);
-      GameApp.getInstance().appendToCurActivity("\n" + player.getName() + ", ");
-//      GameApp.getInstance().appendToCurActivity("Which level do you want to play: Easy or Hard?");
-//      gameUniverse = new Universe(GameApp.getInstance().getInput());
+      GameApp.getInstance().appendToCurActivity("\n" + GameApp.getInstance().getInput() + ", ");
+      player = PlayerFactory.createPlayer(Mode.EASY); //need to replace the "Mode.EASY" with player's choice from the radio button
+
+      String zombieName = null;
       while (win == false) {
-        if (newScene)
+        if (newScene) {
           GameApp.getInstance().appendToCurActivity(currentScene.getFlavorText());
           Thread.sleep(200);
-        if (currentScene.getFeature().contains("zombie"))
-          Combat.combat(player, ZombieFactory.createZombie(Mode.EASY));
+        }
+        if(currentScene.getFeature().size() > 0 ) {
+          zombieName = currentScene.getFeature().get(0).getName();
+          if (Arrays.stream(ZombieTypes.values()).map(e -> e.getName()).anyMatch(zombieName::equals)) {
+            zombie = ZombieFactory.createZombie(Mode.EASY); //need to replace the "Mode.EASY" with player's choice from the radio button
+            Combat.combat(player, zombie);
+          }
+        }
         GameApp.getInstance().appendToCurActivity(" > ");
         String input = GameApp.getInstance().getInput();
-
         if (input.isEmpty()) {
           newScene = false;
           continue;
