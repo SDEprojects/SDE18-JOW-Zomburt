@@ -17,6 +17,7 @@ public class GameController {
     @FXML private TextField input;
     @FXML private Button enter;
     @FXML private Button mapButton;
+    @FXML private TextField remainZombies;
 
     public TextField getHealth() {
         return health;
@@ -61,4 +62,8 @@ public class GameController {
     public Button getMapButton() {return mapButton;}
 
     public ImageView getVictory() {return victory;}
+
+    public TextField getRemainZombies() {
+        return remainZombies;
+    }
 }

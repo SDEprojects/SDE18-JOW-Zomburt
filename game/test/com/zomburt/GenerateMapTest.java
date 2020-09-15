@@ -14,15 +14,12 @@ class GenerateMapTest<string> {
     private static GenerateMap generateMap = null;
     JSONObject mapJson;
     private String path = "./game/assets/store.json";
-    @BeforeEach
-    void setUp() {
+
+    @Test
+    void createEasyMap() {
         generateMap = new GenerateMap(Mode.EASY);
         Object map = generateMap.createMap(path);
         mapJson = (JSONObject) map;
-    }
-
-    @Test
-    void createMap() {
         Set<String> keys = mapJson.keySet();
         for (String key : keys) {
             JSONObject location = (JSONObject) mapJson.get(key);

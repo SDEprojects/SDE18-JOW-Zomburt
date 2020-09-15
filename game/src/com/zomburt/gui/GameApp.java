@@ -1,6 +1,7 @@
 package com.zomburt.gui;
 
 import com.zomburt.GameEngine;
+import com.zomburt.GenerateMap;
 import com.zomburt.Mode;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -190,12 +191,12 @@ public class GameApp extends Application {
 
     // update UI status
     public void updateUI() {
-        // update player status
+        // update total number of remaing zombies
         Platform.runLater(
                 new Runnable() {
                     @Override
                     public void run() {
-
+                       gameController.getRemainZombies().setText(Integer.toString(GenerateMap.totalNumZombies));
                     }
                 });
 

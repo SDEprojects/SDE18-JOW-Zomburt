@@ -19,11 +19,10 @@ public class GenerateMap {
     private static Mode mode;
     private static FileWriter file;
     private static GenerateMap generateMap = null;
+    public static int totalNumZombies;
+
     public GenerateMap(Mode mode){
         this.mode = mode;
-    }
-    public Mode getMode() {
-        return mode;
     }
 
     public static GenerateMap getInstance() {
@@ -68,7 +67,7 @@ public class GenerateMap {
                 numberZombie = RandomCreate.randNum(Mode.HARD);
                 numberWeapon = RandomCreate.randNum(Mode.EASY);
             }
-
+            totalNumZombies = numberZombie;
             // add new zombies to feature
             for (int i = 0; i < numberZombie; i++) {
                 features.add(ZombieFactory.createZombie(Mode.EASY).getName());
@@ -105,6 +104,5 @@ public class GenerateMap {
         }
         return map;
     }
-
 
 }
