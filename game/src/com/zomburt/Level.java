@@ -11,7 +11,6 @@ public abstract class Level {
         this.mode = mode;
     }
 
-
     public abstract Object createMap(String path);
 
     public abstract Characters createPlayer();

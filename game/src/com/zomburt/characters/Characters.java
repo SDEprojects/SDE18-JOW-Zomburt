@@ -43,7 +43,7 @@ public class Characters {
         this.health -= damage;
     }
 
-    public void addHealth(int amount) {
+    public void updateHealth(int amount) {
         this.health += amount;
     }
 
