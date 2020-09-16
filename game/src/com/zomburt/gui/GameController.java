@@ -7,23 +7,26 @@ import javafx.scene.image.ImageView;
 
 public class GameController {
     @FXML private TextField health;
-    @FXML private TextField hydration;
     @FXML private ListView inventory;
+    @FXML private ListView roomInventory;
+    @FXML private ListView weaponsRoom;
     @FXML private ImageView image1;
     @FXML private ImageView image2;
     @FXML private ImageView victory;
-
     @FXML private TextArea output;
     @FXML private TextField input;
     @FXML private Button enter;
     @FXML private Button mapButton;
+    @FXML private TextField remainZombies;
+    @FXML private TextField currentLocation;
+    @FXML private TextField fightingZombie;
+    @FXML private TextField zombieHealth;
+    @FXML private TextField zombieWeapon;
+    @FXML private TextField score;
+
 
     public TextField getHealth() {
         return health;
-    }
-
-    public TextField getHydration() {
-        return hydration;
     }
 
     public ListView getInventory() {
@@ -61,4 +64,36 @@ public class GameController {
     public Button getMapButton() {return mapButton;}
 
     public ImageView getVictory() {return victory;}
+
+    public TextField getRemainZombies() {
+        return remainZombies;
+    }
+
+    public TextField getCurrentLocation() {
+        return currentLocation;
+    }
+
+    public TextField getFightingZombie() {
+        return fightingZombie;
+    }
+
+    public TextField getZombieHealth() {
+        return zombieHealth;
+    }
+
+    public TextField getZombieWeapon() {
+        return zombieWeapon;
+    }
+
+    public TextField getScore() {
+        return score;
+    }
+
+    public ListView getRoomInventory() {
+        return roomInventory;
+    }
+
+    public ListView getWeaponsRoom() {
+        return weaponsRoom;
+    }
 }

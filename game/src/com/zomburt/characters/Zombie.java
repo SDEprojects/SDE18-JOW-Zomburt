@@ -3,10 +3,11 @@ package com.zomburt.characters;
 import com.zomburt.combat.Weapon;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Zombie extends Characters {
-
+  public Zombie() {
+    super();
+  }
   public Zombie(String name, int health) {
     super(name, health);
   }
