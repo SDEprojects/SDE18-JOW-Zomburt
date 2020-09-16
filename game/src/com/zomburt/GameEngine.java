@@ -11,6 +11,7 @@ import org.json.simple.JSONObject;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.stream.Collectors;
 
 public class GameEngine {
@@ -21,17 +22,22 @@ public class GameEngine {
   Boolean newScene = true;
   Boolean win = false;
   Universe gameUniverse = new Universe();
+  ArrayList<ZombieTypes> noZombies = new ArrayList<>();
+  Mode level = Mode.EASY;
 
   public GameEngine() throws Exception {
   }
 
   public void run() throws Exception {
       gameStatus.start();
+      level = GameApp.getInstance().getModeInput();
+    System.out.println(level.toString());
       currentScene = new Scene("parking lot");
+    //  currentScene = (Scene) MapFactory.createMap("./game/assets/store2.json");
 
+      player = PlayerFactory.createPlayer(level);
       GameApp.getInstance().appendToCurActivity("What is your name?");
       GameApp.getInstance().appendToCurActivity("\n" + GameApp.getInstance().getInput() + ", ");
-      player = PlayerFactory.createPlayer(Mode.EASY); //need to replace the "Mode.EASY" with player's choice from the radio button
 
       String zombieName = null;
       while (win == false) {
@@ -42,8 +48,11 @@ public class GameEngine {
         if(currentScene.getFeature().size() > 0 ) {
           zombieName = currentScene.getFeature().get(0).getName();
           if (Arrays.stream(ZombieTypes.values()).map(e -> e.getName()).anyMatch(zombieName::equals)) {
-            zombie = ZombieFactory.createZombie(Mode.EASY); //need to replace the "Mode.EASY" with player's choice from the radio button
+            zombie = ZombieFactory.createZombie(level);
             Combat.combat(player, zombie);
+            if(zombie.getHealth()<=0){
+              currentScene.setFeatures(noZombies);
+            }
           }
         }
         GameApp.getInstance().appendToCurActivity(" > ");
@@ -60,7 +69,7 @@ public class GameEngine {
     newScene = false;
     ArrayList<String> commands = Parser.parse(input.toLowerCase().trim());
     if (commands == null) {
-      GameApp.getInstance().appendToCurActivity("That's not a valid command. For a list of available commands input \" help\"");
+      GameApp.getInstance().appendToCurActivity("Invalid command. For a list of available commands input \" help\"");
     } else if (commands.get(0).contains("move")) {
       try {
         move(commands.get(1));
@@ -133,8 +142,7 @@ public class GameEngine {
   }
 
   public void quit() throws FileNotFoundException, InterruptedException {
-    gameStatus.lose();
-//    System.exit(0);
+    System.exit(0);
   }
 
   public void search(){
@@ -148,6 +156,7 @@ public class GameEngine {
         "    -pick up <item>-\n" +
         "    -drop <item>-\n" +
         "    -look/search-\n" +
+        "    -check <player health/score>-\n" +
         "    -quit\n");
   }
 
@@ -155,7 +164,7 @@ public class GameEngine {
     JSONObject moveSet = (JSONObject) currentScene.getMovement();
     String sceneCheck = (String) moveSet.get(moveDir);
     if (sceneCheck.equals("victory")) {
-      GameApp.getInstance().appendToCurActivity("Oh wow.  Did you survive?  I guess you make it out of the store then...");
+      GameApp.getInstance().appendToCurActivity("Oh wow.  Did you survive?  I guess you made it...");
       win = true;
       gameStatus.win();
     }

@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 public class GameController {
     @FXML private TextField health;
     @FXML private TextField hydration;
+    @FXML private TextField score;
     @FXML private ListView inventory;
     @FXML private ImageView image1;
     @FXML private ImageView image2;
@@ -25,6 +26,8 @@ public class GameController {
     public TextField getHydration() {
         return hydration;
     }
+
+    public TextField getScore() {return score;}
 
     public ListView getInventory() {
         return inventory;

@@ -15,25 +15,25 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.Set;
 
-public class GenerateMap {
+public class MapFactory {
     private static Mode mode;
     private static FileWriter file;
-    private static GenerateMap generateMap = null;
-    public GenerateMap(Mode mode){
+    private static MapFactory generateMap = null;
+    public MapFactory(Mode mode){
         this.mode = mode;
     }
     public Mode getMode() {
         return mode;
     }
 
-    public static GenerateMap getInstance() {
+    public static MapFactory getInstance() {
         if (generateMap == null) {
-            generateMap = new GenerateMap(GameApp.getInstance().getModeInput());
+            generateMap = new MapFactory(GameApp.getInstance().getModeInput());
         }
         return generateMap;
     }
 
-    public Object createMap(String path) {
+    public static Object createMap(String path) {
         Object map = null;
         String locationName = null;
         Random rand = new Random();

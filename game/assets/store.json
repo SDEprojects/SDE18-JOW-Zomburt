@@ -6,13 +6,8 @@
       "door 1": ""
     },
     "search": "Just as with the WEST entrance, the area just inside the store has been picked clean by looters. Nothing useful here.",
-    "feature": [
-      "Lurker"
-    ],
-    "roomLoot": [
-      "Fork",
-      "Ammo"
-    ],
+    "feature": [],
+    "roomLoot": [],
     "movement": {
       "east": "",
       "south": "",
@@ -45,17 +40,8 @@
       "door 1": ""
     },
     "search": "Just as with the EAST entrance, the area just inside the store has been picked clean by looters. Nothing useful here...",
-    "feature": [
-      "Skin Eater"
-    ],
-    "roomLoot": [
-      "Gas and Lighter",
-      "Ammo",
-      "Gas",
-      "Nerf Blaster",
-      "lighter",
-      "M16"
-    ],
+    "feature": [],
+    "roomLoot": [],
     "movement": {
       "east": "sporting goods",
       "south": "",
@@ -72,10 +58,7 @@
     },
     "search": "Just as with the WEST entrance, the area just inside the store has been picked clean by looters. Nothing useful here.",
     "feature": [],
-    "roomLoot": [
-      "Hand Grenade",
-      "Hand Grenade"
-    ],
+    "roomLoot": [],
     "movement": {
       "east": "parking lot 2",
       "south": "starbucks",
@@ -92,19 +75,7 @@
     },
     "search": "Just as with the EAST entrance, the area just inside the store has been picked clean by looters. Nothing useful here...",
     "feature": [],
-    "roomLoot": [
-      "M16 and Ammo",
-      "Ammo",
-      "lighter",
-      "Butcher Knife",
-      "lighter",
-      "Ammo",
-      "Gas and Lighter",
-      "Butcher Knife",
-      "Butcher Knife",
-      "Gas",
-      "Gas"
-    ],
+    "roomLoot": [],
     "movement": {
       "east": "pharmacy",
       "south": "west entrance",
@@ -121,17 +92,7 @@
     },
     "search": "Some listerine sparkles in the shadow of the mostly empty shelving, and there may be something else there...",
     "feature": [],
-    "roomLoot": [
-      "Nerf Blaster",
-      "Gas and Lighter",
-      "Butcher Knife",
-      "M16 and Ammo",
-      "M16",
-      "M16",
-      "Gas and Lighter",
-      "M16",
-      "Butcher Knife"
-    ],
+    "roomLoot": [],
     "movement": {
       "east": "restroom",
       "south": "discount bin",
@@ -148,19 +109,7 @@
     },
     "search": "Just as with the WEST entrance, the area just inside the store has been picked clean by looters. Nothing useful here.",
     "feature": [],
-    "roomLoot": [
-      "Hand Grenade",
-      "Fork",
-      "M16 and Ammo",
-      "Ammo",
-      "Fork",
-      "Nerf Blaster",
-      "M16",
-      "Nerf Blaster",
-      "M16 and Ammo",
-      "Fork",
-      "Butcher Knife"
-    ],
+    "roomLoot": [],
     "movement": {
       "east": "",
       "south": "gas station",
@@ -177,13 +126,7 @@
     },
     "search": "Just as with the WEST entrance, the area just inside the store has been picked clean by looters. Nothing useful here.",
     "feature": [],
-    "roomLoot": [
-      "Fork",
-      "M16",
-      "Fork",
-      "Ammo",
-      "Gas"
-    ],
+    "roomLoot": [],
     "movement": {
       "east": "victory",
       "south": "",
@@ -199,14 +142,8 @@
       "door 1": ""
     },
     "search": "Just as with the EAST entrance, the area just inside the store has been picked clean by looters. Nothing useful here...",
-    "feature": [
-      "Rotter"
-    ],
-    "roomLoot": [
-      "Hooah! bar",
-      "Gas and Lighter",
-      "Hooah! bar"
-    ],
+    "feature": [],
+    "roomLoot": [],
     "movement": {
       "east": "discount bin",
       "south": "gun store",
@@ -223,13 +160,7 @@
     },
     "search": "Seriously, there's no guns left...",
     "feature": [],
-    "roomLoot": [
-      "Ammo",
-      "Gas",
-      "Hand Grenade",
-      "M16",
-      "Hooah! bar"
-    ],
+    "roomLoot": [],
     "movement": {
       "east": "starbucks",
       "south": "",
@@ -245,9 +176,7 @@
       "door 1": ""
     },
     "search": "Just as with the WEST entrance, the area just inside the store has been picked clean by looters. Nothing useful here.",
-    "feature": [
-      "Lamebrain"
-    ],
+    "feature": [],
     "roomLoot": [],
     "movement": {
       "east": "",

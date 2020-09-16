@@ -25,6 +25,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.stream.Collectors;
 
 public class GameApp extends Application {
     private IntroController introController;
@@ -57,7 +58,6 @@ public class GameApp extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
 
         //show intro video when click button
 //        introController.getVideoButton().setOnAction(e -> {
@@ -99,7 +99,6 @@ public class GameApp extends Application {
                 if (isNowSelected) {
                     introController.getHardMode().setSelected(false);
                     modeInput = Mode.EASY;
-
                 }
             }
         });
@@ -132,12 +131,7 @@ public class GameApp extends Application {
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
-                            //load player health in GUI text field
-                            try {
-                                gameController.getHealth().setText(new Integer(player.getHealth()).toString());
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
+
                             //show game map when click map button
                             gameController.getMapButton().setOnAction(e -> {
                                 FXMLLoader mapViewLoader = new FXMLLoader();
@@ -175,7 +169,6 @@ public class GameApp extends Application {
                         }
                     }
                 };
-
         // connect next button to the handler event
         introController.getStartGame().setOnAction(nextHandler);
     }
@@ -199,6 +192,15 @@ public class GameApp extends Application {
                         notifyInput();
                         gameController.getInput().clear();
                         gameController.getInput().requestFocus();
+
+                        //load player health, score, and inventory in GUI text field
+                        try {
+                            gameController.getHealth().setText(Integer.toString(GameEngine.player.getHealth()));
+                            gameController.getScore().setText(Integer.toString(GameEngine.player.getScore()));
+                     //       gameController.getInventory().getItems().add(GameEngine.player.getInventory().stream().map(e->e.getName()).collect(Collectors.toList()));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
                 };
 

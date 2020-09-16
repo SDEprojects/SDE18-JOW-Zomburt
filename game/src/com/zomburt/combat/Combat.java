@@ -9,12 +9,12 @@ import com.zomburt.utility.Parser;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class Combat {
 
   public static void combat(Player player, Zombie zombie) throws FileNotFoundException, InterruptedException, Exception {
-//    GameApp.getInstance().appendToCurActivity("You have encountered a zombie! Prepare yourself");
     int score = player.getScore();
     while (player.getHealth() > 0 && zombie.getHealth() > 0) {
       GameApp.getInstance().appendToCurActivity(" > ");
@@ -33,7 +33,7 @@ public class Combat {
   public static void combatCommands(String input, Player player, Zombie zombie) throws Exception {
     ArrayList<String> commands = Parser.parse(input.toLowerCase().trim());
     if (commands == null)
-        GameApp.getInstance().appendToCurActivity("That's not a valid command. For a list of available commands input \" help\"");
+        GameApp.getInstance().appendToCurActivity("Invalid command! For a list of available commands input \" help\"");
     else if (commands.get(0).contains("help"))
       help();
     else if (commands.get(0).contains("inv"))
@@ -43,23 +43,26 @@ public class Combat {
     else if (commands.get(0).contains("fight"))
       fight(player, zombie);
     else
-      GameApp.getInstance().appendToCurActivity("You are in combat that isn't a valid command");
+      GameApp.getInstance().appendToCurActivity("Invalid command! There is a <zombie> here and you have to fight!");
   }
 
   public static void fight(Player player, Zombie zombie) throws FileNotFoundException, InterruptedException {
     int playerDamage = new Random().nextInt(20) + 1;
-    int ZombieDamage = new Random().nextInt(20) + 1;
-    if(player.getInventory().contains("NERF BLASTER")) {
+    int zombieDamage = new Random().nextInt(20) + 1;
 
-      playerDamage += 2;
-      if (player.getInventory().contains("IMPROVED NERF DART"))
-        playerDamage += 2;
+    for(Weapon weapon : Weapon.values()){
+      if(player.getInventory().stream().map(e->e.getName()).anyMatch(weapon.getName()::equals)) {
+        playerDamage += weapon.getDamage();
+      }
+      if(zombie.getInventory().stream().map(e->e.getName()).anyMatch(weapon.getName()::equals)) {
+        zombieDamage += weapon.getDamage();
+      }
     }
 
     if (player.getHealth() > 0 && zombie.getHealth() > 0) {
       GameApp.getInstance().appendToCurActivity(player.getName() + " attack.....");
       zombie.loseHealth(playerDamage);
-      GameApp.getInstance().appendToCurActivity(zombie.getName() + " sustained damage of: " + ZombieDamage);
+      GameApp.getInstance().appendToCurActivity(zombie.getName() + " sustained damage of: " + zombieDamage);
       if(zombie.getHealth() < 0)
         zombie.setHealth(0);
       GameApp.getInstance().appendToCurActivity(zombie.getName() + " current Health is: " + zombie.getHealth());
@@ -71,9 +74,12 @@ public class Combat {
       GameApp.getInstance().appendToCurActivity(player.getName() + " sustained damage of: " + playerDamage);
       GameApp.getInstance().appendToCurActivity(player.getName() + " current Health is: " + player.getHealth());
     }
-    if (player.getHealth() <= 0)
+    if (player.getHealth() <= 0) {
+      if(player.getHealth()<0){
+        player.setHealth(0);
+      }
       quit();
-
+    }
     GameApp.getInstance().appendToCurActivity(player.getName()+"'s health: " + player.getHealth() +"\n"+ zombie.getName()+"'s health: " + zombie.getHealth() + "   ");
   }
 
@@ -84,7 +90,6 @@ public class Combat {
   public static void quit() throws FileNotFoundException, InterruptedException {
     GameStatus loser = new GameStatus();
     loser.lose();
-   // System.exit(0);
   }
 
   public static void help() {
