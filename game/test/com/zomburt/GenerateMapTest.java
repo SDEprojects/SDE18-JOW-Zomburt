@@ -25,8 +25,23 @@ class GenerateMapTest<string> {
             JSONObject location = (JSONObject) mapJson.get(key);
             JSONArray features = (JSONArray) location.get("feature");
             JSONArray roomLoot = (JSONArray) location.get("roomLoot");
-            System.out.println(features.toString());
-            System.out.println(roomLoot.toString());
+            System.out.println(features);
+            System.out.println(roomLoot);
+        }
+    }
+
+    @Test
+    void createHardMap() {
+        generateMap = new GenerateMap(Mode.HARD);
+        Object map = generateMap.createMap(path);
+        mapJson = (JSONObject) map;
+        Set<String> keys = mapJson.keySet();
+        for (String key : keys) {
+            JSONObject location = (JSONObject) mapJson.get(key);
+            JSONArray features = (JSONArray) location.get("feature");
+            JSONArray roomLoot = (JSONArray) location.get("roomLoot");
+            System.out.println(features);
+            System.out.println(roomLoot);
         }
     }
 }

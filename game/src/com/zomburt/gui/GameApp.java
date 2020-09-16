@@ -3,7 +3,8 @@ package com.zomburt.gui;
 import com.zomburt.GameEngine;
 import com.zomburt.GenerateMap;
 import com.zomburt.Mode;
-import com.zomburt.characters.Player;
+import com.zomburt.characters.Zombie;
+import com.zomburt.combat.Weapon;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -16,9 +17,6 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -33,8 +31,9 @@ public class GameApp extends Application {
     private GameController gameController;
     private MapController mapController;
     private String currentInput;
-    private Mode modeInput;
-    private Player player;
+    private Mode modeInput = Mode.EASY;
+    private GameEngine newGame;
+
     private static com.zomburt.gui.GameApp instance;
 
     public GameApp() {
@@ -92,7 +91,6 @@ public class GameApp extends Application {
         Scene introScene = new Scene(introLayout);
         primaryStage.setScene(introScene);
         primaryStage.show();
-
         // config the radio button
         introController.getEasyMode().selectedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
@@ -100,7 +98,7 @@ public class GameApp extends Application {
                 if (isNowSelected) {
                     introController.getHardMode().setSelected(false);
                     modeInput = Mode.EASY;
-
+                    System.out.println(modeInput.toString());
                 }
             }
         });
@@ -111,6 +109,7 @@ public class GameApp extends Application {
                 if (isNowSelected) {
                     introController.getEasyMode().setSelected(false);
                     modeInput = Mode.HARD;
+                    System.out.println(modeInput.toString());
                 }
             }
         });
@@ -133,12 +132,7 @@ public class GameApp extends Application {
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
-                            //load player health in GUI text field
-                            try {
-                                gameController.getHealth().setText(new Integer(player.getHealth()).toString());
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
+
                             //show game map when click map button
                             gameController.getMapButton().setOnAction(e -> {
                                 FXMLLoader mapViewLoader = new FXMLLoader();
@@ -226,7 +220,8 @@ public class GameApp extends Application {
 
     // game thread logic, so we should also wrap the UI access calls
     private void executeGameLoop() throws Exception {
-        GameEngine newGame = new GameEngine();
+        GenerateMap.getInstance().createMap("./game/assets/store.json");
+        newGame = new GameEngine();
         newGame.run();
     }
 
@@ -238,16 +233,36 @@ public class GameApp extends Application {
                     @Override
                     public void run() {
                        gameController.getRemainZombies().setText(Integer.toString(GenerateMap.totalNumZombies));
+                       gameController.getHealth().setText(Integer.toString(GameEngine.player.getHealth()));
+                       gameController.getScore().setText(Integer.toString(GameEngine.player.getScore()));
+                       gameController.getCurrentLocation().setText(GameEngine.currentScene.getSceneName());
+                       gameController.getFightingZombie().setText(GameEngine.zombie.getName());
+                       gameController.getZombieHealth().setText(Integer.toString(GameEngine.zombie.getHealth()));
+                       if (GameEngine.zombie.getInventory().size() > 0) {
+                           gameController.getZombieWeapon().setText(GameEngine.zombie.getInventory().get(0).getName());
+                       }
                     }
                 });
 
-        // clear item in the list view
+        // update list view
         Platform.runLater(
                 new Runnable() {
                     @Override
                     public void run() {
                         try {
                             gameController.getInventory().getItems().clear();
+                            for (Weapon weapon : GameEngine.player.getInventory()) {
+                                gameController.getInventory().getItems().add(weapon.getName());
+                            }
+
+                            gameController.getRoomInventory().getItems().clear();
+                            gameController.getWeaponsRoom().getItems().clear();
+                            for (Weapon weapon : GameEngine.currentScene.getRoomLoot()) {
+                                gameController.getWeaponsRoom().getItems().add(weapon.getName());
+                            }
+                            for (Zombie zombie : GameEngine.currentScene.getFeature()) {
+                                gameController.getRoomInventory().getItems().add(zombie.getName());
+                            }
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

@@ -8,7 +8,7 @@ public class Characters {
     private String name;
     private int health = 50;
     private ArrayList<Weapon> inventory = new ArrayList<Weapon>();
-
+    public Characters(){}
     public Characters (int health) {
         setHealth(health);
     }

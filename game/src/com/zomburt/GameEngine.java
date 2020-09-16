@@ -11,16 +11,18 @@ import org.json.simple.JSONObject;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class GameEngine {
   public static Player player;
   public static Zombie zombie;
   GameStatus gameStatus = new GameStatus();
-  Scene currentScene;
+  public static Scene currentScene;
   Boolean newScene = true;
   Boolean win = false;
   Universe gameUniverse = new Universe();
+  Random rand = new Random();
 
   public GameEngine() throws Exception {
   }
@@ -31,7 +33,7 @@ public class GameEngine {
 
       GameApp.getInstance().appendToCurActivity("What is your name?");
       GameApp.getInstance().appendToCurActivity("\n" + GameApp.getInstance().getInput() + ", ");
-      player = PlayerFactory.createPlayer(Mode.EASY); //need to replace the "Mode.EASY" with player's choice from the radio button
+      player = PlayerFactory.createPlayer(GameApp.getInstance().getModeInput());
 
       String zombieName = null;
       while (win == false) {
@@ -40,11 +42,12 @@ public class GameEngine {
           Thread.sleep(200);
         }
         if(currentScene.getFeature().size() > 0 ) {
-          zombieName = currentScene.getFeature().get(0).getName();
-          if (Arrays.stream(ZombieTypes.values()).map(e -> e.getName()).anyMatch(zombieName::equals)) {
-            zombie = ZombieFactory.createZombie(Mode.EASY); //need to replace the "Mode.EASY" with player's choice from the radio button
-            Combat.combat(player, zombie);
-          }
+          int zombiesNum = currentScene.getFeature().size();
+          int randZombie = rand.nextInt(zombiesNum);
+          ArrayList<Zombie> zombies = currentScene.getFeature();
+          zombie = zombies.get(randZombie);
+          Combat.combat(player, zombie);
+
         }
         GameApp.getInstance().appendToCurActivity(" > ");
         String input = GameApp.getInstance().getInput();

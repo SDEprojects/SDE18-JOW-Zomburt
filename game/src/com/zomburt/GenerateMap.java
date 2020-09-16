@@ -1,5 +1,7 @@
 package com.zomburt;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zomburt.characters.ZombieFactory;
 import com.zomburt.combat.Weapon;
 import com.zomburt.gui.GameApp;
@@ -33,6 +35,7 @@ public class GenerateMap {
     }
 
     public Object createMap(String path) {
+        ObjectMapper mapper = new ObjectMapper();
         Object map = null;
         String locationName = null;
         Random rand = new Random();
@@ -67,15 +70,26 @@ public class GenerateMap {
                 numberZombie = RandomCreate.randNum(Mode.HARD);
                 numberWeapon = RandomCreate.randNum(Mode.EASY);
             }
-            totalNumZombies = numberZombie;
+            totalNumZombies += numberZombie;
+            String json;
             // add new zombies to feature
             for (int i = 0; i < numberZombie; i++) {
-                features.add(ZombieFactory.createZombie(Mode.EASY).getName());
+                try {
+                    json = mapper.writeValueAsString(ZombieFactory.createZombie(mode));
+                    features.add(json);
+                } catch (JsonProcessingException e) {
+                    e.printStackTrace();
+                }
             }
             // add new weapons to roomLoot
             for (int i = 0; i < numberWeapon; i++) {
                 int randWeapon = rand.nextInt(Weapon.values().length);
-                roomLoot.add(Weapon.values()[randWeapon].getName());
+                try {
+                    json = mapper.writeValueAsString(Weapon.values()[randWeapon]);
+                    roomLoot.add(json);
+                } catch (JsonProcessingException e) {
+                    e.printStackTrace();
+                }
             }
         }
         try {

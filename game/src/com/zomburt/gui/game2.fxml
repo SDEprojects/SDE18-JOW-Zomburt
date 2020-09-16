@@ -25,13 +25,13 @@
 <GridPane fx:id="gameInterface" prefHeight="750.0" prefWidth="1025.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="96.0" minWidth="10.0" prefWidth="14.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="188.0" minWidth="10.0" prefWidth="95.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="182.0" minWidth="10.0" prefWidth="87.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="105.0" minWidth="2.0" prefWidth="19.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="184.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="188.0" minWidth="10.0" prefWidth="120.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="182.0" minWidth="10.0" prefWidth="125.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="105.0" minWidth="2.0" prefWidth="8.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="119.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="141.0" minWidth="10.0" prefWidth="135.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="107.0" minWidth="10.0" prefWidth="91.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.0" minWidth="10.0" prefWidth="117.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="119.0" minWidth="10.0" prefWidth="118.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.0" minWidth="10.0" prefWidth="90.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.0" minWidth="10.0" prefWidth="64.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="88.0" minWidth="10.0" prefWidth="41.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="147.0" minWidth="10.0" prefWidth="75.0" />
@@ -40,8 +40,8 @@
       <ColumnConstraints maxWidth="10.0" minWidth="4.0" prefWidth="10.0" />
   </columnConstraints>
   <rowConstraints>
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="32.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -63,6 +63,7 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
@@ -87,13 +88,8 @@
       </MenuBar>
       <Label prefHeight="21.0" prefWidth="103.0" text="Player Stats:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <Label prefHeight="21.0" prefWidth="102.0" text="Health:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <Label prefHeight="21.0" prefWidth="99.0" text="Hydration:" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <Label prefHeight="21.0" prefWidth="102.0" text="Weapon:" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <Label prefHeight="21.0" prefWidth="122.0" text="Player's Weapon:" GridPane.columnIndex="1" GridPane.rowIndex="12" />
       <TextField fx:id="health" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="2">
-         <effect>
-            <InnerShadow />
-         </effect></TextField>
-      <TextField fx:id="hydration" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="3">
          <effect>
             <InnerShadow />
          </effect></TextField>
@@ -109,31 +105,68 @@
          <effect>
             <InnerShadow />
          </effect></TextArea>
-      <ImageView fx:id="image1" fitHeight="346.0" fitWidth="406.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="4" GridPane.rowSpan="3" />
+      <ImageView fx:id="image1" fitHeight="346.0" fitWidth="356.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="4" GridPane.rowSpan="3" />
       <Separator prefWidth="200.0" GridPane.columnIndex="4" GridPane.columnSpan="8" GridPane.rowIndex="10" />
       <Label prefHeight="21.0" prefWidth="252.0" text="Player's Input:" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="21" />
-      <ListView fx:id="inventory" prefHeight="233.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="7" GridPane.rowSpan="7">
+      <ListView fx:id="inventory" prefHeight="90.0" prefWidth="192.0" GridPane.columnIndex="1" GridPane.rowIndex="13" GridPane.rowSpan="3">
          <effect>
             <InnerShadow />
          </effect></ListView>
-      <ImageView fx:id="image2" fitHeight="307.0" fitWidth="387.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="4" GridPane.rowSpan="3" />
+      <ImageView fx:id="image2" fitHeight="307.0" fitWidth="377.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="4" GridPane.rowSpan="3" />
       <Button fx:id="mapButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="133.0" text="Map" GridPane.columnIndex="10" GridPane.rowIndex="22">
          <effect>
             <InnerShadow />
          </effect></Button>
       <ImageView fx:id="victory" fitHeight="710.0" fitWidth="815.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="11" />
-      <Label text="Score:" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <TextField fx:id="score" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="4">
+      <Label text="Score:" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <TextField fx:id="score" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="3">
          <effect>
             <InnerShadow />
          </effect>
       </TextField>
-      <Label text="Zombies:" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-      <TextField fx:id="remainZombies" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="5">
+      <Label text="Total Zombies:" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <TextField fx:id="remainZombies" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="7">
          <effect>
             <InnerShadow />
          </effect>
       </TextField>
+      <TextField fx:id="fightingZombie" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="8">
+         <effect>
+            <InnerShadow />
+         </effect>
+      </TextField>
+      <TextField fx:id="zombieHealth" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="9">
+         <effect>
+            <InnerShadow />
+         </effect>
+      </TextField>
+      <TextField fx:id="currentLocation" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="4">
+         <effect>
+            <InnerShadow />
+         </effect>
+      </TextField>
+      <Label text="Zombies:" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <Label text="Current Location:" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <Label text="Fighting Zombie:" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+      <Label text="Zombie's Health" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+      <Label text="Zombie's Weapon:" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+      <TextField fx:id="zombieWeapon" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="10">
+         <effect>
+            <InnerShadow />
+         </effect>
+      </TextField>
+      <Label text="Zombies in Room:" GridPane.columnIndex="1" GridPane.rowIndex="16" />
+      <ListView fx:id="roomInventory" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="17" GridPane.rowSpan="7">
+         <effect>
+            <InnerShadow />
+         </effect>
+      </ListView>
+      <Label text="Weapons in Room:" GridPane.columnIndex="2" GridPane.rowIndex="16" />
+      <ListView fx:id="weaponsRoom" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="17" GridPane.rowSpan="7">
+         <effect>
+            <InnerShadow />
+         </effect>
+      </ListView>
    </children>
     <stylesheets>
         <URL value="@BasicApplication.css" />
