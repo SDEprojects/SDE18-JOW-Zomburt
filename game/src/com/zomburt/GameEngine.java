@@ -22,6 +22,8 @@ public class GameEngine {
   Boolean newScene = true;
   Boolean win = false;
   Universe gameUniverse = new Universe();
+  ArrayList<ZombieTypes> noZombies = new ArrayList<>();
+  Mode level = Mode.EASY;
   Random rand = new Random();
 
   public GameEngine() throws Exception {
@@ -29,11 +31,13 @@ public class GameEngine {
 
   public void run() throws Exception {
       gameStatus.start();
+      level = GameApp.getInstance().getModeInput();
+      System.out.println(level.toString());
       currentScene = new Scene("parking lot");
 
+      player = PlayerFactory.createPlayer(level);
       GameApp.getInstance().appendToCurActivity("What is your name?");
       GameApp.getInstance().appendToCurActivity("\n" + GameApp.getInstance().getInput() + ", ");
-      player = PlayerFactory.createPlayer(GameApp.getInstance().getModeInput());
 
       String zombieName = null;
       while (win == false) {
@@ -42,6 +46,14 @@ public class GameEngine {
           Thread.sleep(200);
         }
         if(currentScene.getFeature().size() > 0 ) {
+          zombieName = currentScene.getFeature().get(0).getName();
+          if (Arrays.stream(ZombieTypes.values()).map(e -> e.getName()).anyMatch(zombieName::equals)) {
+            zombie = ZombieFactory.createZombie(level);
+            Combat.combat(player, zombie);
+            if(zombie.getHealth()<=0){
+              currentScene.setFeatures(noZombies);
+            }
+          }
           int zombiesNum = currentScene.getFeature().size();
           int randZombie = rand.nextInt(zombiesNum);
           ArrayList<Zombie> zombies = currentScene.getFeature();
@@ -64,7 +76,7 @@ public class GameEngine {
     newScene = false;
     ArrayList<String> commands = Parser.parse(input.toLowerCase().trim());
     if (commands == null) {
-      GameApp.getInstance().appendToCurActivity("That's not a valid command. For a list of available commands input \" help\"");
+      GameApp.getInstance().appendToCurActivity("Invalid command. For a list of available commands input \" help\"");
     } else if (commands.get(0).contains("move")) {
       try {
         move(commands.get(1));
@@ -139,8 +151,7 @@ public class GameEngine {
   }
 
   public void quit() throws FileNotFoundException, InterruptedException {
-    gameStatus.lose();
-//    System.exit(0);
+    System.exit(0);
   }
 
   public void search(){
@@ -160,7 +171,7 @@ public class GameEngine {
   public void move(String moveDir) throws Exception {
     JSONObject moveSet = (JSONObject) currentScene.getMovement();
     String sceneCheck = (String) moveSet.get(moveDir);
-    if (sceneCheck.equals("victory") && GenerateMap.totalNumZombies == 0) {
+    if (sceneCheck.equals("victory") && MapFactory.totalNumZombies == 0) {
       GameApp.getInstance().appendToCurActivity("Oh wow.  Did you survive?  I guess you make it out of the store then...");
       win = true;
       gameStatus.win();
