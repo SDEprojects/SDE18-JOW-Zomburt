@@ -53,8 +53,8 @@ public class Combat {
   }
 
   public static void fight(Player player, Zombie zombie) throws FileNotFoundException, InterruptedException {
-    int playerDamage = new Random().nextInt(20) + 1;
-    int zombieDamage = new Random().nextInt(20) + 1;
+    int playerDamage = 20;
+    int zombieDamage = 20;
 
     for(Weapon weapon : Weapon.values()){
       if(player.getInventory().stream().map(e->e.getName()).anyMatch(weapon.getName()::equals)) {
