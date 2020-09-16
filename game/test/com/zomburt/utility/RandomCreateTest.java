@@ -1,9 +1,11 @@
 package com.zomburt.utility;
 
 import com.zomburt.Mode;
-import org.junit.Assert;
+import org.junit.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RandomCreateTest {
     private  Mode mode;
@@ -15,20 +17,20 @@ class RandomCreateTest {
     void randNumEasyModeTest() {
         mode = Mode.EASY;
         int randomNum = RandomCreate.randNum(mode);
-        Assert.assertTrue(randomNum < 2);
+        assertTrue(randomNum < 2);
     }
 
     @Test
     void randNumMedianModeTest() {
         mode = Mode.MEDIAN;
         int randomNum = RandomCreate.randNum(mode);
-        Assert.assertTrue(randomNum < 13/2);
+        assertTrue(randomNum < 13/2);
     }
 
     @Test
     void randNumHardModeTest() {
         mode = Mode.HARD;
         int randomNum = RandomCreate.randNum(mode);
-        Assert.assertTrue(randomNum < 13);
+        assertTrue(randomNum < 13);
     }
 }
