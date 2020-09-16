@@ -22,8 +22,6 @@ public class GameEngine {
   Boolean newScene = true;
   Boolean win = false;
   Universe gameUniverse = new Universe();
-  ArrayList<ZombieTypes> noZombies = new ArrayList<>();
-  Mode level = Mode.EASY;
   Random rand = new Random();
 
   public GameEngine() throws Exception {
@@ -31,34 +29,25 @@ public class GameEngine {
 
   public void run() throws Exception {
       gameStatus.start();
-      level = GameApp.getInstance().getModeInput();
-      System.out.println(level.toString());
       currentScene = new Scene("parking lot");
-
-      player = PlayerFactory.createPlayer(level);
+      player = PlayerFactory.createPlayer(GameApp.getInstance().getModeInput());
       GameApp.getInstance().appendToCurActivity("What is your name?");
       GameApp.getInstance().appendToCurActivity("\n" + GameApp.getInstance().getInput() + ", ");
 
-      String zombieName = null;
       while (win == false) {
         if (newScene) {
           GameApp.getInstance().appendToCurActivity(currentScene.getFlavorText());
           Thread.sleep(200);
         }
         if(currentScene.getFeature().size() > 0 ) {
-          zombieName = currentScene.getFeature().get(0).getName();
-          if (Arrays.stream(ZombieTypes.values()).map(e -> e.getName()).anyMatch(zombieName::equals)) {
-            zombie = ZombieFactory.createZombie(level);
-            Combat.combat(player, zombie);
-            if(zombie.getHealth()<=0){
-              currentScene.setFeatures(noZombies);
-            }
-          }
           int zombiesNum = currentScene.getFeature().size();
           int randZombie = rand.nextInt(zombiesNum);
           ArrayList<Zombie> zombies = currentScene.getFeature();
           zombie = zombies.get(randZombie);
+          //before fighting
+          GameApp.getInstance().updateZombie();
           Combat.combat(player, zombie);
+          //after fighting
           GameApp.getInstance().updateZombie();
         }
         GameApp.getInstance().appendToCurActivity(" > ");
@@ -130,7 +119,7 @@ public class GameEngine {
         player.removeInventory(weapon);
         currentScene.addRoomLoot(weapon);
         GameApp.getInstance().appendToCurActivity(player.getName() + "'ve dropped " + s);
-        GameApp.getInstance().appendToCurActivity("The room currently contains: " + currentScene.getRoomLoot());
+
       } else {
         GameApp.getInstance().appendToCurActivity(player.getName() + " doesn't have that item");
       }
@@ -138,7 +127,11 @@ public class GameEngine {
     }
     if (action.equals("pick up")) {
       if (currentScene.getRoomLoot().contains(weapon)) {
-        player.addInventory(weapon);
+        if (player.getInventory().size() < 3) {
+          player.addInventory(weapon);
+        } else {
+          GameApp.getInstance().appendToCurActivity("You can only have maximum of 3 weapons! ");
+        }
         currentScene.removeRoomLoot(weapon);
         GameApp.getInstance().appendToCurActivity(player.getName() + "'ve successfully picked up: " + s);
         GameApp.getInstance().appendToCurActivity("HINT: type 'inv' to see your inventory");

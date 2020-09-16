@@ -219,7 +219,7 @@ public class GameApp extends Application {
                         try {
                             gameController.getInventory().getItems().clear();
                             for (Weapon weapon : GameEngine.player.getInventory()) {
-                                gameController.getInventory().getItems().add(weapon.getName());
+                                gameController.getInventory().getItems().add(weapon.getName() + "(" + weapon.getName() + ")");
                             }
 
                             gameController.getRoomInventory().getItems().clear();
