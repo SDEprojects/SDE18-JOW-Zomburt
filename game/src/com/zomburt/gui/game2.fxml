@@ -67,25 +67,6 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <MenuBar fx:id="menu" prefHeight="38.0" prefWidth="1017.0" GridPane.columnIndex="1" GridPane.columnSpan="11">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
       <Label prefHeight="21.0" prefWidth="103.0" text="Player Stats:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <Label prefHeight="21.0" prefWidth="102.0" text="Health:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       <Label prefHeight="21.0" prefWidth="122.0" text="Player's Weapon:" GridPane.columnIndex="1" GridPane.rowIndex="12" />
@@ -105,19 +86,25 @@
          <effect>
             <InnerShadow />
          </effect></TextArea>
-      <ImageView fx:id="image1" fitHeight="346.0" fitWidth="356.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="4" GridPane.rowSpan="3" />
+      <ImageView fx:id="image1" fitHeight="292.0" fitWidth="479.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="5">
+         <image>
+            <Image url="@../../../../assets/ParkingLot1.jpg" />
+         </image></ImageView>
       <Separator prefWidth="200.0" GridPane.columnIndex="4" GridPane.columnSpan="8" GridPane.rowIndex="10" />
       <Label prefHeight="21.0" prefWidth="252.0" text="Player's Input:" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="21" />
       <ListView fx:id="inventory" prefHeight="90.0" prefWidth="192.0" GridPane.columnIndex="1" GridPane.rowIndex="13" GridPane.rowSpan="3">
          <effect>
             <InnerShadow />
          </effect></ListView>
-      <ImageView fx:id="image2" fitHeight="307.0" fitWidth="377.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="4" GridPane.rowSpan="3" />
+      <ImageView fx:id="image2" fitHeight="285.0" fitWidth="396.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="5">
+         <image>
+            <Image url="@../../../../assets/ShoppingMall.jpg" />
+         </image></ImageView>
       <Button fx:id="mapButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="133.0" text="Map" GridPane.columnIndex="10" GridPane.rowIndex="22">
          <effect>
             <InnerShadow />
          </effect></Button>
-      <ImageView fx:id="victory" fitHeight="710.0" fitWidth="815.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="11" />
+      <ImageView fx:id="victory" fitHeight="510.0" fitWidth="773.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="11" />
       <Label text="Score:" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <TextField fx:id="score" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="3">
          <effect>
@@ -148,7 +135,7 @@
       <Label text="Zombies:" GridPane.columnIndex="1" GridPane.rowIndex="6" />
       <Label text="Current Location:" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <Label text="Fighting Zombie:" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-      <Label text="Zombie's Health" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+      <Label text="Zombie's Health:" GridPane.columnIndex="1" GridPane.rowIndex="9" />
       <Label text="Zombie's Weapon:" GridPane.columnIndex="1" GridPane.rowIndex="10" />
       <TextField fx:id="zombieWeapon" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="10">
          <effect>
@@ -167,7 +154,52 @@
             <InnerShadow />
          </effect>
       </ListView>
-      <TextArea fx:id="youLose" editable="false" prefHeight="75.0" prefWidth="343.0" text="You Lost !!!!" visible="false" GridPane.columnIndex="5" GridPane.columnSpan="3" GridPane.rowIndex="21" GridPane.rowSpan="3" />
+      <TextArea fx:id="youLose" editable="false" prefHeight="63.0" prefWidth="479.0" text="   Zombie ate your brain !!!!" visible="false" GridPane.columnIndex="4" GridPane.columnSpan="10" GridPane.rowIndex="1" GridPane.rowSpan="3">
+         <effect>
+            <InnerShadow />
+         </effect></TextArea>
+      <MenuBar fx:id="menu" GridPane.columnSpan="14">
+          <menus>
+              <Menu mnemonicParsing="false" text="File">
+                  <items>
+                      <MenuItem mnemonicParsing="false" text="New" />
+                      <MenuItem mnemonicParsing="false" text="Open…" />
+                      <Menu mnemonicParsing="false" text="Open Recent" />
+                      <SeparatorMenuItem mnemonicParsing="false" />
+                      <MenuItem mnemonicParsing="false" text="Close" />
+                      <MenuItem mnemonicParsing="false" text="Save" />
+                      <MenuItem mnemonicParsing="false" text="Save As…" />
+                      <MenuItem mnemonicParsing="false" text="Revert" />
+                      <SeparatorMenuItem mnemonicParsing="false" />
+                      <MenuItem mnemonicParsing="false" text="Preferences…" />
+                      <SeparatorMenuItem mnemonicParsing="false" />
+                      <MenuItem mnemonicParsing="false" text="Quit" />
+                  </items>
+              </Menu>
+              <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                      <MenuItem mnemonicParsing="false" text="Undo" />
+                      <MenuItem mnemonicParsing="false" text="Redo" />
+                      <SeparatorMenuItem mnemonicParsing="false" />
+                      <MenuItem mnemonicParsing="false" text="Cut" />
+                      <MenuItem mnemonicParsing="false" text="Copy" />
+                      <MenuItem mnemonicParsing="false" text="Paste" />
+                      <MenuItem mnemonicParsing="false" text="Delete" />
+                      <SeparatorMenuItem mnemonicParsing="false" />
+                      <MenuItem mnemonicParsing="false" text="Select All" />
+                      <MenuItem mnemonicParsing="false" text="Unselect All" />
+                  </items>
+              </Menu>
+              <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                      <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+                  </items>
+              </Menu>
+          </menus>
+          <effect>
+              <InnerShadow />
+          </effect>
+      </MenuBar>
    </children>
     <stylesheets>
         <URL value="@BasicApplication.css" />
