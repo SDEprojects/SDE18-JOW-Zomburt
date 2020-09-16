@@ -47,7 +47,7 @@ public class GameEngine {
           ArrayList<Zombie> zombies = currentScene.getFeature();
           zombie = zombies.get(randZombie);
           Combat.combat(player, zombie);
-
+          GameApp.getInstance().updateZombie();
         }
         GameApp.getInstance().appendToCurActivity(" > ");
         String input = GameApp.getInstance().getInput();
@@ -56,6 +56,7 @@ public class GameEngine {
           continue;
         }
         runCommands(input);
+        GameApp.getInstance().updateUI();
       }
   }
 
@@ -121,6 +122,7 @@ public class GameEngine {
       } else {
         GameApp.getInstance().appendToCurActivity(player.getName() + " doesn't have that item");
       }
+      GameApp.getInstance().updateUI();
     }
     if (action.equals("pick up")) {
       if (currentScene.getRoomLoot().contains(weapon)) {
@@ -132,6 +134,7 @@ public class GameEngine {
       } else {
         GameApp.getInstance().appendToCurActivity("That item isn't here");
       }
+      GameApp.getInstance().updateUI();
     }
   }
 
@@ -157,7 +160,7 @@ public class GameEngine {
   public void move(String moveDir) throws Exception {
     JSONObject moveSet = (JSONObject) currentScene.getMovement();
     String sceneCheck = (String) moveSet.get(moveDir);
-    if (sceneCheck.equals("victory")) {
+    if (sceneCheck.equals("victory") && GenerateMap.totalNumZombies == 0) {
       GameApp.getInstance().appendToCurActivity("Oh wow.  Did you survive?  I guess you make it out of the store then...");
       win = true;
       gameStatus.win();
