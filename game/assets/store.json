@@ -1,16 +1,14 @@
-
 {
   "starbucks": {
-    "flavorText": "\n  Need some coffee?",
-    "armoire": {
-      "chest 1": "",
-      "door 1": ""
-    },
+    "flavorText": "Need some coffee?",
     "search": "Just as with the WEST entrance, the area just inside the store has been picked clean by looters. Nothing useful here.",
     "feature": [],
     "roomLoot": [
       "\"NERF_BLASTER\"",
-      "\"HAND_GRENADE\""
+      "\"AMMO\"",
+      "\"KNIFE\"",
+      "\"M16_AMMO\"",
+      "\"M16_AMMO\""
     ],
     "movement": {
       "east": "",
@@ -21,20 +19,16 @@
     "look": "Sunken eyes and gaping uncovered mouth... if only you had some way to cover their mouth AND nose..."
   },
   "discount bin": {
-    "flavorText": "\n  Like every other Socio-Capitalist big-box store this one, your favorite pre-Dovic \nbecause of its selection of free-range EMU eggs, has a selection of DVD\u2019s that   \nwould cost more to throw away than they\u2019re worth.  Weather-damaged signs proclaim \n\u201828 copies of 28 Days Later, now just $2.89\u2019 \n\n  That\u2019s actually cheap! You consider  \nSEARCHing through the bin to see what could be hidden under the pile of unclaimed \nDVD\u2019s about people who didn\u2019t take pandemics seriously enough.  Or you could  \ncontinue on your way NORTH\/EAST\/SOUTH, never knowing the glory of - whoops, \nalmost gave it away! \n",
-    "armoire": {
-      "chest 1": "",
-      "door 1": ""
-    },
+    "flavorText": "Like every other Socio-Capitalist big-box store this one, your favorite pre-Dovic because of its selection of free-range EMU eggs, has a selection of DVDs that would cost more to throw away than they're worth.  Weather-damaged signs proclaim 28 copies of 28 Days Later, now just $2.89.\n\nThat's actually cheap! You consider SEARCHing through the bin to see what could be hidden under the pile of unclaimed DVDs about people who didn't take pandemics seriously enough.  Or you could continue on your way NORTH EAST SOUTH, never knowing the glory of - whoops, almost gave it away! \n",
     "search": "Underneath all the oddly apropos Zombie flicks there's clearly room for something to be hidden...",
     "feature": [],
     "roomLoot": [
-      "\"Gas\"",
-      "\"HAND_GRENADE\"",
-      "\"M16_AMMO\"",
-      "\"KNIFE\"",
-      "\"HAND_GRENADE\"",
       "\"FORK\"",
+      "\"GAS_LIGHTER\"",
+      "\"M16_AMMO\"",
+      "\"M16_AMMO\"",
+      "\"GAS_LIGHTER\"",
+      "\"M16_AMMO\"",
       "\"LIGHTER\""
     ],
     "movement": {
@@ -43,29 +37,24 @@
       "north": "pharmacy",
       "west": "west entrance"
     },
-    "look": "To your disgust you find $5.99 DVD's of Season 4 of 'The Walking Dead'. \nNo respectable survivalest would be caught dead with those."
+    "look": "To your disgust you find $5.99 DVD's of Season 4 of 'The Walking Dead'. No respectable survivalest would be caught dead with those."
   },
   "gun store": {
     "flavorText": "Left by yourself in the wild, and overcome by fear there is a temptation to purchase some weapons",
-    "armoire": {
-      "chest 1": "",
-      "door 1": ""
-    },
     "search": "Just as with the EAST entrance, the area just inside the store has been picked clean by looters. Nothing useful here...",
     "feature": [],
     "roomLoot": [
-      "\"GAS_LIGHTER\"",
-      "\"Gas\"",
       "\"M16\"",
-      "\"Gas\"",
-      "\"Gas\"",
-      "\"HAND_GRENADE\"",
-      "\"LIGHTER\"",
-      "\"Gas\"",
-      "\"HOOAh_BAR\"",
+      "\"GAS_LIGHTER\"",
+      "\"KNIFE\"",
       "\"NERF_BLASTER\"",
+      "\"Gas\"",
+      "\"GAS_LIGHTER\"",
       "\"FORK\"",
-      "\"FORK\""
+      "\"GAS_LIGHTER\"",
+      "\"HAND_GRENADE\"",
+      "\"HOOAh_BAR\"",
+      "\"KNIFE\""
     ],
     "movement": {
       "east": "sporting goods",
@@ -73,17 +62,21 @@
       "north": "west entrance",
       "west": ""
     },
-    "look": "Good choice, always perform a 5-point room scan, and don\u2019t forget to double-tap. \nYou see a shimmering slippery substance trailing deeper into the store that ends in a pool near you.  \nDivoc Zombies are likely in the store."
+    "look": "Good choice, always perform a 5-point room scan, and don't forget to double-tap.You see a shimmering slippery substance trailing deeper into the store that ends in a pool near you. Divoc Zombies are likely in the store."
   },
   "east entrance": {
-    "flavorText": "\n  Somehow inevitably, a shuffling shadow blocks your path.  The \ngruesome smell of entitlement thickens the air around you and the one thing all Divoc \nZombies can still say changes from a mumble to screech as it sees you: \n\n\u2018You can\u2019t \nmake me wear a mask!\u2019  \n\nThere\u2019s no time to rush past it.  You are already in combat.  You best FIGHT!",
-    "armoire": {
-      "chest 1": "",
-      "door 1": ""
-    },
+    "flavorText": "Good move! You are getting close to your family's location. To guarantee your safety, you have to kill ALL the zombies.",
     "search": "Just as with the WEST entrance, the area just inside the store has been picked clean by looters. Nothing useful here.",
     "feature": [],
-    "roomLoot": [],
+    "roomLoot": [
+      "\"M16\"",
+      "\"AMMO\"",
+      "\"HAND_GRENADE\"",
+      "\"HAND_GRENADE\"",
+      "\"AMMO\"",
+      "\"FORK\"",
+      "\"FORK\""
+    ],
     "movement": {
       "east": "parking lot 2",
       "south": "starbucks",
@@ -93,27 +86,16 @@
     "look": "Sunken eyes and gaping uncovered mouth... if only you had some way to cover their mouth AND nose..."
   },
   "restaurant": {
-    "flavorText": "\n  Your stomach grumbles, you smell tacos at a nearby restaurant. You decide to go purchase some food and recoup some of that lost energy ",
-    "armoire": {
-      "chest 1": "",
-      "door 1": ""
-    },
+    "flavorText": "Your stomach grumbles, you smell tacos at a nearby restaurant. You decide to go purchase some food and recoup some of that lost energy ",
     "search": "Just as with the EAST entrance, the area just inside the store has been picked clean by looters. Nothing useful here...",
-    "feature": [
-      "{\"name\":\"Geek\",\"health\":15,\"inventory\":[]}"
-    ],
+    "feature": [],
     "roomLoot": [
-      "\"M16_AMMO\"",
-      "\"HAND_GRENADE\"",
-      "\"GAS_LIGHTER\"",
-      "\"GAS_LIGHTER\"",
-      "\"LIGHTER\"",
-      "\"HOOAh_BAR\"",
-      "\"HAND_GRENADE\"",
+      "\"M16\"",
       "\"FORK\"",
       "\"LIGHTER\"",
-      "\"M16_AMMO\"",
-      "\"KNIFE\""
+      "\"KNIFE\"",
+      "\"HOOAh_BAR\"",
+      "\"M16\""
     ],
     "movement": {
       "east": "pharmacy",
@@ -121,30 +103,13 @@
       "north": "",
       "west": ""
     },
-    "look": "Good choice, always perform a 5-point room scan, and don\u2019t forget to double-tap. \nYou see a shimmering slippery substance trailing deeper into the store that ends in a pool near you.  \nDivoc Zombies are likely in the store."
+    "look": "Good choice, always perform a 5-point room scan, and don't forget to double-tap. You see a shimmering slippery substance trailing deeper into the store that ends in a pool near you. Divoc Zombies are likely in the store."
   },
   "pharmacy": {
-    "flavorText": "\n  Slim pickings in the Pharmacy. Oddly the Midol is locked up and untouched, which  \nmakes no sense since its just ibuprofen and caffeine, but people are weird - even  \nbefore being turned into Divoc Zombies.  Since you\u2019re here you might as well     \nLOOK around.",
-    "armoire": {
-      "chest 1": "",
-      "door 1": ""
-    },
+    "flavorText": "Slim pickings in the Pharmacy. Oddly the Midol is locked up and untouched, which makes no sense since its just ibuprofen and caffeine, but people are weird - even before being turned into Divoc Zombies.  Since you're here you might as well LOOK around.",
     "search": "Some listerine sparkles in the shadow of the mostly empty shelving, and there may be something else there...",
-    "feature": [
-      "{\"name\":\"Lurker\",\"health\":20,\"inventory\":[]}"
-    ],
+    "feature": [],
     "roomLoot": [
-      "\"Gas\"",
-      "\"NERF_BLASTER\"",
-      "\"M16_AMMO\"",
-      "\"KNIFE\"",
-      "\"HAND_GRENADE\"",
-      "\"FORK\"",
-      "\"NERF_BLASTER\"",
-      "\"M16_AMMO\"",
-      "\"LIGHTER\"",
-      "\"GAS_LIGHTER\"",
-      "\"GAS_LIGHTER\"",
       "\"Gas\""
     ],
     "movement": {
@@ -156,24 +121,20 @@
     "look": "You see some multi-colored loofas and realize you haven't showered since this all started... months ago.."
   },
   "parking lot 2": {
-    "flavorText": "\n  CONGRATULATIONS! Oops.. not yet. You have one last battle remaining before collecting your rewards. ",
-    "armoire": {
-      "chest 1": "",
-      "door 1": ""
-    },
+    "flavorText": "CONGRATULATIONS! Oops.. not yet. You have one last battle remaining before collecting your rewards. ",
     "search": "Just as with the WEST entrance, the area just inside the store has been picked clean by looters. Nothing useful here.",
-    "feature": [],
+    "feature": [
+      "{\"name\":\"Creep\",\"health\":15,\"inventory\":[]}"
+    ],
     "roomLoot": [
-      "\"HAND_GRENADE\"",
-      "\"HAND_GRENADE\"",
-      "\"HOOAh_BAR\"",
       "\"Gas\"",
-      "\"FORK\"",
+      "\"KNIFE\"",
+      "\"GAS_LIGHTER\"",
+      "\"AMMO\"",
       "\"KNIFE\"",
       "\"FORK\"",
-      "\"HAND_GRENADE\"",
-      "\"AMMO\"",
-      "\"HAND_GRENADE\""
+      "\"M16\"",
+      "\"KNIFE\""
     ],
     "movement": {
       "east": "",
@@ -184,15 +145,17 @@
     "look": "Sunken eyes and gaping uncovered mouth... if only you had some way to cover their mouth AND nose..."
   },
   "gas station": {
-    "flavorText": "\n  Forced to fight zombies throughout this journey, you stop at the gas station to buy some cigarettes and a monster drink.",
-    "armoire": {
-      "chest 1": "",
-      "door 1": ""
-    },
+    "flavorText": "Forced to fight zombies throughout this journey, you stop at the gas station to buy some cigarettes and a monster drink.",
     "search": "Just as with the WEST entrance, the area just inside the store has been picked clean by looters. Nothing useful here.",
     "feature": [],
     "roomLoot": [
-      "\"M16_AMMO\""
+      "\"LIGHTER\"",
+      "\"HOOAh_BAR\"",
+      "\"GAS_LIGHTER\"",
+      "\"FORK\"",
+      "\"HOOAh_BAR\"",
+      "\"FORK\"",
+      "\"KNIFE\""
     ],
     "movement": {
       "east": "victory",
@@ -203,32 +166,38 @@
     "look": "Sunken eyes and gaping uncovered mouth... if only you had some way to cover their mouth AND nose..."
   },
   "west entrance": {
-    "flavorText": "\n  A torrent of air billows out around you as your bare feet pad their way past the still \nfunctioning automatic sliding doors.  Though some daylight still speckles the sky, dusk \nis approaching and any normal store in Capitalist RusUsa would have a flood of lights \non specifically tuned to encourage your support of the oligarchinaires money vaults.  \nNo such luck today.  \n\n  Despite the lack of light you can make out your two goals for \nentering the store.  Forward and to your NORTH is the pharmacy while forward and to  \nyour SOUTH is sporting goods.  Your immediate surroundings, the WEST ENTRANCE, \nseems picked bare of anything useful, but you can continue EAST and \nSEARCH the DISCOUNT BIN\u2026 if you dare!  (Note, there\u2019s literally nothing daring  \nabout this, it just seemed like the right thing to say at this particular time.  We  \napologize for insinuating anything dangerous would happen.  Trust us, its safe\u2026  \nfor now\u2026 #sorrynotsorry)\n",
-    "armoire": {
-      "chest 1": "",
-      "door 1": ""
-    },
+    "flavorText": "\nA torrent of air billows out around you as your bare feet pad their way past the still functioning automatic sliding doors.  Though some daylight still speckles the sky, dusk is approaching and any normal store in Capitalist RusUsa would have a flood of lights on specifically tuned to encourage your support of the oligarchinaires money vaults. No such luck today.\nDespite the lack of light you can make out your two goals for entering the store.  Forward and to your NORTH is the pharmacy while forward and to your SOUTH is sporting goods.  Your immediate surroundings, the WEST ENTRANCE, seems picked bare of anything useful, but you can continue EAST and SEARCH the DISCOUNT BIN if you dare!  (Note, there's literally nothing daring about this, it just seemed like the right thing to say at this particular time.  We apologize for insinuating anything dangerous would happen.  Trust us, its safe for now #sorrynotsorry)\n",
     "search": "Just as with the EAST entrance, the area just inside the store has been picked clean by looters. Nothing useful here...",
     "feature": [],
-    "roomLoot": [],
+    "roomLoot": [
+      "\"HOOAh_BAR\"",
+      "\"M16\"",
+      "\"Gas\"",
+      "\"M16\"",
+      "\"M16_AMMO\"",
+      "\"M16\"",
+      "\"KNIFE\""
+    ],
     "movement": {
       "east": "discount bin",
       "south": "gun store",
       "north": "restaurant",
       "west": ""
     },
-    "look": "Good choice, always perform a 5-point room scan, and don\u2019t forget to double-tap. \nYou see a shimmering slippery substance trailing deeper into the store that ends in a pool near you.  \nDivoc Zombies are likely in the store."
+    "look": "Good choice, always perform a 5-point room scan, and don't forget to double-tap. You see a shimmering slippery substance trailing deeper into the store that ends in a pool near you. Divoc Zombies are likely in the store."
   },
   "sporting goods": {
-    "flavorText": "\n This is it, this is what you\u2019ve been\u2026 looking\u2026 for? There\u2019s literally nothing here.  Way \ntoo many people watched Zombie movies based on the human blood coating the \n\u2018Crossbows\u2019 sign.  There are some NERF DARTS scattered about, and there\u2019s \nsomething MODIFIED about them.",
-    "armoire": {
-      "chest 1": "",
-      "door 1": ""
-    },
+    "flavorText": "\nThis is it, this is what you've been looking for? There's literally nothing here.  Way too many people watched Zombie movies based on the human blood coating the Crossbows sign.  There are some NERF DARTS scattered about, and there's something MODIFIED about them.",
     "search": "Seriously, there's no guns left...",
     "feature": [],
     "roomLoot": [
-      "\"LIGHTER\""
+      "\"KNIFE\"",
+      "\"HOOAh_BAR\"",
+      "\"HAND_GRENADE\"",
+      "\"M16_AMMO\"",
+      "\"NERF_BLASTER\"",
+      "\"HAND_GRENADE\"",
+      "\"AMMO\""
     ],
     "movement": {
       "east": "starbucks",
@@ -239,26 +208,19 @@
     "look": "Behind the glass counter is a sign that reads 'Yes, you must wear a mask to buy a gun' and 'NO, you do not need to show your face to finalize the purchase #murica'"
   },
   "restroom": {
-    "flavorText": "\n Time to answer nature's call... go relieve yourself playa",
-    "armoire": {
-      "chest 1": "",
-      "door 1": ""
-    },
+    "flavorText": "Time to answer nature's call... go relieve yourself playa",
     "search": "Just as with the WEST entrance, the area just inside the store has been picked clean by looters. Nothing useful here.",
     "feature": [],
     "roomLoot": [
-      "\"FORK\"",
-      "\"NERF_BLASTER\"",
       "\"AMMO\"",
-      "\"HOOAh_BAR\"",
       "\"LIGHTER\"",
       "\"HOOAh_BAR\"",
-      "\"NERF_BLASTER\"",
+      "\"LIGHTER\"",
+      "\"HAND_GRENADE\"",
       "\"HOOAh_BAR\"",
-      "\"HOOAh_BAR\"",
+      "\"M16\"",
       "\"KNIFE\"",
-      "\"GAS_LIGHTER\"",
-      "\"FORK\""
+      "\"KNIFE\""
     ],
     "movement": {
       "east": "",
@@ -269,4 +231,3 @@
     "look": "Sunken eyes and gaping uncovered mouth... if only you had some way to cover their mouth AND nose..."
   }
 }
->>>>>>> 445c33e9067047796ca8d21b073ba40f6ed3ab10

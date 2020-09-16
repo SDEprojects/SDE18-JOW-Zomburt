@@ -37,6 +37,10 @@ public class GameEngine {
       while (win == false) {
         if (newScene) {
           GameApp.getInstance().appendToCurActivity(currentScene.getFlavorText());
+          if (currentScene.getFeature().size() > 0 ) {
+            GameApp.getInstance().appendToCurActivity("Somehow inevitably, a shuffling shadow blocks your path.  The gruesome smell of entitlement thickens the air around you and the one thing all Divoc Zombies can still say changes from a mumble to screech as it sees you: \\n\\nYou can't make me wear a mask!\\n\\nThere's no time to rush past it. You are already in combat.  You best FIGHT!\n");
+          }
+
           Thread.sleep(200);
         }
         if(currentScene.getFeature().size() > 0 ) {
@@ -151,7 +155,7 @@ public class GameEngine {
     currentScene.getSearch();
   }
 
-  public static void help() {
+  public void help() {
     GameApp.getInstance().appendToCurActivity("\n  These are some commands you can perform: \n" +
         "    -move <direction>-\n" +
         "    -inv <view inventory>-\n" +
@@ -159,6 +163,13 @@ public class GameEngine {
         "    -drop <item>-\n" +
         "    -look/search-\n" +
         "    -quit\n");
+
+    for (Scene scene : gameUniverse.world.values()) {
+      if (scene.getFeature().size() > 0) {
+        GameApp.getInstance().appendToCurActivity(scene.getSceneName() + " :" + scene.getFeature().size() + " zombie(s)!\n");
+      }
+    }
+
   }
 
   public void move(String moveDir) throws Exception {
@@ -172,7 +183,7 @@ public class GameEngine {
       GameApp.getInstance().appendToCurActivity("There are still zombies somewhere out there. You need to go back and kill all the zombies to win!");
     }
     else if (sceneCheck.length() > 0) {
-      GameApp.getInstance().appendToCurActivity("You move to the " + sceneCheck);
+      GameApp.getInstance().appendToCurActivity("You move to the " + sceneCheck +".");
       currentScene = gameUniverse.getScene(sceneCheck);
       newScene = true;
     }

@@ -219,13 +219,13 @@ public class GameApp extends Application {
                         try {
                             gameController.getInventory().getItems().clear();
                             for (Weapon weapon : GameEngine.player.getInventory()) {
-                                gameController.getInventory().getItems().add(weapon.getName() + "(" + weapon.getName() + ")");
+                                gameController.getInventory().getItems().add(weapon.getName() + "(" + weapon.getDamage() + ")");
                             }
 
                             gameController.getRoomInventory().getItems().clear();
                             gameController.getWeaponsRoom().getItems().clear();
                             for (Weapon weapon : GameEngine.currentScene.getRoomLoot()) {
-                                gameController.getWeaponsRoom().getItems().add(weapon.getName());
+                                gameController.getWeaponsRoom().getItems().add(weapon.getName() + "(" + weapon.getDamage() + ")");
                             }
                             for (Zombie zombie : GameEngine.currentScene.getFeature()) {
                                 gameController.getRoomInventory().getItems().add(zombie.getName());
