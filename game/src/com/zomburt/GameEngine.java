@@ -172,9 +172,11 @@ public class GameEngine {
     JSONObject moveSet = (JSONObject) currentScene.getMovement();
     String sceneCheck = (String) moveSet.get(moveDir);
     if (sceneCheck.equals("victory") && MapFactory.totalNumZombies == 0) {
-      GameApp.getInstance().appendToCurActivity("Oh wow.  Did you survive?  I guess you make it out of the store then...");
+      GameApp.getInstance().appendToCurActivity("Oh wow.  Did you survive?  I guess you made it then...");
       win = true;
       gameStatus.win();
+    } else if (sceneCheck.equals("victory") && MapFactory.totalNumZombies > 0){
+      GameApp.getInstance().appendToCurActivity("There are still zombies somewhere out there. You need to go back and kill all the zombies to win!");
     }
     else if (sceneCheck.length() > 0) {
       GameApp.getInstance().appendToCurActivity("You move to the " + sceneCheck);
