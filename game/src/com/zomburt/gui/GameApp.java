@@ -21,10 +21,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class GameApp extends Application {
     private IntroController introController;
@@ -33,7 +30,9 @@ public class GameApp extends Application {
     private MapController mapController;
     private String currentInput;
     private Mode modeInput = Mode.EASY;
-    private Player player;
+    private Scene currentScene;
+    private Player currentPlayer;
+    private Zombie currentZombie;
     private GameEngine newGame;
     private static com.zomburt.gui.GameApp instance;
 
@@ -124,6 +123,40 @@ public class GameApp extends Application {
                                     mapStage.show();
                                 } catch (IOException ioException) {
                                     ioException.printStackTrace();
+                                }
+                            });
+
+                            //save game when click save option in menu bar
+                            gameController.getMenu().getMenus().get(0).getItems().get(4).setOnAction(e->{
+                                try {
+                                    FileOutputStream fileOut = new FileOutputStream("./game/assets/save_game.ser");
+                                    ObjectOutputStream out = new ObjectOutputStream(fileOut);
+                                    out.writeObject(currentPlayer);
+                                    out.writeObject(currentScene);
+                                    out.close();
+                                    fileOut.close();
+                                    System.out.println("Serialized data is saved in ./game/assets/save_game.ser");
+                                } catch (IOException e1) {
+                                    e1.printStackTrace();
+                                }
+                            });
+
+                            //reload game when click resume option in menu bar
+                            gameController.getMenu().getMenus().get(0).getItems().get(6).setOnAction(e->{
+                                try {
+                                    FileInputStream fileIn = new FileInputStream("./game/assets/save_game.ser");
+                                    ObjectInputStream in = new ObjectInputStream(fileIn);
+                                    currentPlayer = (Player) in.readObject();
+                                    currentScene = (Scene) in.readObject();
+                                    in.close();
+                                    fileIn.close();
+                                } catch (IOException i) {
+                                    i.printStackTrace();
+                                    return;
+                                } catch (ClassNotFoundException e2) {
+                                    System.out.println("Player class not found");
+                                    e2.printStackTrace();
+                                    return;
                                 }
                             });
 

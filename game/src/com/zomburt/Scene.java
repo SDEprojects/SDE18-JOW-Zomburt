@@ -23,7 +23,6 @@ public class Scene {
     String look;
     String search;
     ArrayList<Zombie> feature;
-    ArrayList<ZombieTypes> features;
     ArrayList<Weapon> roomLoot;
 
     public Scene(String locationName) throws Exception {
@@ -112,11 +111,6 @@ public class Scene {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-    }
-
-    public void setFeatures(ArrayList<ZombieTypes> list) {
-        this.features = list;
     }
 
     public ArrayList<Weapon> getRoomLoot() {
@@ -132,7 +126,6 @@ public class Scene {
                 Weapon weapon = objectMapper.readValue(it.next(), Weapon.class);
                 roomLoot.add(weapon);
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }

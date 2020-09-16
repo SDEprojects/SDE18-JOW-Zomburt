@@ -40,6 +40,15 @@
 }
 
 #youLose {
- -fx-font-size: 40px;
+ -fx-font-size: 42px;
  -fx-font-family: "Chalkduster";
+ -fx-alignment: center;
+}
+
+.text-field {
+ -fx-alignment: center;
+}
+
+.list-cell {
+-fx-alignment: center;
 }

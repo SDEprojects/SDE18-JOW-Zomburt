@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.io.FileWriter;
 import java.util.Set;
 
-class GenerateMapTest<string> {
+class MapFactoryTest<string> {
     private static Mode mode;
     private static FileWriter file;
     private static MapFactory generateMap = null;

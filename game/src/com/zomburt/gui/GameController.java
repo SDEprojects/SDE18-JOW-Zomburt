@@ -24,6 +24,8 @@ public class GameController {
     @FXML private TextField zombieWeapon;
     @FXML private TextField score;
     @FXML private TextArea youLose;
+    @FXML private MenuBar menu;
+    @FXML private MenuItem save;
 
     public TextField getHealth() {
         return health;
@@ -100,4 +102,8 @@ public class GameController {
     public TextArea getYouLose() {
         return youLose;
     }
+
+    public MenuBar getMenu() {return menu;}
+
+    public MenuItem getSave() {return save;}
 }

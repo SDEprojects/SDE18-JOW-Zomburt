@@ -6,12 +6,14 @@ import com.zomburt.combat.Weapon;
 import com.zomburt.gui.GameApp;
 import com.zomburt.utility.GameStatus;
 import com.zomburt.utility.Parser;
+import jdk.management.resource.internal.inst.ThreadRMHooks;
 import org.json.simple.JSONObject;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 public class GameEngine {
@@ -31,11 +33,10 @@ public class GameEngine {
 
   public void run() throws Exception {
       gameStatus.start();
-      level = GameApp.getInstance().getModeInput();
       System.out.println(level.toString());
       currentScene = new Scene("parking lot");
 
-      player = PlayerFactory.createPlayer(level);
+      player = PlayerFactory.createPlayer(GameApp.getInstance().getModeInput());
       GameApp.getInstance().appendToCurActivity("What is your name?");
       GameApp.getInstance().appendToCurActivity("\n" + GameApp.getInstance().getInput() + ", ");
 
@@ -48,17 +49,10 @@ public class GameEngine {
         if(currentScene.getFeature().size() > 0 ) {
           zombieName = currentScene.getFeature().get(0).getName();
           if (Arrays.stream(ZombieTypes.values()).map(e -> e.getName()).anyMatch(zombieName::equals)) {
-            zombie = ZombieFactory.createZombie(level);
+            zombie = ZombieFactory.createZombie(GameApp.getInstance().getModeInput());
+    //        zombie = currentScene.getFeature().get(ThreadLocalRandom.current().nextInt(currentScene.getFeature().size()));
             Combat.combat(player, zombie);
-            if(zombie.getHealth()<=0){
-              currentScene.setFeatures(noZombies);
-            }
           }
-          int zombiesNum = currentScene.getFeature().size();
-          int randZombie = rand.nextInt(zombiesNum);
-          ArrayList<Zombie> zombies = currentScene.getFeature();
-          zombie = zombies.get(randZombie);
-          Combat.combat(player, zombie);
           GameApp.getInstance().updateZombie();
         }
         GameApp.getInstance().appendToCurActivity(" > ");
@@ -137,13 +131,16 @@ public class GameEngine {
       GameApp.getInstance().updateUI();
     }
     if (action.equals("pick up")) {
-      if (currentScene.getRoomLoot().contains(weapon)) {
+      if (currentScene.getRoomLoot().contains(weapon) && player.getInventory().size() <= 3) {
         player.addInventory(weapon);
         currentScene.removeRoomLoot(weapon);
         GameApp.getInstance().appendToCurActivity(player.getName() + "'ve successfully picked up: " + s);
         GameApp.getInstance().appendToCurActivity("HINT: type 'inv' to see your inventory");
         GameApp.getInstance().appendToCurActivity("The room currently contains: " + currentScene.getRoomLoot());
-      } else {
+      } else if(currentScene.getRoomLoot().contains(weapon) && player.getInventory().size() > 3) {
+        GameApp.getInstance().appendToCurActivity("Player can't have more than 3 items in inventory!");
+      }
+      else {
         GameApp.getInstance().appendToCurActivity("That item isn't here");
       }
       GameApp.getInstance().updateUI();
