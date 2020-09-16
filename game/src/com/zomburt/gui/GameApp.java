@@ -32,7 +32,7 @@ public class GameApp extends Application {
     private GameController gameController;
     private MapController mapController;
     private String currentInput;
-    private Mode modeInput;
+    private Mode modeInput = Mode.EASY;
     private Player player;
     private GameEngine newGame;
     private static com.zomburt.gui.GameApp instance;
