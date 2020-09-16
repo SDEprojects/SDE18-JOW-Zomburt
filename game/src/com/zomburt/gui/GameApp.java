@@ -34,6 +34,7 @@ public class GameApp extends Application {
     private Mode modeInput = Mode.EASY;
     private GameEngine newGame;
 
+
     private static com.zomburt.gui.GameApp instance;
 
     public GameApp() {
@@ -57,35 +58,6 @@ public class GameApp extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-        //show intro video when click button
-//        introController.getVideoButton().setOnAction(e -> {
-//            FXMLLoader videoViewLoader = new FXMLLoader();
-//            try {
-//                videoController = new VideoController();
-//                videoViewLoader.setController(videoController);
-//                videoViewLoader.setLocation(GameApp.class.getResource("video.fxml"));
-//                GridPane videoLayout = videoViewLoader.load();
-//                Media media = new Media("https://www.youtube.com/watch?v=KitsWREpumU");
-//                //   Media media = new Media("file:./game/assets/test.mp4");
-//                MediaPlayer player = new MediaPlayer(media);
-//                player.setAutoPlay(true);
-//                try {
-//                    videoController.getIntroVideo().setMediaPlayer(player);
-//                } catch (Exception exception) {
-//                    exception.printStackTrace();
-//                }
-//                player.setOnError(() -> System.out.println("media error: " + player.getError().toString()));
-//                Scene videoScene = new Scene(videoLayout);
-//                Stage videoStage = new Stage();
-//                videoStage.setScene(videoScene);
-//                videoStage.show();
-//                player.play();
-//            } catch (IOException ioException) {
-//                ioException.printStackTrace();
-//            }
-//        });
 
         // Show the scene containing the intro layout.
         Scene introScene = new Scene(introLayout);
@@ -114,7 +86,7 @@ public class GameApp extends Application {
             }
         });
 
-        // config next button listener
+        // config startGame button listener
         EventHandler<ActionEvent> nextHandler =
                 new EventHandler<ActionEvent>() {
                     @Override
@@ -236,11 +208,6 @@ public class GameApp extends Application {
                        gameController.getHealth().setText(Integer.toString(GameEngine.player.getHealth()));
                        gameController.getScore().setText(Integer.toString(GameEngine.player.getScore()));
                        gameController.getCurrentLocation().setText(GameEngine.currentScene.getSceneName());
-                       gameController.getFightingZombie().setText(GameEngine.zombie.getName());
-                       gameController.getZombieHealth().setText(Integer.toString(GameEngine.zombie.getHealth()));
-                       if (GameEngine.zombie.getInventory().size() > 0) {
-                           gameController.getZombieWeapon().setText(GameEngine.zombie.getInventory().get(0).getName());
-                       }
                     }
                 });
 
@@ -271,6 +238,49 @@ public class GameApp extends Application {
 
     }
 
+    // update game status LOST
+    public void updateGameStatusLost() {
+        // update total number of remaing zombies
+        Platform.runLater(
+            new Runnable() {
+                @Override
+                public void run() {
+                    gameController.getYouLose().setVisible(true);
+
+                }
+            });
+    }
+
+    // update game status WIN
+    public void updateGameStatusWON() {
+        // update total number of remaing zombies
+        Platform.runLater(
+            new Runnable() {
+                @Override
+                public void run() {
+                    gameController.getYouLose().clear();
+                    gameController.getYouLose().setText("YOU WON !!!!");
+                    gameController.getYouLose().setVisible(true);
+
+                }
+            });
+    }
+
+    // update zombies status
+    public void updateZombie() {
+        // update total number of remaing zombies
+        Platform.runLater(
+            new Runnable() {
+                @Override
+                public void run() {
+                    gameController.getFightingZombie().setText(GameEngine.zombie.getName());
+                    gameController.getZombieHealth().setText(Integer.toString(GameEngine.zombie.getHealth()));
+                    if (GameEngine.zombie.getInventory().size() > 0) {
+                        gameController.getZombieWeapon().setText(GameEngine.zombie.getInventory().get(0).getName());
+                    }
+                }
+            });
+    }
     // inner input signal Class
     private final InputSignal inputSignal = new InputSignal();
 

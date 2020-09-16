@@ -23,7 +23,7 @@ public class GameController {
     @FXML private TextField zombieHealth;
     @FXML private TextField zombieWeapon;
     @FXML private TextField score;
-
+    @FXML private TextArea youLose;
 
     public TextField getHealth() {
         return health;
@@ -95,5 +95,9 @@ public class GameController {
 
     public ListView getWeaponsRoom() {
         return weaponsRoom;
+    }
+
+    public TextArea getYouLose() {
+        return youLose;
     }
 }
