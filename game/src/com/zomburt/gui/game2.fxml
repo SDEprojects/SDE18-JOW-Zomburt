@@ -104,7 +104,7 @@
          <effect>
             <InnerShadow />
          </effect></Button>
-      <ImageView fx:id="victory" fitHeight="453.0" fitWidth="752.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="11" />
+      <ImageView fx:id="victory" fitHeight="510.0" fitWidth="773.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="11" />
       <Label text="Score:" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <TextField fx:id="score" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="3">
          <effect>
