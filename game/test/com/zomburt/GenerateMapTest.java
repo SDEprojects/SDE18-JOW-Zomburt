@@ -14,22 +14,34 @@ class GenerateMapTest<string> {
     private static GenerateMap generateMap = null;
     JSONObject mapJson;
     private String path = "./game/assets/store.json";
-    @BeforeEach
-    void setUp() {
+
+    @Test
+    void createEasyMap() {
         generateMap = new GenerateMap(Mode.EASY);
         Object map = generateMap.createMap(path);
         mapJson = (JSONObject) map;
-    }
-
-    @Test
-    void createMap() {
         Set<String> keys = mapJson.keySet();
         for (String key : keys) {
             JSONObject location = (JSONObject) mapJson.get(key);
             JSONArray features = (JSONArray) location.get("feature");
             JSONArray roomLoot = (JSONArray) location.get("roomLoot");
-            System.out.println(features.toString());
-            System.out.println(roomLoot.toString());
+            System.out.println(features);
+            System.out.println(roomLoot);
+        }
+    }
+
+    @Test
+    void createHardMap() {
+        generateMap = new GenerateMap(Mode.HARD);
+        Object map = generateMap.createMap(path);
+        mapJson = (JSONObject) map;
+        Set<String> keys = mapJson.keySet();
+        for (String key : keys) {
+            JSONObject location = (JSONObject) mapJson.get(key);
+            JSONArray features = (JSONArray) location.get("feature");
+            JSONArray roomLoot = (JSONArray) location.get("roomLoot");
+            System.out.println(features);
+            System.out.println(roomLoot);
         }
     }
 }

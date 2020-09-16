@@ -1,6 +1,7 @@
 package com.zomburt.combat;
 
-import com.zomburt.characters.Characters;
+import com.zomburt.GameEngine;
+import com.zomburt.GenerateMap;
 import com.zomburt.characters.Player;
 import com.zomburt.characters.Zombie;
 import com.zomburt.gui.GameApp;
@@ -9,13 +10,14 @@ import com.zomburt.utility.Parser;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 public class Combat {
 
   public static void combat(Player player, Zombie zombie) throws FileNotFoundException, InterruptedException, Exception {
     int score = player.getScore();
+    GameApp.getInstance().updateUI();
+    int zombieValue = zombie.getHealth();
     while (player.getHealth() > 0 && zombie.getHealth() > 0) {
       GameApp.getInstance().appendToCurActivity(" > ");
       String input = GameApp.getInstance().getInput();
@@ -25,13 +27,17 @@ public class Combat {
       combatCommands(input, player, zombie);
     }
     if(zombie.getHealth() <= 0)
-      score+=10;
+      score += zombieValue;
       player.setScore(score);
+      GenerateMap.totalNumZombies -= 1;
+      GameEngine.currentScene.removeFeature(zombie);
+      GameApp.getInstance().updateUI();
       GameApp.getInstance().appendToCurActivity("Congratulations! You've killed the " + zombie.getName() + " and are able to progress.");
   }
 
   public static void combatCommands(String input, Player player, Zombie zombie) throws Exception {
     ArrayList<String> commands = Parser.parse(input.toLowerCase().trim());
+    GameApp.getInstance().updateUI();
     if (commands == null)
         GameApp.getInstance().appendToCurActivity("Invalid command! For a list of available commands input \" help\"");
     else if (commands.get(0).contains("help"))
@@ -63,8 +69,12 @@ public class Combat {
       GameApp.getInstance().appendToCurActivity(player.getName() + " attack.....");
       zombie.loseHealth(playerDamage);
       GameApp.getInstance().appendToCurActivity(zombie.getName() + " sustained damage of: " + zombieDamage);
+      if(zombie.getHealth() < 0) {
+      GameApp.getInstance().appendToCurActivity(zombie.getName() + " sustained damage of: " + zombieDamage);
       if(zombie.getHealth() < 0)
         zombie.setHealth(0);
+        GameApp.getInstance().updateUI();
+      }
       GameApp.getInstance().appendToCurActivity(zombie.getName() + " current Health is: " + zombie.getHealth());
     }
 

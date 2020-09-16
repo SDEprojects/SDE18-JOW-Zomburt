@@ -12,18 +12,20 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class GameEngine {
   public static Player player;
   public static Zombie zombie;
   GameStatus gameStatus = new GameStatus();
-  Scene currentScene;
+  public static Scene currentScene;
   Boolean newScene = true;
   Boolean win = false;
   Universe gameUniverse = new Universe();
   ArrayList<ZombieTypes> noZombies = new ArrayList<>();
   Mode level = Mode.EASY;
+  Random rand = new Random();
 
   public GameEngine() throws Exception {
   }
@@ -31,9 +33,8 @@ public class GameEngine {
   public void run() throws Exception {
       gameStatus.start();
       level = GameApp.getInstance().getModeInput();
-    System.out.println(level.toString());
+      System.out.println(level.toString());
       currentScene = new Scene("parking lot");
-    //  currentScene = (Scene) MapFactory.createMap("./game/assets/store2.json");
 
       player = PlayerFactory.createPlayer(level);
       GameApp.getInstance().appendToCurActivity("What is your name?");
@@ -54,6 +55,12 @@ public class GameEngine {
               currentScene.setFeatures(noZombies);
             }
           }
+          int zombiesNum = currentScene.getFeature().size();
+          int randZombie = rand.nextInt(zombiesNum);
+          ArrayList<Zombie> zombies = currentScene.getFeature();
+          zombie = zombies.get(randZombie);
+          Combat.combat(player, zombie);
+
         }
         GameApp.getInstance().appendToCurActivity(" > ");
         String input = GameApp.getInstance().getInput();

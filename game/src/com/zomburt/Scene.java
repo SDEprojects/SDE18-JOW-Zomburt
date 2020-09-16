@@ -1,5 +1,7 @@
 package com.zomburt;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.zomburt.characters.Zombie;
 import com.zomburt.characters.ZombieTypes;
 import com.zomburt.combat.Weapon;
 import com.zomburt.gui.GameApp;
@@ -11,7 +13,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Iterator;
 
 public class Scene {
     JSONObject sceneObj;
@@ -20,7 +22,8 @@ public class Scene {
     Object movement;
     String look;
     String search;
-    ArrayList<ZombieTypes> feature;
+    ArrayList<Zombie> feature;
+    ArrayList<ZombieTypes> features;
     ArrayList<Weapon> roomLoot;
 
     public Scene(String locationName) throws Exception {
@@ -32,8 +35,9 @@ public class Scene {
         Object store;
         if (locationName == "parking lot")
             store = new JSONParser().parse(new FileReader("./game/assets/ParkingLot.json"));
-        else
-            store = new JSONParser().parse(new FileReader("./game/assets/store2.json"));
+        else {
+            store = new JSONParser().parse(new FileReader("./game/assets/store.json"));
+        }
         JSONObject joStore = (JSONObject) store;
         JSONObject sceneObj = (JSONObject) joStore.get(locationName);
 
@@ -87,40 +91,50 @@ public class Scene {
         search = (String) sceneObj.get("search");
     }
 
-    public ArrayList<ZombieTypes> getFeature() {
+    public ArrayList<Zombie> getFeature() {
+        return feature;
+    }
+    public ArrayList<Zombie> removeFeature(Zombie zombie) {
+        feature.remove(zombie);
         return feature;
     }
     public void setFeature() {
-        feature = new ArrayList<ZombieTypes>();
-        // class cast exception
-        @SuppressWarnings("unchecked")
-        List<String> strFeature = (List<String>) sceneObj.get("feature");
-        for (ZombieTypes zombieTypes : ZombieTypes.values()) {
-            for (String item : strFeature) {
-                if (zombieTypes.getName().toUpperCase().equals(item.toUpperCase())) {
-                    feature.add(zombieTypes);
-                }
+        ObjectMapper objectMapper = new ObjectMapper();
+        feature = new ArrayList<Zombie>();
+        try {
+            JSONArray featureArray = (JSONArray)sceneObj.get("feature");
+            Iterator<String> it = featureArray.iterator();
+            while(it.hasNext()) {
+                Zombie zombie = objectMapper.readValue(it.next(), Zombie.class);
+                feature.add(zombie);
             }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
     }
 
     public void setFeatures(ArrayList<ZombieTypes> list) {
-        this.feature = list;
+        this.features = list;
     }
 
     public ArrayList<Weapon> getRoomLoot() {
         return roomLoot;
     }
     public void setRoomLoot() {
+        ObjectMapper objectMapper = new ObjectMapper();
         roomLoot = new ArrayList<Weapon>();
-        @SuppressWarnings("unchecked")
-        List<String> strRoomLoot = (List<String>) sceneObj.get("roomLoot");
-        for (Weapon weapon : Weapon.values()) {
-            for (String item : strRoomLoot) {
-                if (weapon.getName().toUpperCase().equals(item.toUpperCase())) {
-                    roomLoot.add(weapon);
-                }
+        try {
+            JSONArray weaponArray = (JSONArray)sceneObj.get("roomLoot");
+            Iterator<String> it = weaponArray.iterator();
+            while(it.hasNext()) {
+                Weapon weapon = objectMapper.readValue(it.next(), Weapon.class);
+                roomLoot.add(weapon);
             }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

@@ -1,8 +1,11 @@
 package com.zomburt.gui;
 
 import com.zomburt.GameEngine;
+import com.zomburt.GenerateMap;
 import com.zomburt.Mode;
 import com.zomburt.characters.Player;
+import com.zomburt.characters.Zombie;
+import com.zomburt.combat.Weapon;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -15,9 +18,6 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -25,7 +25,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.stream.Collectors;
 
 public class GameApp extends Application {
     private IntroController introController;
@@ -35,6 +34,7 @@ public class GameApp extends Application {
     private String currentInput;
     private Mode modeInput;
     private Player player;
+    private GameEngine newGame;
     private static com.zomburt.gui.GameApp instance;
 
     public GameApp() {
@@ -58,34 +58,6 @@ public class GameApp extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        //show intro video when click button
-//        introController.getVideoButton().setOnAction(e -> {
-//            FXMLLoader videoViewLoader = new FXMLLoader();
-//            try {
-//                videoController = new VideoController();
-//                videoViewLoader.setController(videoController);
-//                videoViewLoader.setLocation(GameApp.class.getResource("video.fxml"));
-//                GridPane videoLayout = videoViewLoader.load();
-//                Media media = new Media("https://www.youtube.com/watch?v=KitsWREpumU");
-//                //   Media media = new Media("file:./game/assets/test.mp4");
-//                MediaPlayer player = new MediaPlayer(media);
-//                player.setAutoPlay(true);
-//                try {
-//                    videoController.getIntroVideo().setMediaPlayer(player);
-//                } catch (Exception exception) {
-//                    exception.printStackTrace();
-//                }
-//                player.setOnError(() -> System.out.println("media error: " + player.getError().toString()));
-//                Scene videoScene = new Scene(videoLayout);
-//                Stage videoStage = new Stage();
-//                videoStage.setScene(videoScene);
-//                videoStage.show();
-//                player.play();
-//            } catch (IOException ioException) {
-//                ioException.printStackTrace();
-//            }
-//        });
 
         // Show the scene containing the intro layout.
         Scene introScene = new Scene(introLayout);
@@ -169,6 +141,7 @@ public class GameApp extends Application {
                         }
                     }
                 };
+
         // connect next button to the handler event
         introController.getStartGame().setOnAction(nextHandler);
     }
@@ -192,15 +165,6 @@ public class GameApp extends Application {
                         notifyInput();
                         gameController.getInput().clear();
                         gameController.getInput().requestFocus();
-
-                        //load player health, score, and inventory in GUI text field
-                        try {
-                            gameController.getHealth().setText(Integer.toString(GameEngine.player.getHealth()));
-                            gameController.getScore().setText(Integer.toString(GameEngine.player.getScore()));
-                     //       gameController.getInventory().getItems().add(GameEngine.player.getInventory().stream().map(e->e.getName()).collect(Collectors.toList()));
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
                     }
                 };
 
@@ -227,28 +191,49 @@ public class GameApp extends Application {
 
     // game thread logic, so we should also wrap the UI access calls
     private void executeGameLoop() throws Exception {
-        GameEngine newGame = new GameEngine();
+        GenerateMap.getInstance().createMap("./game/assets/store.json");
+        newGame = new GameEngine();
         newGame.run();
     }
 
     // update UI status
     public void updateUI() {
-        // update player status
+        // update total number of remaing zombies
         Platform.runLater(
                 new Runnable() {
                     @Override
                     public void run() {
-
+                       gameController.getRemainZombies().setText(Integer.toString(GenerateMap.totalNumZombies));
+                       gameController.getHealth().setText(Integer.toString(GameEngine.player.getHealth()));
+                       gameController.getScore().setText(Integer.toString(GameEngine.player.getScore()));
+                       gameController.getCurrentLocation().setText(GameEngine.currentScene.getSceneName());
+                       gameController.getFightingZombie().setText(GameEngine.zombie.getName());
+                       gameController.getZombieHealth().setText(Integer.toString(GameEngine.zombie.getHealth()));
+                       if (GameEngine.zombie.getInventory().size() > 0) {
+                           gameController.getZombieWeapon().setText(GameEngine.zombie.getInventory().get(0).getName());
+                       }
                     }
                 });
 
-        // clear item in the list view
+        // update list view
         Platform.runLater(
                 new Runnable() {
                     @Override
                     public void run() {
                         try {
                             gameController.getInventory().getItems().clear();
+                            for (Weapon weapon : GameEngine.player.getInventory()) {
+                                gameController.getInventory().getItems().add(weapon.getName());
+                            }
+
+                            gameController.getRoomInventory().getItems().clear();
+                            gameController.getWeaponsRoom().getItems().clear();
+                            for (Weapon weapon : GameEngine.currentScene.getRoomLoot()) {
+                                gameController.getWeaponsRoom().getItems().add(weapon.getName());
+                            }
+                            for (Zombie zombie : GameEngine.currentScene.getFeature()) {
+                                gameController.getRoomInventory().getItems().add(zombie.getName());
+                            }
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
