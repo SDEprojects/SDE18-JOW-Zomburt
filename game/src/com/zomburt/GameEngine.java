@@ -165,6 +165,7 @@ public class GameEngine {
         "    -pick up <item>-\n" +
         "    -drop <item>-\n" +
         "    -look/search-\n" +
+        "    -check <player health/score>- \n" +
         "    -quit\n");
   }
 

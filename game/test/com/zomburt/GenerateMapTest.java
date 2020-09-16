@@ -11,13 +11,13 @@ import java.util.Set;
 class GenerateMapTest<string> {
     private static Mode mode;
     private static FileWriter file;
-    private static GenerateMap generateMap = null;
+    private static MapFactory generateMap = null;
     JSONObject mapJson;
     private String path = "./game/assets/store.json";
 
     @Test
     void createEasyMap() {
-        generateMap = new GenerateMap(Mode.EASY);
+        generateMap = new MapFactory(Mode.EASY);
         Object map = generateMap.createMap(path);
         mapJson = (JSONObject) map;
         Set<String> keys = mapJson.keySet();
@@ -32,7 +32,7 @@ class GenerateMapTest<string> {
 
     @Test
     void createHardMap() {
-        generateMap = new GenerateMap(Mode.HARD);
+        generateMap = new MapFactory(Mode.HARD);
         Object map = generateMap.createMap(path);
         mapJson = (JSONObject) map;
         Set<String> keys = mapJson.keySet();
