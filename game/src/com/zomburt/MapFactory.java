@@ -17,19 +17,19 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.Set;
 
-public class GenerateMap {
+public class MapFactory {
     private static Mode mode;
     private static FileWriter file;
-    private static GenerateMap generateMap = null;
+    private static MapFactory generateMap = null;
     public static int totalNumZombies;
 
-    public GenerateMap(Mode mode){
+    public MapFactory(Mode mode){
         this.mode = mode;
     }
 
-    public static GenerateMap getInstance() {
+    public static MapFactory getInstance() {
         if (generateMap == null) {
-            generateMap = new GenerateMap(GameApp.getInstance().getModeInput());
+            generateMap = new MapFactory(GameApp.getInstance().getModeInput());
         }
         return generateMap;
     }

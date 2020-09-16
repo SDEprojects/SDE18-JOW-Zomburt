@@ -1,7 +1,7 @@
 package com.zomburt.gui;
 
 import com.zomburt.GameEngine;
-import com.zomburt.GenerateMap;
+import com.zomburt.MapFactory;
 import com.zomburt.Mode;
 import com.zomburt.characters.Player;
 import com.zomburt.characters.Zombie;
@@ -71,6 +71,7 @@ public class GameApp extends Application {
                 if (isNowSelected) {
                     introController.getHardMode().setSelected(false);
                     modeInput = Mode.EASY;
+                    System.out.println(modeInput.toString());
                 }
             }
         });
@@ -85,7 +86,7 @@ public class GameApp extends Application {
             }
         });
 
-        // config next button listener
+        // config startGame button listener
         EventHandler<ActionEvent> nextHandler =
                 new EventHandler<ActionEvent>() {
                     @Override
@@ -191,7 +192,7 @@ public class GameApp extends Application {
 
     // game thread logic, so we should also wrap the UI access calls
     private void executeGameLoop() throws Exception {
-        GenerateMap.getInstance().createMap("./game/assets/store.json");
+        MapFactory.getInstance().createMap("./game/assets/store.json");
         newGame = new GameEngine();
         newGame.run();
     }
@@ -203,15 +204,10 @@ public class GameApp extends Application {
                 new Runnable() {
                     @Override
                     public void run() {
-                       gameController.getRemainZombies().setText(Integer.toString(GenerateMap.totalNumZombies));
+                       gameController.getRemainZombies().setText(Integer.toString(MapFactory.totalNumZombies));
                        gameController.getHealth().setText(Integer.toString(GameEngine.player.getHealth()));
                        gameController.getScore().setText(Integer.toString(GameEngine.player.getScore()));
                        gameController.getCurrentLocation().setText(GameEngine.currentScene.getSceneName());
-                       gameController.getFightingZombie().setText(GameEngine.zombie.getName());
-                       gameController.getZombieHealth().setText(Integer.toString(GameEngine.zombie.getHealth()));
-                       if (GameEngine.zombie.getInventory().size() > 0) {
-                           gameController.getZombieWeapon().setText(GameEngine.zombie.getInventory().get(0).getName());
-                       }
                     }
                 });
 
@@ -242,6 +238,49 @@ public class GameApp extends Application {
 
     }
 
+    // update game status LOST
+    public void updateGameStatusLost() {
+        // update total number of remaing zombies
+        Platform.runLater(
+            new Runnable() {
+                @Override
+                public void run() {
+                    gameController.getYouLose().setVisible(true);
+
+                }
+            });
+    }
+
+    // update game status WIN
+    public void updateGameStatusWON() {
+        // update total number of remaing zombies
+        Platform.runLater(
+            new Runnable() {
+                @Override
+                public void run() {
+                    gameController.getYouLose().clear();
+                    gameController.getYouLose().setText("YOU WON !!!!");
+                    gameController.getYouLose().setVisible(true);
+
+                }
+            });
+    }
+
+    // update zombies status
+    public void updateZombie() {
+        // update total number of remaing zombies
+        Platform.runLater(
+            new Runnable() {
+                @Override
+                public void run() {
+                    gameController.getFightingZombie().setText(GameEngine.zombie.getName());
+                    gameController.getZombieHealth().setText(Integer.toString(GameEngine.zombie.getHealth()));
+                    if (GameEngine.zombie.getInventory().size() > 0) {
+                        gameController.getZombieWeapon().setText(GameEngine.zombie.getInventory().get(0).getName());
+                    }
+                }
+            });
+    }
     // inner input signal Class
     private final InputSignal inputSignal = new InputSignal();
 

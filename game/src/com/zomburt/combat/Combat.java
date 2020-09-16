@@ -1,7 +1,7 @@
 package com.zomburt.combat;
 
 import com.zomburt.GameEngine;
-import com.zomburt.GenerateMap;
+import com.zomburt.MapFactory;
 import com.zomburt.characters.Player;
 import com.zomburt.characters.Zombie;
 import com.zomburt.gui.GameApp;
@@ -29,7 +29,7 @@ public class Combat {
     if(zombie.getHealth() <= 0)
       score += zombieValue;
       player.setScore(score);
-      GenerateMap.totalNumZombies -= 1;
+      MapFactory.totalNumZombies -= 1;
       GameEngine.currentScene.removeFeature(zombie);
       GameApp.getInstance().updateUI();
       GameApp.getInstance().appendToCurActivity("Congratulations! You've killed the " + zombie.getName() + " and are able to progress.");

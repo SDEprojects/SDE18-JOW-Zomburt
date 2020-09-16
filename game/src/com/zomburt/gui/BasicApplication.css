@@ -38,3 +38,8 @@
 #introduction {
  -fx-font: 18px "Arial Black";
 }
+
+#youLose {
+ -fx-font-size: 40px;
+ -fx-font-family: "Chalkduster";
+}

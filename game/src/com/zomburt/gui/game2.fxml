@@ -167,6 +167,7 @@
             <InnerShadow />
          </effect>
       </ListView>
+      <TextArea fx:id="youLose" editable="false" prefHeight="75.0" prefWidth="343.0" text="You Lost !!!!" visible="false" GridPane.columnIndex="5" GridPane.columnSpan="3" GridPane.rowIndex="21" GridPane.rowSpan="3" />
    </children>
     <stylesheets>
         <URL value="@BasicApplication.css" />
