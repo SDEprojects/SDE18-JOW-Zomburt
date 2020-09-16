@@ -1,8 +1,9 @@
 package com.zomburt.gui;
 
 import com.zomburt.GameEngine;
-import com.zomburt.GenerateMap;
+import com.zomburt.MapFactory;
 import com.zomburt.Mode;
+import com.zomburt.characters.Player;
 import com.zomburt.characters.Zombie;
 import com.zomburt.combat.Weapon;
 import javafx.application.Application;
@@ -32,9 +33,8 @@ public class GameApp extends Application {
     private MapController mapController;
     private String currentInput;
     private Mode modeInput = Mode.EASY;
+    private Player player;
     private GameEngine newGame;
-
-
     private static com.zomburt.gui.GameApp instance;
 
     public GameApp() {
@@ -63,6 +63,7 @@ public class GameApp extends Application {
         Scene introScene = new Scene(introLayout);
         primaryStage.setScene(introScene);
         primaryStage.show();
+
         // config the radio button
         introController.getEasyMode().selectedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
@@ -81,7 +82,6 @@ public class GameApp extends Application {
                 if (isNowSelected) {
                     introController.getEasyMode().setSelected(false);
                     modeInput = Mode.HARD;
-                    System.out.println(modeInput.toString());
                 }
             }
         });
@@ -192,7 +192,7 @@ public class GameApp extends Application {
 
     // game thread logic, so we should also wrap the UI access calls
     private void executeGameLoop() throws Exception {
-        GenerateMap.getInstance().createMap("./game/assets/store.json");
+        MapFactory.getInstance().createMap("./game/assets/store.json");
         newGame = new GameEngine();
         newGame.run();
     }
@@ -204,7 +204,7 @@ public class GameApp extends Application {
                 new Runnable() {
                     @Override
                     public void run() {
-                       gameController.getRemainZombies().setText(Integer.toString(GenerateMap.totalNumZombies));
+                       gameController.getRemainZombies().setText(Integer.toString(MapFactory.totalNumZombies));
                        gameController.getHealth().setText(Integer.toString(GameEngine.player.getHealth()));
                        gameController.getScore().setText(Integer.toString(GameEngine.player.getScore()));
                        gameController.getCurrentLocation().setText(GameEngine.currentScene.getSceneName());
