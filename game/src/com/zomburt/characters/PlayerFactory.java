@@ -2,7 +2,6 @@ package com.zomburt.characters;
 
 import com.zomburt.Mode;
 import com.zomburt.combat.Weapon;
-import com.zomburt.gui.GameApp;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,7 +18,7 @@ public class PlayerFactory {
                 player = new Player("<Hunter>", 100, 0, inventory);
                 break;
             case HARD:
-                player = new Player("<Master Hunter>", 50, 0);
+                player = new Player("<Master Hunter>", 80, 0);
                 break;
         }
 

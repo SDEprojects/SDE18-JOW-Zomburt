@@ -78,7 +78,7 @@ public class Combat {
         if (player.getInventory().size() > 0) {
             for (Weapon weapon : player.getInventory()) {
                 if (weapon.getDamage() > playerDamage) {
-                    playerDamage = weapon.getDamage();
+                    playerDamage += weapon.getDamage();
                 }
             }
         }
