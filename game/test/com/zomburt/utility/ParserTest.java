@@ -7,7 +7,17 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ParserTest {
+    @Test
+    public void testParse() {
+        String input = "drink water";
 
+        String expected = "move east";
+        ArrayList<String> list = new ArrayList<>();
+        String actual = Parser.parse(input).get(0);
+        System.out.println(actual);
+        assertEquals(null, actual);
+
+    }
 
     @Test
     void parsePickupTest() {
@@ -26,7 +36,7 @@ class ParserTest {
     }
     @Test
     void parsemoveTest() {
-        String inputString ="move east north ";
+        String inputString = "move east north ";
         ArrayList<String> commands = Parser.parse(inputString);
         assertEquals("move", commands.get(0));
         assertEquals("east", commands.get(1));

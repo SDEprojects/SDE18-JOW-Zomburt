@@ -8,21 +8,24 @@ import com.zomburt.utility.GameStatus;
 import com.zomburt.utility.Parser;
 import org.json.simple.JSONObject;
 
-import java.io.FileNotFoundException;
+import java.io.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-public class GameEngine {
+public class GameEngine implements Serializable{
   public static Player player;
   public static Zombie zombie;
+  public static Mode mode;
   GameStatus gameStatus = new GameStatus();
   public static Scene currentScene;
   Boolean newScene = true;
   Boolean win = false;
   Universe gameUniverse = new Universe();
   Random rand = new Random();
+  public static String realName;
 
   public GameEngine() throws Exception {
   }
@@ -30,30 +33,29 @@ public class GameEngine {
   public void run() throws Exception {
       gameStatus.start();
       currentScene = new Scene("parking lot");
-      player = PlayerFactory.createPlayer(GameApp.getInstance().getModeInput());
-      GameApp.getInstance().appendToCurActivity("What is your name?");
+
+      mode = GameApp.getInstance().getModeInput();
+      player = PlayerFactory.createPlayer(mode);
       GameApp.getInstance().updateUI();
-      GameApp.getInstance().appendToCurActivity("\n" + GameApp.getInstance().getInput() + ", ");
+      GameApp.getInstance().appendToCurActivity("What is your name?");
+      realName = GameApp.getInstance().getInput();
+      GameApp.getInstance().appendToCurActivity("\n" + realName + ", ");
 
       while (win == false) {
         if (newScene) {
           GameApp.getInstance().appendToCurActivity(currentScene.getFlavorText());
-          if (currentScene.getFeature().size() > 0 ) {
+          if (currentScene.getFeature().size() > 0) {
             GameApp.getInstance().appendToCurActivity("Somehow inevitably, a shuffling shadow blocks your path.  The gruesome smell of entitlement thickens the air around you and the one thing all Divoc Zombies can still say changes from a mumble to screech as it sees you: \n\nYou can't make me wear a mask!\n\nThere's no time to rush past it. You are already in combat.  You best FIGHT!\n");
           }
-
           Thread.sleep(200);
         }
-        if(currentScene.getFeature().size() > 0 ) {
-          int zombiesNum = currentScene.getFeature().size();
-          int randZombie = rand.nextInt(zombiesNum);
-          ArrayList<Zombie> zombies = currentScene.getFeature();
-          zombie = zombies.get(randZombie);
-          //before fighting
-          GameApp.getInstance().updateZombie();
-          Combat.combat(player, zombie);
-          //after fighting
-          GameApp.getInstance().updateZombie();
+        if(currentScene.getFeature().size() > 0){
+            zombie = currentScene.getFeature().get(rand.nextInt(currentScene.getFeature().size()));
+            //before fighting
+            GameApp.getInstance().updateZombie();
+            Combat.combat(player, zombie);
+            //after fighting
+            GameApp.getInstance().updateZombie();
         }
         GameApp.getInstance().appendToCurActivity(" > ");
         String input = GameApp.getInstance().getInput();
@@ -114,6 +116,8 @@ public class GameEngine {
           GameApp.getInstance().appendToCurActivity(scene.getSceneName() + " :" + scene.getFeature().size() + " zombie(s)!\n");
         }
       }
+    } else if(commands.get(0).contains("mode")) {
+      GameApp.getInstance().appendToCurActivity("The current game mode: " + GameApp.getInstance().getModeInput());
     }
     else if (commands.get(0).contains("fight")) {
       GameApp.getInstance().appendToCurActivity("There is no zombies approaching you, you better move now! Otherwise more zombies will approach you.\n");
@@ -130,7 +134,6 @@ public class GameEngine {
         player.removeInventory(weapon);
         currentScene.addRoomLoot(weapon);
         GameApp.getInstance().appendToCurActivity(player.getName() + "'ve dropped " + s);
-
       } else {
         GameApp.getInstance().appendToCurActivity(player.getName() + " doesn't have that item");
       }
@@ -145,7 +148,6 @@ public class GameEngine {
         } else {
           GameApp.getInstance().appendToCurActivity("You can only have maximum of 3 weapons! ");
         }
-
       } else {
         GameApp.getInstance().appendToCurActivity("That item isn't here");
       }
@@ -168,8 +170,9 @@ public class GameEngine {
         "    -pick up <item>-\n" +
         "    -drop <item>-\n" +
         "    -look/search-\n" +
+        "    -check <current scene and # of zombies>- \n" +
+        "    -mode <show current game mode>- \n" +
         "    -quit\n");
-
   }
 
   public void move(String moveDir) throws Exception {
@@ -203,7 +206,24 @@ public class GameEngine {
       if (move != "o") {
         GameApp.getInstance().appendToCurActivity("\n" + move);
       }
+  }
 
+  public static void recordGameResults(){
+    PrintWriter writer = null;
+    try {
+      writer = new PrintWriter(new FileWriter("game/assets/game_results.txt", true));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    String result = "won";
+    if(player.getHealth()<=0){
+      result = "lost";
+    }
+    LocalDateTime time = LocalDateTime.now();
+    writer.append("<Final score for this game @" + time + ">" + "\n");
+    writer.append(realName + ": " + GameApp.getInstance().getModeInput() + " Mode, " + player.getScore() + " points, " + result + " the game \n");
+    writer.println();
+    writer.close();
   }
 
 }

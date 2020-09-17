@@ -62,10 +62,6 @@ public class MapFactory {
                 numberZombie = RandomCreate.randNum(Mode.EASY);
                 numberWeapon = RandomCreate.randNum(Mode.HARD);
             }
-            else if (mode == Mode.MEDIAN) {
-                numberZombie = RandomCreate.randNum(Mode.MEDIAN);
-                numberWeapon = RandomCreate.randNum(Mode.MEDIAN);
-            }
             else if (mode == Mode.HARD) {
                 numberZombie = RandomCreate.randNum(Mode.HARD);
                 numberWeapon = RandomCreate.randNum(Mode.EASY);
@@ -105,7 +101,6 @@ public class MapFactory {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
             }
         }
         // read from new file
