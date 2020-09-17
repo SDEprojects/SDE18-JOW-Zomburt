@@ -2,6 +2,7 @@ package com.zomburt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zomburt.characters.Zombie;
+import com.zomburt.characters.ZombieTypes;
 import com.zomburt.combat.Weapon;
 import com.zomburt.gui.GameApp;
 import org.json.simple.JSONArray;
@@ -9,11 +10,13 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Scene {
+public class Scene implements Serializable {
     JSONObject sceneObj;
     String sceneName;
     String flavorText;
@@ -105,7 +108,6 @@ public class Scene {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public ArrayList<Weapon> getRoomLoot() {
@@ -121,7 +123,6 @@ public class Scene {
                 Weapon weapon = objectMapper.readValue(it.next(), Weapon.class);
                 roomLoot.add(weapon);
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -143,6 +144,26 @@ public class Scene {
         }
     }
 
+    public void updateRoomLootJSON() throws Exception {
+        Object store2 = new JSONParser().parse(new FileReader("./game/assets/store.json"));
+        JSONObject joStore2 = (JSONObject) store2;
+
+        JSONObject a = (JSONObject) joStore2.get("discount bin");
+        JSONArray b = (JSONArray) a.get("roomLoot");
+
+        b.add("candy bar");
+        GameApp.getInstance().appendToCurActivity("b: " + b);
+
+        //Write JSON file
+        try (FileWriter file = new FileWriter("./game/assets/store2.json", true)) {
+            file.write("\n");
+            file.write(joStore2.toJSONString());
+            file.write("\n");
+            file.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public String toString() {
