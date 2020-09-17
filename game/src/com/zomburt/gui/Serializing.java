@@ -15,14 +15,14 @@ public class Serializing implements Serializable {
     public void saveGame(){
         try {
             FileOutputStream fileOut = new FileOutputStream("./game/assets/save_game.ser");
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            ObjectOutputStream save = new ObjectOutputStream(fileOut);
           //  currentMode = GameEngine.mode;
             currentPlayer = GameEngine.player;
             currentScene = GameEngine.currentScene;
          //   out.writeObject(currentMode);
-            out.writeObject(currentPlayer);
-            out.writeObject(currentScene);
-            out.close();
+            save.writeObject(currentPlayer);
+            save.writeObject(currentScene);
+            save.close();
             fileOut.close();
             System.out.println("Current game data has been saved into ./game/assets/save_game.ser");
         } catch (IOException e1) {
@@ -33,20 +33,20 @@ public class Serializing implements Serializable {
     public void reloadGame() {
         try {
             FileInputStream fileIn = new FileInputStream("./game/assets/save_game.ser");
-            ObjectInputStream in = new ObjectInputStream(fileIn);
+            ObjectInputStream reload = new ObjectInputStream(fileIn);
         //    currentMode = (Mode) in.readObject();
-            currentPlayer = (Player) in.readObject();
-            currentScene = (com.zomburt.Scene) in.readObject();
+            currentPlayer = (Player) reload.readObject();
+            currentScene = (com.zomburt.Scene) reload.readObject();
         //    GameEngine.mode = currentMode;
             GameEngine.player = currentPlayer;
             GameEngine.currentScene = currentScene;
-            in.close();
+            reload.close();
             fileIn.close();
+            System.out.println("Previously saved game has been reloaded from ./game/assets/save_game.ser");
         } catch (IOException i) {
             i.printStackTrace();
             return;
         } catch (ClassNotFoundException e2) {
-            System.out.println("Player class not found");
             e2.printStackTrace();
             return;
         }
