@@ -128,8 +128,6 @@ public class GameApp extends Application{
                                 }
                             });
 
-
-
                             //quit the game when click quit option in menu bar
                             gameController.getMenu().getMenus().get(0).getItems().get(11).setOnAction(e->{
                                 System.exit(0);
@@ -156,7 +154,6 @@ public class GameApp extends Application{
                             gameController.getMenu().getMenus().get(0).getItems().get(7).setOnAction(e->{
                                 Serializing s = new Serializing();
                                 s.reloadGame();
-
                             });
 
 
@@ -242,13 +239,13 @@ public class GameApp extends Application{
                         try {
                             gameController.getInventory().getItems().clear();
                             for (Weapon weapon : GameEngine.player.getInventory()) {
-                                gameController.getInventory().getItems().add(weapon.getName());
+                                gameController.getInventory().getItems().add(weapon.getName() + "(" + weapon.getDamage() + ")");
                             }
 
                             gameController.getRoomInventory().getItems().clear();
                             gameController.getWeaponsRoom().getItems().clear();
                             for (Weapon weapon : GameEngine.currentScene.getRoomLoot()) {
-                                gameController.getWeaponsRoom().getItems().add(weapon.getName());
+                                gameController.getWeaponsRoom().getItems().add(weapon.getName() + "(" + weapon.getDamage() + ")");
                             }
                             for (Zombie zombie : GameEngine.currentScene.getFeature()) {
                                 gameController.getRoomInventory().getItems().add(zombie.getName());
@@ -280,7 +277,7 @@ public class GameApp extends Application{
                 @Override
                 public void run() {
                     gameController.getYouLose().clear();
-                    gameController.getYouLose().setText("YOU WON !!!!");
+                    gameController.getYouLose().setText("Good Job!! Mission Completed!");
                     gameController.getYouLose().setVisible(true);
                 }
             });
@@ -293,10 +290,17 @@ public class GameApp extends Application{
             new Runnable() {
                 @Override
                 public void run() {
-                    gameController.getFightingZombie().setText(GameEngine.zombie.getName());
+                    if (GameEngine.zombie.getHealth() > 0) {
+                        gameController.getFightingZombie().setText(GameEngine.zombie.getName());
+                    } else {
+                        gameController.getFightingZombie().setText("None");
+                    }
                     gameController.getZombieHealth().setText(Integer.toString(GameEngine.zombie.getHealth()));
-                    if (GameEngine.zombie.getInventory().size() > 0) {
-                        gameController.getZombieWeapon().setText(GameEngine.zombie.getInventory().get(0).getName());
+                    if (GameEngine.zombie.getInventory().size() > 0 && GameEngine.zombie.getHealth() > 0) {
+                        gameController.getZombieWeapon().setText(GameEngine.zombie.getInventory().get(0).getName() +"(" + GameEngine.zombie.getInventory().get(0).getDamage() + ")");
+                    }
+                    if (GameEngine.zombie.getInventory().size() == 0) {
+                        gameController.getZombieWeapon().setText("None");
                     }
                 }
             });
@@ -339,17 +343,6 @@ public class GameApp extends Application{
             e.printStackTrace();
         }
     }
-
-//    public void getIntro(File file) {
-//        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-//            String line;
-//            while ((line = br.readLine()) != null) {
-//                introController.getIntro().appendText(line + "\n");
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     // call from game logic thread to update the UI for current activity
     public void appendToCurActivity(String txt) {

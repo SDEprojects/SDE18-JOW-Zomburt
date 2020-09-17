@@ -20,44 +20,43 @@ import java.util.stream.Collectors;
 public class GameEngine implements Serializable{
   public static Player player;
   public static Zombie zombie;
+  public static Mode mode;
   GameStatus gameStatus = new GameStatus();
   public static Scene currentScene;
   Boolean newScene = true;
   Boolean win = false;
   Universe gameUniverse = new Universe();
-  ArrayList<ZombieTypes> noZombies = new ArrayList<>();
-  Mode level = Mode.EASY;
   Random rand = new Random();
   public static String realName;
-//  public static Serializing s = new Serializing();
 
   public GameEngine() throws Exception {
   }
 
   public void run() throws Exception {
       gameStatus.start();
-      System.out.println(level.toString());
       currentScene = new Scene("parking lot");
 
-      player = PlayerFactory.createPlayer(GameApp.getInstance().getModeInput());
+      mode = GameApp.getInstance().getModeInput();
+      player = PlayerFactory.createPlayer(mode);
       GameApp.getInstance().appendToCurActivity("What is your name?");
       realName = GameApp.getInstance().getInput();
       GameApp.getInstance().appendToCurActivity("\n" + realName + ", ");
 
-      String zombieName = null;
       while (win == false) {
         if (newScene) {
           GameApp.getInstance().appendToCurActivity(currentScene.getFlavorText());
+          if (currentScene.getFeature().size() > 0) {
+            GameApp.getInstance().appendToCurActivity("Somehow inevitably, a shuffling shadow blocks your path.  The gruesome smell of entitlement thickens the air around you and the one thing all Divoc Zombies can still say changes from a mumble to screech as it sees you: \n\nYou can't make me wear a mask!\n\nThere's no time to rush past it. You are already in combat.  You best FIGHT!\n");
+          }
           Thread.sleep(200);
         }
-        if(currentScene.getFeature().size() > 0 ) {
-//          zombieName = currentScene.getFeature().get(0).getName();
-//          if (Arrays.stream(ZombieTypes.values()).map(e -> e.getName()).anyMatch(zombieName::equals)) {
-//            zombie = ZombieFactory.createZombie(GameApp.getInstance().getModeInput());
-            zombie = currentScene.getFeature().get(ThreadLocalRandom.current().nextInt(currentScene.getFeature().size()));
+        if(currentScene.getFeature().size() > 0){
+            zombie = currentScene.getFeature().get(rand.nextInt(currentScene.getFeature().size()));
+            //before fighting
+            GameApp.getInstance().updateZombie();
             Combat.combat(player, zombie);
-
-          GameApp.getInstance().updateZombie();
+            //after fighting
+            GameApp.getInstance().updateZombie();
         }
         GameApp.getInstance().appendToCurActivity(" > ");
         String input = GameApp.getInstance().getInput();
@@ -113,17 +112,23 @@ public class GameEngine implements Serializable{
     } else if (commands.get(0).contains("hint")) {
       hint();
     } else if(commands.get(0).contains("check")) {
-      GameApp.getInstance().appendToCurActivity(player.getName() + "'s health is " + player.getHealth());
-      GameApp.getInstance().appendToCurActivity(player.getName() + "'s score is " + player.getScore());
+      for (Scene scene : gameUniverse.world.values()) {
+        if (scene.getFeature().size() > 0) {
+          GameApp.getInstance().appendToCurActivity(scene.getSceneName() + " :" + scene.getFeature().size() + " zombie(s)!\n");
+        }
+      }
     } else if(commands.get(0).contains("mode")) {
       GameApp.getInstance().appendToCurActivity("The current game mode: " + GameApp.getInstance().getModeInput());
+    }
+    else if (commands.get(0).contains("fight")) {
+        GameApp.getInstance().appendToCurActivity("There is no zombies approaching you, you better move now!\n");
     }
     else {
       GameApp.getInstance().appendToCurActivity(Arrays.toString(commands.toArray()));
     }
   }
 
-  public void itemHandler(String action, Weapon weapon) {
+  public static void itemHandler(String action, Weapon weapon) {
      String s = "[" + weapon.getName() + ", " + weapon.getDamage() + "]";
     if (action.equals("drop")) {
       if (player.getInventory().contains(weapon)) {
@@ -137,16 +142,15 @@ public class GameEngine implements Serializable{
       GameApp.getInstance().updateUI();
     }
     if (action.equals("pick up")) {
-      if (currentScene.getRoomLoot().contains(weapon) && player.getInventory().size() <= 3) {
-        player.addInventory(weapon);
-        currentScene.removeRoomLoot(weapon);
-        GameApp.getInstance().appendToCurActivity(player.getName() + "'ve successfully picked up: " + s);
-        GameApp.getInstance().appendToCurActivity("HINT: type 'inv' to see your inventory");
-        GameApp.getInstance().appendToCurActivity("The room currently contains: " + currentScene.getRoomLoot());
-      } else if(currentScene.getRoomLoot().contains(weapon) && player.getInventory().size() > 3) {
-        GameApp.getInstance().appendToCurActivity("Player can't have more than 3 items in inventory!");
-      }
-      else {
+      if (currentScene.getRoomLoot().contains(weapon)) {
+        if (player.getInventory().size() < 3) {
+          player.addInventory(weapon);
+          currentScene.removeRoomLoot(weapon);
+          GameApp.getInstance().appendToCurActivity(player.getName() + "'ve successfully picked up: " + s);
+        } else {
+          GameApp.getInstance().appendToCurActivity("You can only have maximum of 3 weapons! ");
+        }
+      } else {
         GameApp.getInstance().appendToCurActivity("That item isn't here");
       }
       GameApp.getInstance().updateUI();
@@ -161,14 +165,14 @@ public class GameEngine implements Serializable{
     currentScene.getSearch();
   }
 
-  public static void help() {
+  public void help() {
     GameApp.getInstance().appendToCurActivity("\n  These are some commands you can perform: \n" +
         "    -move <direction>-\n" +
         "    -inv <view inventory>-\n" +
         "    -pick up <item>-\n" +
         "    -drop <item>-\n" +
         "    -look/search-\n" +
-        "    -check <player health/score>- \n" +
+        "    -check <current scene and # of zombies>- \n" +
         "    -mode <show current game mode>- \n" +
         "    -quit\n");
   }
@@ -184,7 +188,7 @@ public class GameEngine implements Serializable{
       GameApp.getInstance().appendToCurActivity("There are still zombies somewhere out there. You need to go back and kill all the zombies to win!");
     }
     else if (sceneCheck.length() > 0) {
-      GameApp.getInstance().appendToCurActivity("You move to the " + sceneCheck);
+      GameApp.getInstance().appendToCurActivity("You move to the " + sceneCheck +".\n\n");
       currentScene = gameUniverse.getScene(sceneCheck);
       newScene = true;
     }
@@ -202,9 +206,8 @@ public class GameEngine implements Serializable{
     GameApp.getInstance().appendToCurActivity("Nearby rooms are: ");
     for (Object move : moves.values())
       if (move != "o") {
-        GameApp.getInstance().appendToCurActivity("    " + move);
+        GameApp.getInstance().appendToCurActivity("\n" + move);
       }
-    GameApp.getInstance().appendToCurActivity("\n");
   }
 
   public static void recordGameResults(){
@@ -214,51 +217,15 @@ public class GameEngine implements Serializable{
     } catch (IOException e) {
       e.printStackTrace();
     }
-
+    String result = "won";
+    if(player.getHealth()<=0){
+      result = "lost";
+    }
     LocalDateTime time = LocalDateTime.now();
     writer.append("<Final score for this game @" + time + ">" + "\n");
-    writer.append(realName + ": " + GameApp.getInstance().getModeInput() + " Mode, " + player.getScore() + " points \n");
+    writer.append(realName + ": " + GameApp.getInstance().getModeInput() + " Mode, " + player.getScore() + " points, " + result + " the game \n");
     writer.println();
-
     writer.close();
   }
-
-//  public static class Serializing implements Serializable {
-//    public void saveGame(){
-//      try {
-//        FileOutputStream fileOut = new FileOutputStream("./game/assets/save_game.ser");
-//        ObjectOutputStream out = new ObjectOutputStream(fileOut);
-//        // currentPlayer = GameEngine.player;
-//     //   currentScene = GameEngine.currentScene;
-//        //  out.writeObject(currentPlayer);
-//        out.writeObject(currentScene);
-//        out.close();
-//        fileOut.close();
-//        System.out.println("Serialized data is saved in ./game/assets/save_game.ser");
-//      } catch (IOException e1) {
-//        e1.printStackTrace();
-//      }
-//    }
-//
-//    public void reloadGame() {
-//      try {
-//        FileInputStream fileIn = new FileInputStream("./game/assets/save_game.ser");
-//        ObjectInputStream in = new ObjectInputStream(fileIn);
-//        //  currentPlayer = (Player) in.readObject();
-//        currentScene = (com.zomburt.Scene) in.readObject();
-//        //   GameEngine.player = currentPlayer;
-//     //   GameEngine.currentScene = currentScene;
-//        in.close();
-//        fileIn.close();
-//      } catch (IOException i) {
-//        i.printStackTrace();
-//        return;
-//      } catch (ClassNotFoundException e2) {
-//        System.out.println("Player class not found");
-//        e2.printStackTrace();
-//        return;
-//      }
-//    }
-//  }
 
 }

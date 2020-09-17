@@ -83,9 +83,6 @@ public class Scene implements Serializable {
 
     public void getSearch() {
         GameApp.getInstance().appendToCurActivity(search);
-        if (!getRoomLoot().isEmpty())
-            for (Weapon i : getRoomLoot())
-                GameApp.getInstance().appendToCurActivity("  " + i);
     }
     public void setSearch() {
         search = (String) sceneObj.get("search");
@@ -108,7 +105,6 @@ public class Scene implements Serializable {
                 Zombie zombie = objectMapper.readValue(it.next(), Zombie.class);
                 feature.add(zombie);
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }

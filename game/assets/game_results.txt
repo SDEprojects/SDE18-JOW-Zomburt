@@ -1,18 +1,33 @@
-<Final score for this game @2020-09-17T08:58:25.161>
-wei: EASY Mode, 5 points 
+<Final score for this game @2020-09-17T11:18:55.865>
+wei: HARD Mode, 0 points, lost the game 
 
-<Final score for this game @2020-09-17T08:58:49.389>
-wei: HARD Mode, 0 points 
+<Final score for this game @2020-09-17T11:19:34.457>
+wei: HARD Mode, 0 points, lost the game 
 
-<Final score for this game @2020-09-17T10:02:37.743>
-wei: EASY Mode, 45 points 
+<Final score for this game @2020-09-17T11:21:49.883>
+wei: EASY Mode, 217 points, won the game 
 
-<Final score for this game @2020-09-17T10:07:52.476>
-wei: HARD Mode, 0 points 
+<Final score for this game @2020-09-17T11:25:20.365>
+wei: HARD Mode, 45 points, lost the game 
 
-<Final score for this game @2020-09-17T10:15:24.159>
-wei: HARD Mode, 0 points 
+<Final score for this game @2020-09-17T11:27:01.918>
+wei: EASY Mode, 162 points, lost the game 
 
-<Final score for this game @2020-09-17T10:18:19.601>
-wei: HARD Mode, 0 points 
+<Final score for this game @2020-09-17T11:35:24.834>
+wei: EASY Mode, 205 points, won the game 
+
+<Final score for this game @2020-09-17T11:38:49.049>
+wei: EASY Mode, 100 points, won the game 
+
+<Final score for this game @2020-09-17T11:40:13.946>
+wei: HARD Mode, 50 points, lost the game 
+
+<Final score for this game @2020-09-17T11:45:27.577>
+wei: HARD Mode, 0 points, lost the game 
+
+<Final score for this game @2020-09-17T11:49:48.821>
+wei: HARD Mode, 0 points, lost the game 
+
+<Final score for this game @2020-09-17T11:51:07.352>
+wei: HARD Mode, 24 points, lost the game 
 

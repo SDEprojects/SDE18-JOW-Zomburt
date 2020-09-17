@@ -1,6 +1,6 @@
 {
   "parking lot": {
-    "flavorText": "You move to the west entrance of the shopping mall.",
+    "flavorText": "You arrive in the parking lot of a big shopping mall! You try to enter the mall and kill all the zombies, which direction do you want to go?",
     "movement": {
       "north": "",
       "west": "",
@@ -10,10 +10,6 @@
     "look": "Nothing to see here. Best move into the store.",
     "search": "Seriously, nothing here. Let's go into the store.",
     "feature": [],
-    "roomLoot": [],
-    "armoire": {
-      "door 1": "",
-      "chest 1": ""
-    }
+    "roomLoot": []
   }
 }

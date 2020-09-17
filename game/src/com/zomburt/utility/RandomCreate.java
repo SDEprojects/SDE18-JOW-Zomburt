@@ -31,9 +31,9 @@ public class RandomCreate {
         // hard to create larger number
         else if (mode == Mode.EASY) {
             Random rand = new Random();
-            int rand1 = rand.nextInt(2);
+            int rand1 = rand.nextInt(4);
             if (rand1 > 0) {
-                finalNum = rand.nextInt(2);
+                finalNum = rand.nextInt(4);
             }
         }
         return finalNum;
