@@ -47,13 +47,34 @@ public class Combat {
             quit();
         else if (commands.get(0).contains("fight"))
             fight(player, zombie);
-        else
+        else if (commands.get(0).contains("pick up")) {
+            String weaponName = commands.get(1);
+            boolean isValidWeapon = false;
+            if (!weaponName.isEmpty()) {
+                for (Weapon weapon: GameEngine.currentScene.getRoomLoot()) {
+                if (weapon.getName().toLowerCase().equals(weaponName.toLowerCase())) {
+                    GameEngine.itemHandler(commands.get(0), weapon );
+                    isValidWeapon = true;
+                    break;
+                }
+             }
+            }
+            if (!isValidWeapon) {
+                GameApp.getInstance().appendToCurActivity("Invalid command! Try again!");
+            }
+
+        }
+        else {
             GameApp.getInstance().appendToCurActivity("Invalid command! There is a <zombie> here and you have to fight!");
+        }
     }
 
     public static void fight(Player player, Zombie zombie) throws FileNotFoundException, InterruptedException {
         int playerDamage = 20;
         int zombieDamage = zombie.getHealth();
+        if (zombie.getInventory().size() > 0) {
+            zombieDamage += zombie.getInventory().get(0).getDamage();
+        }
         if (player.getInventory().size() > 0) {
             for (Weapon weapon : player.getInventory()) {
                 if (weapon.getDamage() > playerDamage) {
@@ -64,20 +85,24 @@ public class Combat {
         if (player.getHealth() > 0 && zombie.getHealth() > 0) {
             GameApp.getInstance().appendToCurActivity(player.getName() + " attack.....");
             zombie.loseHealth(playerDamage);
-            GameApp.getInstance().appendToCurActivity(zombie.getName() + " sustained damage of: " + zombieDamage);
+            GameApp.getInstance().appendToCurActivity(zombie.getName() + " sustained damage of: " + playerDamage);
             if (zombie.getHealth() < 0) {
-                if (zombie.getHealth() < 0)
+                if (zombie.getHealth() < 0) {
                     zombie.setHealth(0);
+                    if (zombie.getInventory().size() > 0) {
+                        player.addInventory(zombie.getInventory().get(0));
+                        zombie.getInventory().clear();
+                        GameApp.getInstance().updateZombie();
+                    }
+                }
                 GameApp.getInstance().updateUI();
             }
-            GameApp.getInstance().appendToCurActivity(zombie.getName() + " current Health is: " + zombie.getHealth());
         }
 
         if (player.getHealth() > 0 && zombie.getHealth() > 0) {
             GameApp.getInstance().appendToCurActivity(zombie.getName() + " attacks.....");
             player.loseHealth(zombieDamage);
-            GameApp.getInstance().appendToCurActivity(player.getName() + " sustained damage of: " + playerDamage);
-            GameApp.getInstance().appendToCurActivity(player.getName() + " current Health is: " + player.getHealth());
+            GameApp.getInstance().appendToCurActivity(player.getName() + " sustained damage of: " + zombieDamage);
         }
         if (player.getHealth() <= 0) {
             if (player.getHealth() < 0) {

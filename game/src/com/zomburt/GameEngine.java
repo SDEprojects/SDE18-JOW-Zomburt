@@ -32,13 +32,14 @@ public class GameEngine {
       currentScene = new Scene("parking lot");
       player = PlayerFactory.createPlayer(GameApp.getInstance().getModeInput());
       GameApp.getInstance().appendToCurActivity("What is your name?");
+      GameApp.getInstance().updateUI();
       GameApp.getInstance().appendToCurActivity("\n" + GameApp.getInstance().getInput() + ", ");
 
       while (win == false) {
         if (newScene) {
           GameApp.getInstance().appendToCurActivity(currentScene.getFlavorText());
           if (currentScene.getFeature().size() > 0 ) {
-            GameApp.getInstance().appendToCurActivity("Somehow inevitably, a shuffling shadow blocks your path.  The gruesome smell of entitlement thickens the air around you and the one thing all Divoc Zombies can still say changes from a mumble to screech as it sees you: \\n\\nYou can't make me wear a mask!\\n\\nThere's no time to rush past it. You are already in combat.  You best FIGHT!\n");
+            GameApp.getInstance().appendToCurActivity("Somehow inevitably, a shuffling shadow blocks your path.  The gruesome smell of entitlement thickens the air around you and the one thing all Divoc Zombies can still say changes from a mumble to screech as it sees you: \n\nYou can't make me wear a mask!\n\nThere's no time to rush past it. You are already in combat.  You best FIGHT!\n");
           }
 
           Thread.sleep(200);
@@ -108,15 +109,21 @@ public class GameEngine {
     } else if (commands.get(0).contains("hint")) {
       hint();
     } else if(commands.get(0).contains("check")) {
-      GameApp.getInstance().appendToCurActivity(player.getName() + "'s health is " + player.getHealth());
-      GameApp.getInstance().appendToCurActivity(player.getName() + "'s score is " + player.getScore());
+      for (Scene scene : gameUniverse.world.values()) {
+        if (scene.getFeature().size() > 0) {
+          GameApp.getInstance().appendToCurActivity(scene.getSceneName() + " :" + scene.getFeature().size() + " zombie(s)!\n");
+        }
+      }
+    }
+    else if (commands.get(0).contains("fight")) {
+      GameApp.getInstance().appendToCurActivity("There is no zombies approaching you, you better move now!\n");
     }
     else {
       GameApp.getInstance().appendToCurActivity(Arrays.toString(commands.toArray()));
     }
   }
 
-  public void itemHandler(String action, Weapon weapon) {
+  public static void itemHandler(String action, Weapon weapon) {
      String s = "[" + weapon.getName() + ", " + weapon.getDamage() + "]";
     if (action.equals("drop")) {
       if (player.getInventory().contains(weapon)) {
@@ -133,13 +140,12 @@ public class GameEngine {
       if (currentScene.getRoomLoot().contains(weapon)) {
         if (player.getInventory().size() < 3) {
           player.addInventory(weapon);
+          currentScene.removeRoomLoot(weapon);
+          GameApp.getInstance().appendToCurActivity(player.getName() + "'ve successfully picked up: " + s);
         } else {
           GameApp.getInstance().appendToCurActivity("You can only have maximum of 3 weapons! ");
         }
-        currentScene.removeRoomLoot(weapon);
-        GameApp.getInstance().appendToCurActivity(player.getName() + "'ve successfully picked up: " + s);
-        GameApp.getInstance().appendToCurActivity("HINT: type 'inv' to see your inventory");
-        GameApp.getInstance().appendToCurActivity("The room currently contains: " + currentScene.getRoomLoot());
+
       } else {
         GameApp.getInstance().appendToCurActivity("That item isn't here");
       }
@@ -164,12 +170,6 @@ public class GameEngine {
         "    -look/search-\n" +
         "    -quit\n");
 
-    for (Scene scene : gameUniverse.world.values()) {
-      if (scene.getFeature().size() > 0) {
-        GameApp.getInstance().appendToCurActivity(scene.getSceneName() + " :" + scene.getFeature().size() + " zombie(s)!\n");
-      }
-    }
-
   }
 
   public void move(String moveDir) throws Exception {
@@ -183,7 +183,7 @@ public class GameEngine {
       GameApp.getInstance().appendToCurActivity("There are still zombies somewhere out there. You need to go back and kill all the zombies to win!");
     }
     else if (sceneCheck.length() > 0) {
-      GameApp.getInstance().appendToCurActivity("You move to the " + sceneCheck +".");
+      GameApp.getInstance().appendToCurActivity("You move to the " + sceneCheck +".\n\n");
       currentScene = gameUniverse.getScene(sceneCheck);
       newScene = true;
     }
@@ -201,8 +201,9 @@ public class GameEngine {
     GameApp.getInstance().appendToCurActivity("Nearby rooms are: ");
     for (Object move : moves.values())
       if (move != "o") {
-        GameApp.getInstance().appendToCurActivity("    " + move);
+        GameApp.getInstance().appendToCurActivity("\n" + move);
       }
-    GameApp.getInstance().appendToCurActivity("\n");
+
   }
+
 }
