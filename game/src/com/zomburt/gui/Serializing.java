@@ -19,7 +19,7 @@ public class Serializing implements Serializable {
           //  currentMode = GameEngine.mode;
             currentPlayer = GameEngine.player;
             currentScene = GameEngine.currentScene;
-         //   out.writeObject(currentMode);
+         //   save.writeObject(currentMode);
             save.writeObject(currentPlayer);
             save.writeObject(currentScene);
             save.close();
@@ -34,7 +34,7 @@ public class Serializing implements Serializable {
         try {
             FileInputStream fileIn = new FileInputStream("./game/assets/save_game.ser");
             ObjectInputStream reload = new ObjectInputStream(fileIn);
-        //    currentMode = (Mode) in.readObject();
+        //    currentMode = (Mode) reload.readObject();
             currentPlayer = (Player) reload.readObject();
             currentScene = (com.zomburt.Scene) reload.readObject();
         //    GameEngine.mode = currentMode;
