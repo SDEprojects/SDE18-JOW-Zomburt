@@ -116,7 +116,7 @@ public class GameEngine {
       }
     }
     else if (commands.get(0).contains("fight")) {
-      GameApp.getInstance().appendToCurActivity("There is no zombies approaching you, you better move now!\n");
+      GameApp.getInstance().appendToCurActivity("There is no zombies approaching you, you better move now! Otherwise more zombies will approach you.\n");
     }
     else {
       GameApp.getInstance().appendToCurActivity(Arrays.toString(commands.toArray()));
