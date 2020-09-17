@@ -2,9 +2,10 @@ package com.zomburt.characters;
 
 import com.zomburt.combat.Weapon;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Player extends Characters{
+public class Player extends Characters implements Serializable {
     private int score;
 
     public Player(String name, int health, int score) {

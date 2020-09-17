@@ -3,9 +3,10 @@ package com.zomburt.characters;
 import com.zomburt.combat.Weapon;
 import com.zomburt.gui.GameApp;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Characters {
+public class Characters implements Serializable {
     private String name;
     private int health = 50;
     private ArrayList<Weapon> inventory = new ArrayList<Weapon>();

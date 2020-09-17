@@ -1,5 +1,6 @@
 package com.zomburt.gui;
 
+import com.sun.media.jfxmedia.MediaPlayer;
 import com.zomburt.GameEngine;
 import com.zomburt.MapFactory;
 import com.zomburt.Mode;
@@ -21,21 +22,21 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import javax.print.attribute.standard.Media;
+import java.io.*;
 
-public class GameApp extends Application {
+public class GameApp extends Application{
     private IntroController introController;
     private VideoController videoController;
     private GameController gameController;
     private MapController mapController;
     private String currentInput;
     private Mode modeInput = Mode.EASY;
-    private Player player;
     private GameEngine newGame;
     private static com.zomburt.gui.GameApp instance;
+    private static Player currentPlayer;
+    private static com.zomburt.Scene currentScene;
+   // Serializing s = new Serializing();
 
     public GameApp() {
         instance = this;
@@ -127,6 +128,11 @@ public class GameApp extends Application {
                                 }
                             });
 
+                            //quit the game when click quit option in menu bar
+                            gameController.getMenu().getMenus().get(0).getItems().get(11).setOnAction(e->{
+                                System.exit(0);
+                            });
+
                             // Show the scene containing the root layout.
                             Scene gameScene = new Scene(gameLayout);
                             Stage gameStage = new Stage();
@@ -137,6 +143,20 @@ public class GameApp extends Application {
                             gameStage.show();
                             // start the background game thread
                             runGameThread();
+
+                            //save game when click save option in menu bar
+                            gameController.getMenu().getMenus().get(0).getItems().get(5).setOnAction(e->{
+                                Serializing s = new Serializing();
+                                s.saveGame();
+                            });
+
+                            //reload game when click resume option in menu bar
+                            gameController.getMenu().getMenus().get(0).getItems().get(7).setOnAction(e->{
+                                Serializing s = new Serializing();
+                                s.reloadGame();
+                            });
+
+
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -235,7 +255,6 @@ public class GameApp extends Application {
                         }
                     }
                 });
-
     }
 
     // update game status LOST
@@ -246,7 +265,6 @@ public class GameApp extends Application {
                 @Override
                 public void run() {
                     gameController.getYouLose().setVisible(true);
-
                 }
             });
     }
@@ -261,7 +279,6 @@ public class GameApp extends Application {
                     gameController.getYouLose().clear();
                     gameController.getYouLose().setText("Good Job!! Mission Completed!");
                     gameController.getYouLose().setVisible(true);
-
                 }
             });
     }
@@ -341,6 +358,8 @@ public class GameApp extends Application {
                     }
                 });
     }
+
+
 
     public GameController getGameController() {
         return gameController;

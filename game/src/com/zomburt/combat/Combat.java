@@ -62,7 +62,6 @@ public class Combat {
             if (!isValidWeapon) {
                 GameApp.getInstance().appendToCurActivity("Invalid command! Try again!");
             }
-
         }
         else {
             GameApp.getInstance().appendToCurActivity("Invalid command! There is a <zombie> here and you have to fight!");
@@ -98,7 +97,6 @@ public class Combat {
                 GameApp.getInstance().updateUI();
             }
         }
-
         if (player.getHealth() > 0 && zombie.getHealth() > 0) {
             GameApp.getInstance().appendToCurActivity(zombie.getName() + " attacks.....");
             player.loseHealth(zombieDamage);
@@ -115,10 +113,6 @@ public class Combat {
         GameApp.getInstance().updateUI();
     }
 
-//  public void runaway(){
-//
-//  }
-
     public static void quit() throws FileNotFoundException, InterruptedException {
         GameStatus loser = new GameStatus();
         loser.lose();
@@ -132,6 +126,4 @@ public class Combat {
 //            "run away \n" +
                 "-quit-");
     }
-
-
 }
