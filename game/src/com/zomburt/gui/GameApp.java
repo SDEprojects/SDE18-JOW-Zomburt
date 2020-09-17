@@ -259,7 +259,7 @@ public class GameApp extends Application {
                 @Override
                 public void run() {
                     gameController.getYouLose().clear();
-                    gameController.getYouLose().setText("Mission Completed! YOU Successfully rescued your family! ");
+                    gameController.getYouLose().setText("Good Job!! Mission Completed!");
                     gameController.getYouLose().setVisible(true);
 
                 }
