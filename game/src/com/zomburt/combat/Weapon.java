@@ -5,7 +5,7 @@ public enum Weapon {
     HOOAh_BAR("Hooah! bar", 10),
     Gas("Gas", 0),
     LIGHTER("lighter", 0),
-    GAS_LIGHTER("Gas and Lighter", 100),
+    GAS_LIGHTER("Gas and Lighter", 60),
     M16("M16", 20),
     HAND_GRENADE("Hand Grenade", 40),
     AMMO("Ammo", 0),

@@ -1,6 +1,7 @@
 package com.zomburt.characters;
 
 import com.zomburt.combat.Weapon;
+import com.zomburt.gui.GameApp;
 
 import java.util.ArrayList;
 
@@ -54,7 +55,12 @@ public class Characters {
     public void setInventory(ArrayList<Weapon> inventory) {this.inventory = inventory;}
 
     public void addInventory(Weapon item) {
-        this.inventory.add(item);
+        if (this.inventory.size() < 3 ) {
+            this.inventory.add(item);
+        }
+        else {
+            GameApp.getInstance().appendToCurActivity("You can only add maximum of 3 weapon!\n");
+        }
     }
 
     public void removeInventory(Weapon item) {
