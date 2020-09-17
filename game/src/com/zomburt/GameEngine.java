@@ -6,7 +6,6 @@ import com.zomburt.combat.Weapon;
 import com.zomburt.gui.GameApp;
 import com.zomburt.utility.GameStatus;
 import com.zomburt.utility.Parser;
-import jdk.management.resource.internal.inst.ThreadRMHooks;
 import org.json.simple.JSONObject;
 
 import java.io.*;
@@ -14,7 +13,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 public class GameEngine implements Serializable{
@@ -38,6 +36,7 @@ public class GameEngine implements Serializable{
 
       mode = GameApp.getInstance().getModeInput();
       player = PlayerFactory.createPlayer(mode);
+      GameApp.getInstance().updateUI();
       GameApp.getInstance().appendToCurActivity("What is your name?");
       realName = GameApp.getInstance().getInput();
       GameApp.getInstance().appendToCurActivity("\n" + realName + ", ");
@@ -121,7 +120,7 @@ public class GameEngine implements Serializable{
       GameApp.getInstance().appendToCurActivity("The current game mode: " + GameApp.getInstance().getModeInput());
     }
     else if (commands.get(0).contains("fight")) {
-        GameApp.getInstance().appendToCurActivity("There is no zombies approaching you, you better move now!\n");
+      GameApp.getInstance().appendToCurActivity("There is no zombies approaching you, you better move now! Otherwise more zombies will approach you.\n");
     }
     else {
       GameApp.getInstance().appendToCurActivity(Arrays.toString(commands.toArray()));
@@ -135,7 +134,6 @@ public class GameEngine implements Serializable{
         player.removeInventory(weapon);
         currentScene.addRoomLoot(weapon);
         GameApp.getInstance().appendToCurActivity(player.getName() + "'ve dropped " + s);
-        GameApp.getInstance().appendToCurActivity("The room currently contains: " + currentScene.getRoomLoot());
       } else {
         GameApp.getInstance().appendToCurActivity(player.getName() + " doesn't have that item");
       }

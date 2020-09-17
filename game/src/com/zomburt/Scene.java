@@ -2,7 +2,6 @@ package com.zomburt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zomburt.characters.Zombie;
-import com.zomburt.characters.ZombieTypes;
 import com.zomburt.combat.Weapon;
 import com.zomburt.gui.GameApp;
 import org.json.simple.JSONArray;
@@ -129,11 +128,7 @@ public class Scene implements Serializable {
     }
 
     public void addRoomLoot(Weapon lootItem) {
-        if (getRoomLoot().contains(lootItem)) {
-            GameApp.getInstance().appendToCurActivity("Item already in that room");
-        } else {
-            getRoomLoot().add(lootItem);
-        }
+        getRoomLoot().add(lootItem);
     }
 
     public void removeRoomLoot(Weapon lootItem) {
