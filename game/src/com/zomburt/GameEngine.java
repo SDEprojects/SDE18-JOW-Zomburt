@@ -9,14 +9,15 @@ import com.zomburt.utility.Parser;
 import jdk.management.resource.internal.inst.ThreadRMHooks;
 import org.json.simple.JSONObject;
 
-import java.io.FileNotFoundException;
+import java.io.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
-public class GameEngine {
+public class GameEngine implements Serializable{
   public static Player player;
   public static Zombie zombie;
   GameStatus gameStatus = new GameStatus();
@@ -27,6 +28,8 @@ public class GameEngine {
   ArrayList<ZombieTypes> noZombies = new ArrayList<>();
   Mode level = Mode.EASY;
   Random rand = new Random();
+  public static String realName;
+//  public static Serializing s = new Serializing();
 
   public GameEngine() throws Exception {
   }
@@ -38,7 +41,8 @@ public class GameEngine {
 
       player = PlayerFactory.createPlayer(GameApp.getInstance().getModeInput());
       GameApp.getInstance().appendToCurActivity("What is your name?");
-      GameApp.getInstance().appendToCurActivity("\n" + GameApp.getInstance().getInput() + ", ");
+      realName = GameApp.getInstance().getInput();
+      GameApp.getInstance().appendToCurActivity("\n" + realName + ", ");
 
       String zombieName = null;
       while (win == false) {
@@ -47,12 +51,12 @@ public class GameEngine {
           Thread.sleep(200);
         }
         if(currentScene.getFeature().size() > 0 ) {
-          zombieName = currentScene.getFeature().get(0).getName();
-          if (Arrays.stream(ZombieTypes.values()).map(e -> e.getName()).anyMatch(zombieName::equals)) {
-            zombie = ZombieFactory.createZombie(GameApp.getInstance().getModeInput());
-    //        zombie = currentScene.getFeature().get(ThreadLocalRandom.current().nextInt(currentScene.getFeature().size()));
+//          zombieName = currentScene.getFeature().get(0).getName();
+//          if (Arrays.stream(ZombieTypes.values()).map(e -> e.getName()).anyMatch(zombieName::equals)) {
+//            zombie = ZombieFactory.createZombie(GameApp.getInstance().getModeInput());
+            zombie = currentScene.getFeature().get(ThreadLocalRandom.current().nextInt(currentScene.getFeature().size()));
             Combat.combat(player, zombie);
-          }
+
           GameApp.getInstance().updateZombie();
         }
         GameApp.getInstance().appendToCurActivity(" > ");
@@ -111,6 +115,8 @@ public class GameEngine {
     } else if(commands.get(0).contains("check")) {
       GameApp.getInstance().appendToCurActivity(player.getName() + "'s health is " + player.getHealth());
       GameApp.getInstance().appendToCurActivity(player.getName() + "'s score is " + player.getScore());
+    } else if(commands.get(0).contains("mode")) {
+      GameApp.getInstance().appendToCurActivity("The current game mode: " + GameApp.getInstance().getModeInput());
     }
     else {
       GameApp.getInstance().appendToCurActivity(Arrays.toString(commands.toArray()));
@@ -163,6 +169,7 @@ public class GameEngine {
         "    -drop <item>-\n" +
         "    -look/search-\n" +
         "    -check <player health/score>- \n" +
+        "    -mode <show current game mode>- \n" +
         "    -quit\n");
   }
 
@@ -199,4 +206,59 @@ public class GameEngine {
       }
     GameApp.getInstance().appendToCurActivity("\n");
   }
+
+  public static void recordGameResults(){
+    PrintWriter writer = null;
+    try {
+      writer = new PrintWriter(new FileWriter("game/assets/game_results.txt", true));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+    LocalDateTime time = LocalDateTime.now();
+    writer.append("<Final score for this game @" + time + ">" + "\n");
+    writer.append(realName + ": " + GameApp.getInstance().getModeInput() + " Mode, " + player.getScore() + " points \n");
+    writer.println();
+
+    writer.close();
+  }
+
+//  public static class Serializing implements Serializable {
+//    public void saveGame(){
+//      try {
+//        FileOutputStream fileOut = new FileOutputStream("./game/assets/save_game.ser");
+//        ObjectOutputStream out = new ObjectOutputStream(fileOut);
+//        // currentPlayer = GameEngine.player;
+//     //   currentScene = GameEngine.currentScene;
+//        //  out.writeObject(currentPlayer);
+//        out.writeObject(currentScene);
+//        out.close();
+//        fileOut.close();
+//        System.out.println("Serialized data is saved in ./game/assets/save_game.ser");
+//      } catch (IOException e1) {
+//        e1.printStackTrace();
+//      }
+//    }
+//
+//    public void reloadGame() {
+//      try {
+//        FileInputStream fileIn = new FileInputStream("./game/assets/save_game.ser");
+//        ObjectInputStream in = new ObjectInputStream(fileIn);
+//        //  currentPlayer = (Player) in.readObject();
+//        currentScene = (com.zomburt.Scene) in.readObject();
+//        //   GameEngine.player = currentPlayer;
+//     //   GameEngine.currentScene = currentScene;
+//        in.close();
+//        fileIn.close();
+//      } catch (IOException i) {
+//        i.printStackTrace();
+//        return;
+//      } catch (ClassNotFoundException e2) {
+//        System.out.println("Player class not found");
+//        e2.printStackTrace();
+//        return;
+//      }
+//    }
+//  }
+
 }
