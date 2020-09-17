@@ -128,11 +128,7 @@ public class Scene {
     }
 
     public void addRoomLoot(Weapon lootItem) {
-        if (getRoomLoot().contains(lootItem)) {
-            GameApp.getInstance().appendToCurActivity("Item already in that room");
-        } else {
-            getRoomLoot().add(lootItem);
-        }
+        getRoomLoot().add(lootItem);
     }
 
     public void removeRoomLoot(Weapon lootItem) {
