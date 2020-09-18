@@ -1,6 +1,7 @@
 package com.zomburt.utility;
 
 import com.zomburt.GameEngine;
+import com.zomburt.combat.Sound;
 import com.zomburt.gui.GameApp;
 import javafx.scene.image.Image;
 
@@ -26,6 +27,7 @@ public class GameStatus {
     GameApp.getInstance().getGameController().getEnter().setDisable(true);
     GameApp.getInstance().updateGameStatusWON();
     GameEngine.recordGameResults();
+    Sound.introSound();
   }
 
   public void lose() throws FileNotFoundException, InterruptedException {
@@ -35,6 +37,7 @@ public class GameStatus {
     GameApp.getInstance().getGameController().getEnter().setDisable(true);
     GameApp.getInstance().updateGameStatusLost();
     GameEngine.recordGameResults();
+    Sound.introSound();
   }
 
   }

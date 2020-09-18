@@ -4,36 +4,32 @@ import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
 
-public class Sound implements Runnable{
+public class Sound {
 
-    @Override
-    public void run() {
-        File localFile = new File("./game/assets/test.wav");
-
+    public static void fightSound() {
+        File Clap = new File("./game/resource/bellwav.wav");
         try {
-            AudioInputStream mySoundFile = AudioSystem.getAudioInputStream(localFile);
-            Clip mySound = AudioSystem.getClip();
-            mySound.open(mySoundFile);
-            mySound.start();
-            Thread.sleep(6000);
-        } catch (UnsupportedAudioFileException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (LineUnavailableException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            Clip clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(Clap));
+            clip.start();
+
+            Thread.sleep(clip.getMicrosecondLength() / 1000);
+        } catch (Exception e) {
+
         }
     }
 
-    private void playSound() {
-        Thread soundThread = new Thread(new Sound());
-        soundThread.start();
-    }
+    public static void introSound() {
+        File audio = new File("./game/assets/levelclearer.wav");
+        try {
+            Clip clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(audio));
+            clip.start();
 
-    public static void main(String[] args) {
-        Sound sound = new Sound();
-        sound.playSound();
+            Thread.sleep(clip.getMicrosecondLength() / 1000);
+        } catch (Exception e) {
+
+        }
     }
 }
+

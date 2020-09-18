@@ -2,11 +2,11 @@ package com.zomburt;
 
 import com.zomburt.characters.*;
 import com.zomburt.combat.Combat;
+import com.zomburt.combat.Sound;
 import com.zomburt.combat.Weapon;
 import com.zomburt.gui.GameApp;
 import com.zomburt.utility.GameStatus;
 import com.zomburt.utility.Parser;
-import jdk.management.resource.internal.inst.ThreadRMHooks;
 import org.json.simple.JSONObject;
 
 import java.io.*;
@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 public class GameEngine implements Serializable{
@@ -34,6 +33,7 @@ public class GameEngine implements Serializable{
 
   public void run() throws Exception {
       gameStatus.start();
+      Sound.introSound();
       currentScene = new Scene("parking lot");
 
       mode = GameApp.getInstance().getModeInput();

@@ -69,6 +69,7 @@ public class Combat {
     }
 
     public static void fight(Player player, Zombie zombie) throws FileNotFoundException, InterruptedException {
+        Sound.fightSound();
         int playerDamage = 20;
         int zombieDamage = zombie.getHealth();
         if (zombie.getInventory().size() > 0) {
