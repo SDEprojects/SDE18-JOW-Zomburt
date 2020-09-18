@@ -1,12 +1,12 @@
 package com.zomburt.gui;
 
-import com.sun.media.jfxmedia.MediaPlayer;
 import com.zomburt.GameEngine;
 import com.zomburt.MapFactory;
 import com.zomburt.Mode;
 import com.zomburt.characters.Player;
 import com.zomburt.characters.Zombie;
 import com.zomburt.combat.Weapon;
+import com.zomburt.utility.Serializing;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -22,7 +22,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import javax.print.attribute.standard.Media;
 import java.io.*;
 
 public class GameApp extends Application{
@@ -155,7 +154,6 @@ public class GameApp extends Application{
                                 Serializing s = new Serializing();
                                 s.reloadGame();
                             });
-
 
                         } catch (IOException e) {
                             e.printStackTrace();

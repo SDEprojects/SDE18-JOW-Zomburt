@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class GameStatus {
 
   public void start() throws FileNotFoundException, InterruptedException {
+
     File startFile = new File("../Zomburt/game/assets/intro.txt");
     Scanner scan = new Scanner(startFile);
     while (scan.hasNextLine()) {
@@ -26,6 +27,7 @@ public class GameStatus {
     GameApp.getInstance().getGameController().getEnter().setDisable(true);
     GameApp.getInstance().updateGameStatusWON();
     GameEngine.recordGameResults();
+    Sound.playSoundAtEnd();
   }
 
   public void lose() throws FileNotFoundException, InterruptedException {
@@ -35,6 +37,7 @@ public class GameStatus {
     GameApp.getInstance().getGameController().getEnter().setDisable(true);
     GameApp.getInstance().updateGameStatusLost();
     GameEngine.recordGameResults();
+    Sound.playSoundAtEnd();
   }
 
   }

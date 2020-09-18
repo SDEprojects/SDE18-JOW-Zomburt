@@ -1,4 +1,4 @@
-package com.zomburt.combat;
+package com.zomburt.utility;
 
 import javax.sound.sampled.*;
 import java.io.File;
@@ -8,7 +8,8 @@ public class Sound implements Runnable{
 
     @Override
     public void run() {
-        File localFile = new File("./game/assets/test.wav");
+        File localFile = new File("./game/assets/soundeffect.wav");
+     //   File localFile = new File("./game/assets/levelclearer.wav");
 
         try {
             AudioInputStream mySoundFile = AudioSystem.getAudioInputStream(localFile);
@@ -27,13 +28,13 @@ public class Sound implements Runnable{
         }
     }
 
-    private void playSound() {
+    public static void playSoundAtEnd() {
         Thread soundThread = new Thread(new Sound());
         soundThread.start();
     }
 
     public static void main(String[] args) {
-        Sound sound = new Sound();
-        sound.playSound();
+        Sound audio = new Sound();
+        audio.playSoundAtEnd();
     }
 }

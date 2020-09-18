@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class Combat {
 
     public static void combat(Player player, Zombie zombie) throws FileNotFoundException, InterruptedException, Exception {
+
         int score = player.getScore();
         GameApp.getInstance().updateUI();
         int zombieValue = zombie.getHealth();

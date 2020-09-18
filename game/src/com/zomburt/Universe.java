@@ -4,9 +4,10 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.FileReader;
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Universe {
+public class Universe implements Serializable {
     public static HashMap<String, Scene> world = new HashMap<>();
 
     public Universe() throws Exception {

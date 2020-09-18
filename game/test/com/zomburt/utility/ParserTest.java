@@ -14,7 +14,7 @@ public class ParserTest {
 
         String expected = "move east";
         ArrayList<String> list = new ArrayList<>();
-        String actual = Parser.parse(input).get(0);
+        String actual = Parser.parse(input).get(0).toString();
         System.out.println(actual);
         assertEquals(null, actual);
 

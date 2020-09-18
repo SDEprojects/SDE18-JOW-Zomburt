@@ -21,11 +21,11 @@ public class GameEngine implements Serializable{
   public static Player player;
   public static Zombie zombie;
   public static Mode mode;
+  public static Universe gameUniverse;
   GameStatus gameStatus = new GameStatus();
   public static Scene currentScene;
   Boolean newScene = true;
   Boolean win = false;
-  Universe gameUniverse = new Universe();
   Random rand = new Random();
   public static String realName;
 
@@ -33,6 +33,7 @@ public class GameEngine implements Serializable{
   }
 
   public void run() throws Exception {
+      gameUniverse = new Universe();
       gameStatus.start();
       currentScene = new Scene("parking lot");
 
