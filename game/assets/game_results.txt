@@ -46,3 +46,6 @@ jane: HARD Mode, 0 points, lost the game
 <Final score for this game @2020-09-17T18:11:54.765223>
 move east: HARD Mode, 0 points, lost the game 
 
+<Final score for this game @2020-09-18T07:35:08.908745>
+jan: HARD Mode, 60 points, lost the game 
+

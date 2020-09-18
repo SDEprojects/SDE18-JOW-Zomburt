@@ -38,30 +38,34 @@ public class GameEngine implements Serializable {
   public CheckPoint checkPoint = null;
   public CheckPoint targetCheckPoint = null;
   public boolean restoreInProgress = false;
+  public boolean nameSet = false;
 
   public GameEngine() throws Exception {
   }
 
   public void run() throws Exception {
-      if (!restoreInProgress) {
-        gameStatus.start();
-        currentScene = new Scene("parking lot");
-
-        mode = GameApp.getInstance().getModeInput();
-        player = PlayerFactory.createPlayer(mode);
-        GameApp.getInstance().updateUI();
-        GameApp.getInstance().appendToCurActivity("What is your name?");
-      }
-      // sometimes we are waiting on this, then load the game
-      checkPoint = CheckPoint.PendingNameInput;
-      checkRestoreCompletion();
-      realName = GameApp.getInstance().getInput();
-      if (!restoreInProgress) {
-        GameApp.getInstance().appendToCurActivity("\n" + realName + ", ");
-      }
-
       while (win == false) {
-        if (!restoreInProgress) {
+        if (!nameSet) {
+          if (!restoreInProgress) {
+            gameStatus.start();
+            currentScene = new Scene("parking lot");
+
+            mode = GameApp.getInstance().getModeInput();
+            player = PlayerFactory.createPlayer(mode);
+            GameApp.getInstance().updateUI();
+            GameApp.getInstance().appendToCurActivity("What is your name?");
+          }
+          // sometimes we are waiting on this, then load the game
+          checkPoint = CheckPoint.PendingNameInput;
+          checkRestoreCompletion();
+          realName = GameApp.getInstance().getInput();
+          if (!restoreInProgress) {
+            GameApp.getInstance().appendToCurActivity("\n" + realName + ", ");
+          }
+          nameSet = true;
+        }
+
+        if (!restoreInProgress && nameSet) {
           if (newScene) {
             GameApp.getInstance().appendToCurActivity(currentScene.getFlavorText());
             if (currentScene.getFeature().size() > 0) {
@@ -71,7 +75,7 @@ public class GameEngine implements Serializable {
           }
         }
 
-        if(currentScene.getFeature().size() > 0){
+        if(currentScene.getFeature().size() > 0 && nameSet){
           if (!restoreInProgress) {
             zombie = currentScene.getFeature().get(rand.nextInt(currentScene.getFeature().size()));
           }
@@ -81,6 +85,9 @@ public class GameEngine implements Serializable {
             //before fighting
             GameApp.getInstance().updateZombie();
             Combat.combat(player, zombie);
+            if (restoreInProgress && !nameSet) {
+              continue;
+            }
             //after fighting
             GameApp.getInstance().updateZombie();
           }
@@ -90,7 +97,7 @@ public class GameEngine implements Serializable {
         checkPoint = CheckPoint.PendingActionInput;
         checkRestoreCompletion();
         String input = GameApp.getInstance().getInput();
-        if (restoreInProgress) {
+        if (restoreInProgress || !nameSet) {
           continue;
         }
         if (input.isEmpty()) {
@@ -272,6 +279,7 @@ public class GameEngine implements Serializable {
     gameState.realName = realName;
     gameState.checkPoint = checkPoint;
     gameState.activity = GameApp.getInstance().getGameController().getOutput().getText();
+    gameState.nameSet = nameSet;
     return gameState;
   }
 
@@ -286,7 +294,10 @@ public class GameEngine implements Serializable {
     realName = gameState.realName;
     targetCheckPoint = gameState.checkPoint;
     GameApp.getInstance().getGameController().getOutput().setText(gameState.activity);
+    nameSet = gameState.nameSet;
 
+    GameApp.getInstance().updateZombie();
+    GameApp.getInstance().updateUI();
     if (GameApp.getInstance().isPendingInput()) {
       if (targetCheckPoint != checkPoint) {
         restoreInProgress = true;

@@ -160,39 +160,11 @@
          </effect></TextArea>
       <MenuBar fx:id="menu" GridPane.columnSpan="14">
           <menus>
-              <Menu fx:id="file" mnemonicParsing="false" text="File">
+              <Menu fx:id="file" mnemonicParsing="false" text="Options">
                   <items>
-                      <MenuItem mnemonicParsing="false" text="New" />
-                      <MenuItem mnemonicParsing="false" text="Open…" />
-                      <Menu mnemonicParsing="false" text="Open Recent" />
-                      <SeparatorMenuItem mnemonicParsing="false" />
-                      <MenuItem fx:id="close" mnemonicParsing="false" text="Close" />
                       <MenuItem fx:id="save" mnemonicParsing="false" text="Save" />
-                      <MenuItem fx:id="saveAs" mnemonicParsing="false" text="Save As…" />
-                      <MenuItem fx:id="resume" mnemonicParsing="false" text="Reload…" />
-                      <SeparatorMenuItem mnemonicParsing="false" />
-                      <MenuItem mnemonicParsing="false" text="Preferences…" />
-                      <SeparatorMenuItem mnemonicParsing="false" />
+                      <MenuItem fx:id="resume" mnemonicParsing="false" text="Load" />
                       <MenuItem fx:id="quit" mnemonicParsing="false" text="Quit" />
-                  </items>
-              </Menu>
-              <Menu fx:id="edit" mnemonicParsing="false" text="Edit">
-                  <items>
-                      <MenuItem mnemonicParsing="false" text="Undo" />
-                      <MenuItem mnemonicParsing="false" text="Redo" />
-                      <SeparatorMenuItem mnemonicParsing="false" />
-                      <MenuItem mnemonicParsing="false" text="Cut" />
-                      <MenuItem mnemonicParsing="false" text="Copy" />
-                      <MenuItem mnemonicParsing="false" text="Paste" />
-                      <MenuItem mnemonicParsing="false" text="Delete" />
-                      <SeparatorMenuItem mnemonicParsing="false" />
-                      <MenuItem mnemonicParsing="false" text="Select All" />
-                      <MenuItem mnemonicParsing="false" text="Unselect All" />
-                  </items>
-              </Menu>
-              <Menu fx:id="help" mnemonicParsing="false" text="Help">
-                  <items>
-                      <MenuItem fx:id="helpMenu" mnemonicParsing="false" text="Help_Menu" />
                   </items>
               </Menu>
           </menus>

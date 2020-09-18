@@ -135,7 +135,7 @@ public class GameApp extends Application{
                             });
 
                             //quit the game when click quit option in menu bar
-                            gameController.getMenu().getMenus().get(0).getItems().get(11).setOnAction(e->{
+                            gameController.getMenu().getMenus().get(0).getItems().get(2).setOnAction(e->{
                                 System.exit(0);
                             });
 
@@ -151,16 +151,15 @@ public class GameApp extends Application{
                             runGameThread();
 
                             //save game when click save option in menu bar
-                            gameController.getMenu().getMenus().get(0).getItems().get(5).setOnAction(e->{
+                            gameController.getMenu().getMenus().get(0).getItems().get(0).setOnAction(e->{
                                  Serializing s = new Serializing();
                                  s.saveGameSate(newGame.getGameState());
                             });
 
                             //reload game when click resume option in menu bar
-                            gameController.getMenu().getMenus().get(0).getItems().get(7).setOnAction(e->{
+                            gameController.getMenu().getMenus().get(0).getItems().get(1).setOnAction(e->{
                                  Serializing s = new Serializing();
                                  newGame.restoreGameState(s.loadGameState());
-                                 updateUI();
                             });
 
                         } catch (IOException e) {
@@ -297,16 +296,23 @@ public class GameApp extends Application{
             new Runnable() {
                 @Override
                 public void run() {
-                    if (newGame.zombie.getHealth() > 0) {
+                    if (newGame.zombie != null && newGame.zombie.getHealth() > 0) {
                         gameController.getFightingZombie().setText(newGame.zombie.getName());
                     } else {
                         gameController.getFightingZombie().setText("None");
                     }
-                    gameController.getZombieHealth().setText(Integer.toString(newGame.zombie.getHealth()));
-                    if (newGame.zombie.getInventory().size() > 0 && newGame.zombie.getHealth() > 0) {
+
+                    if (newGame.zombie != null) {
+                        gameController.getZombieHealth().setText(Integer.toString(newGame.zombie.getHealth()));
+                    } else {
+                        gameController.getZombieHealth().setText("");
+                    }
+
+                    if (newGame.zombie != null && newGame.zombie.getInventory().size() > 0 && newGame.zombie.getHealth() > 0) {
                         gameController.getZombieWeapon().setText(newGame.zombie.getInventory().get(0).getName() +"(" + newGame.zombie.getInventory().get(0).getDamage() + ")");
                     }
-                    if (newGame.zombie.getInventory().size() == 0) {
+
+                    if (newGame.zombie == null || newGame.zombie.getInventory().size() == 0) {
                         gameController.getZombieWeapon().setText("None");
                     }
                 }

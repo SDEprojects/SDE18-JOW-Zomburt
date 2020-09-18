@@ -19,4 +19,5 @@ public class GameState implements Serializable {
     public String realName;
     public CheckPoint checkPoint;
     public String activity;
+    public boolean nameSet;
 }
