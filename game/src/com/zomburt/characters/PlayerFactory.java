@@ -21,7 +21,6 @@ public class PlayerFactory {
                 player = new Player("<Master Hunter>", 100, 0);
                 break;
         }
-
         return player;
     }
 }

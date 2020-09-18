@@ -12,9 +12,6 @@ import static org.junit.Assert.*;
 
 public class ZombieFactoryTest {
 
-    ArrayList<Weapon> zombieInventory = new ArrayList<>();
-
-
     @Test
     public void testCreateZombie_EASY_positive() {
         Zombie zombie1 = ZombieFactory.createZombie(Mode.EASY);
