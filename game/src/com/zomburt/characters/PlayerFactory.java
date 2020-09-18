@@ -15,10 +15,10 @@ public class PlayerFactory {
         ArrayList<Weapon> inventory = new ArrayList<Weapon>(Arrays.asList(randomWeapon));
         switch(mode) {
             case EASY:
-                player = new Player("<Hunter>", 100, 0, inventory);
+                player = new Player("<Hunter>", 200, 0, inventory);
                 break;
             case HARD:
-                player = new Player("<Master Hunter>", 80, 0);
+                player = new Player("<Master Hunter>", 100, 0);
                 break;
         }
         return player;

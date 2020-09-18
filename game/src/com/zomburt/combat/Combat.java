@@ -7,6 +7,7 @@ import com.zomburt.characters.Zombie;
 import com.zomburt.gui.GameApp;
 import com.zomburt.utility.GameStatus;
 import com.zomburt.utility.Parser;
+import com.zomburt.utility.Sound;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 public class Combat {
 
     public static void combat(Player player, Zombie zombie) throws FileNotFoundException, InterruptedException, Exception {
+
         int score = player.getScore();
         GameApp.getInstance().updateUI();
         int zombieValue = zombie.getHealth();
@@ -69,6 +71,7 @@ public class Combat {
     }
 
     public static void fight(Player player, Zombie zombie) throws FileNotFoundException, InterruptedException {
+        Sound.playSound("combat");
         int playerDamage = 20;
         int zombieDamage = zombie.getHealth();
         if (zombie.getInventory().size() > 0) {

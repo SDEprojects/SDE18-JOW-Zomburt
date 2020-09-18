@@ -21,20 +21,22 @@ public class GameStatus {
 
   public void win() throws FileNotFoundException, InterruptedException {
     GameApp.getInstance().getGameController().getVictory().setVisible(true);
-    GameApp.getInstance().getGameController().getVictory().setImage(new Image("file:./game/resource/win.jpg"));
+    GameApp.getInstance().getGameController().getVictory().setImage(new Image("file:./game/assets/win.jpg"));
     GameApp.getInstance().getGameController().getInput().setDisable(true);
     GameApp.getInstance().getGameController().getEnter().setDisable(true);
     GameApp.getInstance().updateGameStatusWON();
     GameEngine.recordGameResults();
+    Sound.playSound("win");
   }
 
   public void lose() throws FileNotFoundException, InterruptedException {
     GameApp.getInstance().getGameController().getVictory().setVisible(true);
-    GameApp.getInstance().getGameController().getVictory().setImage(new Image("file:./game/resource/lose.jpg"));
+    GameApp.getInstance().getGameController().getVictory().setImage(new Image("file:./game/assets/lose.jpg"));
     GameApp.getInstance().getGameController().getInput().setDisable(true);
     GameApp.getInstance().getGameController().getEnter().setDisable(true);
     GameApp.getInstance().updateGameStatusLost();
     GameEngine.recordGameResults();
+    Sound.playSound("lose");
   }
 
   }

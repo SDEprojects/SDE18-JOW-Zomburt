@@ -23,4 +23,11 @@ public class Player extends Characters implements Serializable {
     public void setScore(int score) {
         this.score = score;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Player{" +
+                "score=" + score +
+                '}';
+    }
 }

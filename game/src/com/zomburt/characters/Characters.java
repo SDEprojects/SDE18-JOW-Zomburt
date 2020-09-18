@@ -73,7 +73,7 @@ public class Characters implements Serializable {
         return "com.zomburt.characters.Character{" +
                 "name='" + name + '\'' +
                 ", health=" + health +
-                ", inventory=" + inventory +
+             //   ", inventory=" + inventory +
                 '}';
     }
 }

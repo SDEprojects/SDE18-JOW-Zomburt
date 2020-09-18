@@ -1,10 +1,14 @@
 package com.zomburt.gui;
 
+import com.sun.media.jfxmedia.MediaPlayer;
 import com.zomburt.GameEngine;
 import com.zomburt.MapFactory;
 import com.zomburt.Mode;
+import com.zomburt.characters.Player;
 import com.zomburt.characters.Zombie;
 import com.zomburt.combat.Weapon;
+import com.zomburt.utility.Serializing;
+import com.zomburt.utility.Sound;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -20,10 +24,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class GameApp extends Application{
     private IntroController introController;
@@ -34,7 +35,8 @@ public class GameApp extends Application{
     private Mode modeInput = Mode.EASY;
     private GameEngine newGame;
     private static com.zomburt.gui.GameApp instance;
-
+    private static Player currentPlayer;
+    private static com.zomburt.Scene currentScene;
    // Serializing s = new Serializing();
 
     public GameApp() {
@@ -63,6 +65,8 @@ public class GameApp extends Application{
         Scene introScene = new Scene(introLayout);
         primaryStage.setScene(introScene);
         primaryStage.show();
+
+        Sound.playSound("intro");
 
         // config the radio button
         introController.getEasyMode().selectedProperty().addListener(new ChangeListener<Boolean>() {
@@ -154,7 +158,6 @@ public class GameApp extends Application{
                                 Serializing s = new Serializing();
                                 s.reloadGame();
                             });
-
 
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -270,7 +273,7 @@ public class GameApp extends Application{
 
     // update game status WIN
     public void updateGameStatusWON() {
-        // update total number of remaing zombies
+        // update total number of remaining zombies
         Platform.runLater(
             new Runnable() {
                 @Override
