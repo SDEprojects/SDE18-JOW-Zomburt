@@ -18,13 +18,17 @@ import java.util.Random;
 import java.util.Set;
 
 public class MapFactory {
-    private static Mode mode;
-    private static FileWriter file;
+    private Mode mode;
+    private FileWriter file;
+    private int totalNumZombies;
     private static MapFactory generateMap = null;
-    public static int totalNumZombies;
 
     public MapFactory(Mode mode){
         this.mode = mode;
+    }
+
+    public int getTotalNumZombies() {
+        return totalNumZombies;
     }
 
     public static MapFactory getInstance() {

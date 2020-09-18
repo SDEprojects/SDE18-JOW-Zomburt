@@ -1,6 +1,8 @@
 package com.zomburt;
 
-public enum Mode {
+import java.io.Serializable;
+
+public enum Mode implements Serializable {
     EASY,
     MEDIAN,
     HARD;

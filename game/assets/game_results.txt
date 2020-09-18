@@ -31,6 +31,25 @@ wei: HARD Mode, 0 points, lost the game
 <Final score for this game @2020-09-17T11:51:07.352>
 wei: HARD Mode, 24 points, lost the game 
 
+<<<<<<< HEAD
+<Final score for this game @2020-09-17T16:06:15.912260>
+Jane: EASY Mode, 49 points, won the game 
+
+<Final score for this game @2020-09-17T17:09:33.550526>
+jane: HARD Mode, 0 points, lost the game 
+
+<Final score for this game @2020-09-17T17:11:59.883716>
+jane: HARD Mode, 0 points, lost the game 
+
+<Final score for this game @2020-09-17T17:17:18.385737>
+jane: HARD Mode, 0 points, lost the game 
+
+<Final score for this game @2020-09-17T18:11:54.765223>
+move east: HARD Mode, 0 points, lost the game 
+
+<Final score for this game @2020-09-18T07:35:08.908745>
+jan: HARD Mode, 60 points, lost the game 
+=======
 <Final score for this game @2020-09-17T12:08:03.659>
 wei: HARD Mode, 30 points, lost the game 
 
@@ -98,4 +117,11 @@ wei: EASY Mode, 259 points, won the game
 wei: HARD Mode, 0 points, lost the game 
 
 
+>>>>>>> 5d4f4d94e016d2588c8aa901e9490c8123c63836
+
+<Final score for this game @2020-09-18T12:28:23.970631>
+jane: EASY Mode, 140 points, won the game 
+
+<Final score for this game @2020-09-18T12:29:30.808921>
+move east: HARD Mode, 20 points, lost the game 
 
