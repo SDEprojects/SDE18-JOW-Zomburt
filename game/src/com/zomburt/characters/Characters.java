@@ -10,10 +10,13 @@ public class Characters implements Serializable {
     private String name;
     private int health = 50;
     private ArrayList<Weapon> inventory = new ArrayList<Weapon>();
-    public Characters(){}
-    public Characters (int health) {
+
+    public Characters() {}
+
+    public Characters(int health) {
         setHealth(health);
     }
+
     public Characters(String name, int health) {
         setName(name);
         setHealth(health);
@@ -53,13 +56,14 @@ public class Characters implements Serializable {
         return inventory;
     }
 
-    public void setInventory(ArrayList<Weapon> inventory) {this.inventory = inventory;}
+    public void setInventory(ArrayList<Weapon> inventory) {
+        this.inventory = inventory;
+    }
 
     public void addInventory(Weapon item) {
-        if (this.inventory.size() < 3 ) {
+        if (this.inventory.size() < 3) {
             this.inventory.add(item);
-        }
-        else {
+        } else {
             GameApp.getInstance().appendToCurActivity("You can only add maximum of 3 weapon!\n");
         }
     }
@@ -71,9 +75,9 @@ public class Characters implements Serializable {
     @Override
     public String toString() {
         return "com.zomburt.characters.Character{" +
-                "name='" + name + '\'' +
-                ", health=" + health +
-                ", inventory=" + inventory +
-                '}';
+            "name='" + name + '\'' +
+            ", health=" + health +
+            ", inventory=" + inventory +
+            '}';
     }
 }

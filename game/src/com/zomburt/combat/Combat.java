@@ -29,8 +29,11 @@ public class Combat {
             }
             combatCommands(input, player, zombie);
         }
-        if (zombie.getHealth() <= 0)
+        if (zombie.getHealth() <= 0) {
             score += zombieValue;
+            int newHealth = player.getHealth() + 20;
+            player.setHealth(newHealth);
+        }
         player.setScore(score);
         GameApp.getEngine().totalNumZombies -= 1;
         GameApp.getEngine().currentScene.removeFeature(zombie);

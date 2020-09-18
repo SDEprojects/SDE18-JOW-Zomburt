@@ -61,7 +61,7 @@ public class GameApp extends Application{
         introLoader.setLocation(com.zomburt.gui.GameApp.class.getResource("intro.fxml"));
         VBox introLayout = introLoader.load();
         try {
-            introController.getIntro().setImage(new Image("file:./game/assets/zombie.png"));
+            introController.getIntro().setImage(new Image("file:./game/resource/zombie.jpg"));
         } catch (Exception e) {
             e.printStackTrace();
         }

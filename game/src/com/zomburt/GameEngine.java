@@ -280,6 +280,7 @@ public class GameEngine implements Serializable {
     gameState.checkPoint = checkPoint;
     gameState.activity = GameApp.getInstance().getGameController().getOutput().getText();
     gameState.nameSet = nameSet;
+    gameState.totalZombies = totalNumZombies;
     return gameState;
   }
 
@@ -295,7 +296,7 @@ public class GameEngine implements Serializable {
     targetCheckPoint = gameState.checkPoint;
     GameApp.getInstance().getGameController().getOutput().setText(gameState.activity);
     nameSet = gameState.nameSet;
-
+    totalNumZombies = gameState.totalZombies;
     GameApp.getInstance().updateZombie();
     GameApp.getInstance().updateUI();
     if (GameApp.getInstance().isPendingInput()) {

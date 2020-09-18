@@ -20,4 +20,5 @@ public class GameState implements Serializable {
     public CheckPoint checkPoint;
     public String activity;
     public boolean nameSet;
+    public int totalZombies;
 }

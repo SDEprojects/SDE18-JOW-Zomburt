@@ -43,12 +43,15 @@
                <effect>
                   <InnerShadow />
                </effect></Label>
-            <ImageView fx:id="intro" fitHeight="536.0" fitWidth="890.0" layoutX="7.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="95.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="52.0" />
+            <ImageView fx:id="intro" fitHeight="573.0" fitWidth="949.0" layoutX="7.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="49.0">
+               <image>
+                  <Image url="@../../../../resource/zombie.jpg" />
+               </image></ImageView>
             <Button fx:id="startGame" layoutX="302.0" layoutY="642.0" mnemonicParsing="false" text="Start Game" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="642.0">
                <effect>
                   <InnerShadow />
                </effect></Button>
-            <RadioButton fx:id="easyMode" layoutX="302.0" layoutY="588.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="132.0" text="Easy Mode" />
+            <RadioButton fx:id="easyMode" layoutX="302.0" layoutY="588.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="132.0" selected="true" text="Easy Mode" />
             <RadioButton fx:id="hardMode" layoutX="456.0" layoutY="588.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="132.0" text="Hard Mode" />
          </children>
     </AnchorPane>
