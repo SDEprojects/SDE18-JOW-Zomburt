@@ -16,6 +16,11 @@ public class Zombie extends Characters implements Serializable {
   public Zombie(String name, int health, ArrayList<Weapon> inventory){
     super(name, health, inventory);
   }
+
+  @Override
+  public String toString() {
+    return super.toString();
+  }
 }
 
 

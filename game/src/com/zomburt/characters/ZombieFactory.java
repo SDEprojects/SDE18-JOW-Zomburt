@@ -18,7 +18,7 @@ public class ZombieFactory {
         ArrayList<Weapon> inventory = new ArrayList<Weapon>(Arrays.asList(randomWeapon));
         switch(mode) {
             case EASY:
-                zombie = new Zombie(randomZombie.getName() , randomZombie.getHealth());
+                zombie = new Zombie(randomZombie.getName(), randomZombie.getHealth());
                 break;
             case HARD:
                 zombie = new Zombie(randomZombie.getName() , randomZombie.getHealth(), inventory);

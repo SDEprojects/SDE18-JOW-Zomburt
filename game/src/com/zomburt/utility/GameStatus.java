@@ -20,20 +20,22 @@ public class GameStatus {
 
   public void win() {
     GameApp.getInstance().getGameController().getVictory().setVisible(true);
-    GameApp.getInstance().getGameController().getVictory().setImage(new Image("file:./game/resource/win.jpg"));
+    GameApp.getInstance().getGameController().getVictory().setImage(new Image("file:./game/assets/win.jpg"));
     GameApp.getInstance().getGameController().getInput().setDisable(true);
     GameApp.getInstance().getGameController().getEnter().setDisable(true);
     GameApp.getInstance().updateGameStatusWON();
     GameApp.getEngine().recordGameResults();
+    Sound.playSound("win");
   }
 
   public void lose() {
     GameApp.getInstance().getGameController().getVictory().setVisible(true);
-    GameApp.getInstance().getGameController().getVictory().setImage(new Image("file:./game/resource/lose.jpg"));
+    GameApp.getInstance().getGameController().getVictory().setImage(new Image("file:./game/assets/lose.jpg"));
     GameApp.getInstance().getGameController().getInput().setDisable(true);
     GameApp.getInstance().getGameController().getEnter().setDisable(true);
     GameApp.getInstance().updateGameStatusLost();
     GameApp.getEngine().recordGameResults();
+    Sound.playSound("lose");
   }
 
 }

@@ -1,10 +1,14 @@
 package com.zomburt.gui;
 
+import com.sun.media.jfxmedia.MediaPlayer;
 import com.zomburt.GameEngine;
 import com.zomburt.MapFactory;
 import com.zomburt.Mode;
+import com.zomburt.characters.Player;
 import com.zomburt.characters.Zombie;
 import com.zomburt.combat.Weapon;
+import com.zomburt.utility.Serializing;
+import com.zomburt.utility.Sound;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -20,10 +24,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class GameApp extends Application{
     private IntroController introController;
@@ -61,7 +62,7 @@ public class GameApp extends Application{
         introLoader.setLocation(com.zomburt.gui.GameApp.class.getResource("intro.fxml"));
         VBox introLayout = introLoader.load();
         try {
-            introController.getIntro().setImage(new Image("file:./game/resource/zombie.jpg"));
+            introController.getIntro().setImage(new Image("file:./game/assets/zombie.jpg"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -70,6 +71,8 @@ public class GameApp extends Application{
         Scene introScene = new Scene(introLayout);
         primaryStage.setScene(introScene);
         primaryStage.show();
+
+        Sound.playSound("intro");
 
         // config the radio button
         introController.getEasyMode().selectedProperty().addListener(new ChangeListener<Boolean>() {
@@ -277,7 +280,7 @@ public class GameApp extends Application{
 
     // update game status WIN
     public void updateGameStatusWON() {
-        // update total number of remaing zombies
+        // update total number of remaining zombies
         Platform.runLater(
             new Runnable() {
                 @Override

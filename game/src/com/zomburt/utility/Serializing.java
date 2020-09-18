@@ -1,5 +1,4 @@
-package com.zomburt.gui;
-
+package com.zomburt.utility;
 import com.zomburt.gamestate.GameState;
 
 import java.io.FileInputStream;
@@ -10,7 +9,6 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 public class Serializing implements Serializable {
-
     public void saveGameSate(GameState gameState){
         try {
             FileOutputStream fileOut = new FileOutputStream("./game/assets/save_game.ser");

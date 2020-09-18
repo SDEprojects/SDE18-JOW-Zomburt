@@ -6,18 +6,34 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 class ParserTest {
+
     @Test
-    public void testParse() {
-        String input = "drink water";
-
-        String expected = "move east";
-        ArrayList<String> list = new ArrayList<>();
-        String actual = Parser.parse(input).get(0);
-        System.out.println(actual);
-        assertEquals(null, actual);
-
+    public void testParse_negative_wrongCommand() {
+        String input1 = " drink water  ";
+        String input2 = " gO sWimMiNg        ";
+        String input3 = "asdfaklsdjflhewfnasfd234r32098590235r23r82093r-32";
+        assertNull(Parser.parse(input1));
+        assertNull(Parser.parse(input2));
+        assertNull(Parser.parse(input3));
     }
+
+    @Test
+    public void testParse_negative_emptyString() {
+         String input = "";
+         assertNull(Parser.parse(input));
+        }
+
+    @Test
+    public void testParse_negative_nullInput() {
+        String input = null;
+        assertThrows(NullPointerException.class, ()->{
+            Parser.parse(input);
+        });
+    }
+
+
 
     @Test
     void parsePickupTest() {
