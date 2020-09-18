@@ -72,7 +72,7 @@ public class Combat {
         int playerDamage = 20;
         int zombieDamage = zombie.getHealth();
         if (zombie.getInventory().size() > 0) {
-            zombieDamage += zombie.getInventory().get(0).getDamage();
+            zombieDamage = (zombie.getInventory().get(0).getDamage() > zombieDamage) ? zombie.getInventory().get(0).getDamage() : zombieDamage;
         }
         if (player.getInventory().size() > 0) {
             for (Weapon weapon : player.getInventory()) {

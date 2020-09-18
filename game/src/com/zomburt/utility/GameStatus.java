@@ -6,9 +6,10 @@ import javafx.scene.image.Image;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class GameStatus {
+public class GameStatus implements Serializable {
 
   public void start() throws FileNotFoundException, InterruptedException {
     File startFile = new File("../Zomburt/game/assets/intro.txt");

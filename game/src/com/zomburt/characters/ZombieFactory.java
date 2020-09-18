@@ -21,7 +21,7 @@ public class ZombieFactory {
                 zombie = new Zombie(randomZombie.getName() , randomZombie.getHealth());
                 break;
             case HARD:
-                zombie = new Zombie(randomZombie.getName() , randomZombie.getHealth()*2, inventory);
+                zombie = new Zombie(randomZombie.getName() , randomZombie.getHealth(), inventory);
                 for(Weapon weapon : inventory) {
                     zombie.updateHealth(weapon.getDamage());
                 }

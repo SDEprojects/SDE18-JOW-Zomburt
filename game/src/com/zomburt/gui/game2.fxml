@@ -169,7 +169,7 @@
                       <MenuItem fx:id="close" mnemonicParsing="false" text="Close" />
                       <MenuItem fx:id="save" mnemonicParsing="false" text="Save" />
                       <MenuItem fx:id="saveAs" mnemonicParsing="false" text="Save As…" />
-                      <MenuItem fx:id="resume" mnemonicParsing="false" text="Resume" />
+                      <MenuItem fx:id="resume" mnemonicParsing="false" text="Reload…" />
                       <SeparatorMenuItem mnemonicParsing="false" />
                       <MenuItem mnemonicParsing="false" text="Preferences…" />
                       <SeparatorMenuItem mnemonicParsing="false" />

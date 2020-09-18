@@ -145,16 +145,17 @@ public class GameApp extends Application{
 
                             //save game when click save option in menu bar
                             gameController.getMenu().getMenus().get(0).getItems().get(5).setOnAction(e->{
-                                Serializing s = new Serializing();
-                                s.saveGame();
+                                 Serializing s = new Serializing();
+                                 s.saveGame(newGame);
+
                             });
 
                             //reload game when click resume option in menu bar
                             gameController.getMenu().getMenus().get(0).getItems().get(7).setOnAction(e->{
-                                Serializing s = new Serializing();
-                                s.reloadGame();
-                            });
+                                 Serializing s = new Serializing();
+                                 newGame = s.reloadGame();
 
+                            });
 
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -255,7 +256,6 @@ public class GameApp extends Application{
                     }
                 });
     }
-
     // update game status LOST
     public void updateGameStatusLost() {
         // update total number of remaing zombies
