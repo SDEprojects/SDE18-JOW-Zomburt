@@ -1,15 +1,13 @@
 package com.zomburt.utility;
 
-import com.zomburt.GameEngine;
 import com.zomburt.gui.GameApp;
 import javafx.scene.image.Image;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.Serializable;
 import java.util.Scanner;
 
-public class GameStatus implements Serializable {
+public class GameStatus {
 
   public void start() throws FileNotFoundException, InterruptedException {
     File startFile = new File("../Zomburt/game/assets/intro.txt");
@@ -20,22 +18,22 @@ public class GameStatus implements Serializable {
     }
   }
 
-  public void win() throws FileNotFoundException, InterruptedException {
+  public void win() {
     GameApp.getInstance().getGameController().getVictory().setVisible(true);
     GameApp.getInstance().getGameController().getVictory().setImage(new Image("file:./game/resource/win.jpg"));
     GameApp.getInstance().getGameController().getInput().setDisable(true);
     GameApp.getInstance().getGameController().getEnter().setDisable(true);
     GameApp.getInstance().updateGameStatusWON();
-    GameEngine.recordGameResults();
+    GameApp.getEngine().recordGameResults();
   }
 
-  public void lose() throws FileNotFoundException, InterruptedException {
+  public void lose() {
     GameApp.getInstance().getGameController().getVictory().setVisible(true);
     GameApp.getInstance().getGameController().getVictory().setImage(new Image("file:./game/resource/lose.jpg"));
     GameApp.getInstance().getGameController().getInput().setDisable(true);
     GameApp.getInstance().getGameController().getEnter().setDisable(true);
     GameApp.getInstance().updateGameStatusLost();
-    GameEngine.recordGameResults();
+    GameApp.getEngine().recordGameResults();
   }
 
-  }
+}
