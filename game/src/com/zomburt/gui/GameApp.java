@@ -101,13 +101,6 @@ public class GameApp extends Application{
                             gameViewLoader.setController(gameController);
                             gameViewLoader.setLocation(com.zomburt.gui.GameApp.class.getResource("game2.fxml"));
                             GridPane gameLayout = gameViewLoader.load();
-                            //load pictures
-                            try {
-                                gameController.getImage1().setImage(new Image("file:./game/assets/ParkingLot1.jpg"));
-                                gameController.getImage2().setImage(new Image("file:./game/assets/ShoppingMall.jpg"));
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
 
                             //show game map when click map button
                             gameController.getMapButton().setOnAction(e -> {
@@ -230,6 +223,45 @@ public class GameApp extends Application{
                        gameController.getHealth().setText(Integer.toString(GameEngine.player.getHealth()));
                        gameController.getScore().setText(Integer.toString(GameEngine.player.getScore()));
                        gameController.getCurrentLocation().setText(GameEngine.currentScene.getSceneName());
+                       String location = GameEngine.currentScene.getSceneName();
+                        switch (location) {
+                            case "parking lot":
+                                gameController.getImage1().setImage(new Image("file:./game/assets/ParkingLot1.jpg"));
+                                break;
+                            case "west entrance":
+                                gameController.getImage1().setImage(new Image("file:./game/assets/west_entrance.jpg"));
+                                break;
+                            case "restaurant":
+                                gameController.getImage1().setImage(new Image("file:./game/assets/restaurant.jpg"));
+                                break;
+                            case "gun store":
+                                gameController.getImage1().setImage(new Image("file:./game/assets/guns_store.jpg"));
+                                break;
+                            case "pharmacy":
+                                gameController.getImage1().setImage(new Image("file:./game/assets/pharmacy.jpg"));
+                                break;
+                            case "discount bin":
+                                gameController.getImage1().setImage(new Image("file:./game/assets/discount_bin.jpg"));
+                                break;
+                            case "sporting goods":
+                                gameController.getImage1().setImage(new Image("file:./game/assets/sporting_goods.jpg"));
+                                break;
+                            case "restroom":
+                                gameController.getImage1().setImage(new Image("file:./game/assets/restroom.jpg"));
+                                break;
+                            case "starbucks":
+                                gameController.getImage1().setImage(new Image("file:./game/assets/starbucks.jpg"));
+                                break;
+                            case "east entrance":
+                                gameController.getImage1().setImage(new Image("file:./game/assets/east_entrance.jpg"));
+                                break;
+                            case "parking lot 2":
+                                gameController.getImage1().setImage(new Image("file:./game/assets/parking_lot_2.jpg"));
+                                break;
+                            case "gas station":
+                                gameController.getImage1().setImage(new Image("file:./game/assets/gas_station.png"));
+                                break;
+                        }
                     }
                 });
 
