@@ -10,6 +10,7 @@ import com.zomburt.gamestate.GameState;
 import com.zomburt.gui.GameApp;
 import com.zomburt.utility.GameStatus;
 import com.zomburt.utility.Parser;
+import com.zomburt.utility.Serializing;
 import org.json.simple.JSONObject;
 
 import java.io.FileNotFoundException;
@@ -44,6 +45,13 @@ public class GameEngine implements Serializable {
   }
 
   public void run() throws Exception {
+      if (GameApp.getInstance().loadToStart) {
+          Serializing s = new Serializing();
+          restoreGameState(s.loadGameState());
+          restoreInProgress = true;
+          GameApp.getInstance().loadToStart = false;
+      }
+
       while (win == false) {
         if (!nameSet) {
           if (!restoreInProgress) {
@@ -64,6 +72,7 @@ public class GameEngine implements Serializable {
           checkPoint = CheckPoint.PendingNameInput;
           checkRestoreCompletion();
           realName = GameApp.getInstance().getInput();
+
           if (!restoreInProgress) {
             GameApp.getInstance().appendToCurActivity("\n" + realName + ", ");
           }

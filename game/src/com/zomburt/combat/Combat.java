@@ -10,11 +10,12 @@ import com.zomburt.utility.Parser;
 import com.zomburt.utility.Sound;
 
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Combat {
+public class Combat implements Serializable {
 
-    public static void combat(Player player, Zombie zombie) throws FileNotFoundException, InterruptedException, Exception {
+    public static void combat(Player player, Zombie zombie) throws Exception {
 
         int score = player.getScore();
         GameApp.getInstance().updateUI();
@@ -36,13 +37,12 @@ public class Combat {
             score += zombieValue;
             int newHealth = player.getHealth() + 20;
             player.setHealth(newHealth);
+            GameApp.getEngine().totalNumZombies -= 1;
+            GameApp.getEngine().currentScene.removeFeature(zombie);
+            GameApp.getInstance().appendToCurActivity("Congratulations! You've killed the " + zombie.getName() + " and are able to progress. \n You better move now! Otherwise more zombies will approach you.");
+            GameApp.getInstance().updateMap();
         }
         player.setScore(score);
-        GameApp.getEngine().totalNumZombies -= 1;
-        GameApp.getEngine().currentScene.removeFeature(zombie);
-
-        GameApp.getInstance().appendToCurActivity("Congratulations! You've killed the " + zombie.getName() + " and are able to progress. \n You better move now! Otherwise more zombies will approach you.");
-        GameApp.getInstance().updateMap();
     }
 
     public static void combatCommands(String input, Player player, Zombie zombie) throws Exception {
