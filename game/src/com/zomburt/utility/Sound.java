@@ -16,7 +16,8 @@ public class Sound extends Thread{
 
     @Override
     public void run() {
-        File localFile = new File(chooseFile(status));
+        String path = chooseFile(status);
+        File localFile = new File(path);
 
         try {
             AudioInputStream mySoundFile = AudioSystem.getAudioInputStream(localFile);
