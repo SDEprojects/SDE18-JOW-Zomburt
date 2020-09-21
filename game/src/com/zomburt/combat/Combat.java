@@ -1,9 +1,8 @@
 package com.zomburt.combat;
 
-import com.zomburt.GameEngine;
-import com.zomburt.MapFactory;
 import com.zomburt.characters.Player;
 import com.zomburt.characters.Zombie;
+import com.zomburt.gamestate.CheckPoint;
 import com.zomburt.gui.GameApp;
 import com.zomburt.utility.GameStatus;
 import com.zomburt.utility.Parser;
@@ -21,17 +20,25 @@ public class Combat {
         int zombieValue = zombie.getHealth();
         while (player.getHealth() > 0 && zombie.getHealth() > 0) {
             GameApp.getInstance().appendToCurActivity(" > ");
+            GameApp.getEngine().checkPoint = CheckPoint.PendingCombatInput;
+            GameApp.getEngine().checkRestoreCompletion();
             String input = GameApp.getInstance().getInput();
+            if (GameApp.getEngine().restoreInProgress) {
+                return;
+            }
             if (input.isEmpty()) {
                 continue;
             }
             combatCommands(input, player, zombie);
         }
-        if (zombie.getHealth() <= 0)
+        if (zombie.getHealth() <= 0) {
             score += zombieValue;
+            int newHealth = player.getHealth() + 20;
+            player.setHealth(newHealth);
+        }
         player.setScore(score);
-        MapFactory.totalNumZombies -= 1;
-        GameEngine.currentScene.removeFeature(zombie);
+        GameApp.getEngine().totalNumZombies -= 1;
+        GameApp.getEngine().currentScene.removeFeature(zombie);
 
         GameApp.getInstance().appendToCurActivity("Congratulations! You've killed the " + zombie.getName() + " and are able to progress.");
     }
@@ -53,9 +60,9 @@ public class Combat {
             String weaponName = commands.get(1);
             boolean isValidWeapon = false;
             if (!weaponName.isEmpty()) {
-                for (Weapon weapon: GameEngine.currentScene.getRoomLoot()) {
+                for (Weapon weapon: GameApp.getEngine().currentScene.getRoomLoot()) {
                 if (weapon.getName().toLowerCase().equals(weaponName.toLowerCase())) {
-                    GameEngine.itemHandler(commands.get(0), weapon );
+                    GameApp.getEngine().itemHandler(commands.get(0), weapon );
                     isValidWeapon = true;
                     break;
                 }
@@ -75,7 +82,7 @@ public class Combat {
         int playerDamage = 20;
         int zombieDamage = zombie.getHealth();
         if (zombie.getInventory().size() > 0) {
-            zombieDamage += zombie.getInventory().get(0).getDamage();
+            zombieDamage = (zombie.getInventory().get(0).getDamage() > zombieDamage) ? zombie.getInventory().get(0).getDamage() : zombieDamage;
         }
         if (player.getInventory().size() > 0) {
             for (Weapon weapon : player.getInventory()) {

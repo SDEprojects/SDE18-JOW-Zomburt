@@ -2,9 +2,10 @@ package com.zomburt.characters;
 
 import com.zomburt.combat.Weapon;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Zombie extends Characters {
+public class Zombie extends Characters implements Serializable {
   public Zombie() {
     super();
   }

@@ -38,7 +38,7 @@ public class Sound extends Thread{
     public String chooseFile(String str){
         String path = "";
         String[] files = {
-                "./game/assets/Thriller_End_Laugh.wav",
+                "./game/assets/applause.wav",
                 "./game/assets/Super Mario Lose Life.wav",
                 "./game/assets/punch.wav",
                 "./game/assets/suspense.wav"

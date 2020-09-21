@@ -1,65 +1,105 @@
 package com.zomburt;
 
-import com.zomburt.characters.*;
+import com.zomburt.characters.Player;
+import com.zomburt.characters.PlayerFactory;
+import com.zomburt.characters.Zombie;
 import com.zomburt.combat.Combat;
 import com.zomburt.combat.Weapon;
+import com.zomburt.gamestate.CheckPoint;
+import com.zomburt.gamestate.GameState;
 import com.zomburt.gui.GameApp;
 import com.zomburt.utility.GameStatus;
 import com.zomburt.utility.Parser;
 import org.json.simple.JSONObject;
 
-import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-public class GameEngine implements Serializable{
-  public static Player player;
-  public static Zombie zombie;
-  public static Mode mode;
-  public static Universe gameUniverse;
+public class GameEngine implements Serializable {
+  public Player player;
+  public Zombie zombie;
+  public Mode mode;
   GameStatus gameStatus = new GameStatus();
-  public static Scene currentScene;
+  public Scene currentScene;
   Boolean newScene = true;
   Boolean win = false;
+  Universe gameUniverse = new Universe();
   Random rand = new Random();
-  public static String realName;
+  public String realName;
+  public int totalNumZombies = 0;
+  public CheckPoint checkPoint = null;
+  public CheckPoint targetCheckPoint = null;
+  public boolean restoreInProgress = false;
+  public boolean nameSet = false;
 
   public GameEngine() throws Exception {
   }
 
   public void run() throws Exception {
-      gameUniverse = new Universe();
-      gameStatus.start();
-      currentScene = new Scene("parking lot");
-
-      mode = GameApp.getInstance().getModeInput();
-      player = PlayerFactory.createPlayer(mode);
-      GameApp.getInstance().updateUI();
-      GameApp.getInstance().appendToCurActivity("What is your name?");
-      realName = GameApp.getInstance().getInput();
-      GameApp.getInstance().appendToCurActivity("\n" + realName + ", ");
-
       while (win == false) {
-        if (newScene) {
-          GameApp.getInstance().appendToCurActivity(currentScene.getFlavorText());
-          if (currentScene.getFeature().size() > 0) {
-            GameApp.getInstance().appendToCurActivity("Somehow inevitably, a shuffling shadow blocks your path.  The gruesome smell of entitlement thickens the air around you and the one thing all Divoc Zombies can still say changes from a mumble to screech as it sees you: \n\nYou can't make me wear a mask!\n\nThere's no time to rush past it. You are already in combat.  You best FIGHT!\n");
+        if (!nameSet) {
+          if (!restoreInProgress) {
+            gameStatus.start();
+            currentScene = new Scene("parking lot");
+
+            mode = GameApp.getInstance().getModeInput();
+            player = PlayerFactory.createPlayer(mode);
+            GameApp.getInstance().updateUI();
+            GameApp.getInstance().appendToCurActivity("What is your name?");
           }
-          Thread.sleep(200);
+          // sometimes we are waiting on this, then load the game
+          checkPoint = CheckPoint.PendingNameInput;
+          checkRestoreCompletion();
+          realName = GameApp.getInstance().getInput();
+          if (!restoreInProgress) {
+            GameApp.getInstance().appendToCurActivity("\n" + realName + ", ");
+          }
+          nameSet = true;
         }
-        if(currentScene.getFeature().size() > 0){
+
+        if (!restoreInProgress && nameSet) {
+          if (newScene) {
+            GameApp.getInstance().appendToCurActivity(currentScene.getFlavorText());
+            if (currentScene.getFeature().size() > 0) {
+              GameApp.getInstance().appendToCurActivity("Somehow inevitably, a shuffling shadow blocks your path.  The gruesome smell of entitlement thickens the air around you and the one thing all Divoc Zombies can still say changes from a mumble to screech as it sees you: \n\nYou can't make me wear a mask!\n\nThere's no time to rush past it. You are already in combat.  You best FIGHT!\n");
+            }
+            Thread.sleep(200);
+          }
+        }
+
+        if(currentScene.getFeature().size() > 0 && nameSet){
+          if (!restoreInProgress) {
             zombie = currentScene.getFeature().get(rand.nextInt(currentScene.getFeature().size()));
+          }
+
+          if (!restoreInProgress ||
+              (restoreInProgress && targetCheckPoint == CheckPoint.PendingCombatInput)) {
             //before fighting
             GameApp.getInstance().updateZombie();
             Combat.combat(player, zombie);
+            if (restoreInProgress && !nameSet) {
+              continue;
+            }
             //after fighting
             GameApp.getInstance().updateZombie();
+          }
         }
         GameApp.getInstance().appendToCurActivity(" > ");
+        // most of time, the game engine is waiting on input
+        checkPoint = CheckPoint.PendingActionInput;
+        checkRestoreCompletion();
         String input = GameApp.getInstance().getInput();
+        if (restoreInProgress || !nameSet) {
+          continue;
+        }
         if (input.isEmpty()) {
           newScene = false;
           continue;
@@ -128,7 +168,7 @@ public class GameEngine implements Serializable{
     }
   }
 
-  public static void itemHandler(String action, Weapon weapon) {
+  public void itemHandler(String action, Weapon weapon) {
      String s = "[" + weapon.getName() + ", " + weapon.getDamage() + "]";
     if (action.equals("drop")) {
       if (player.getInventory().contains(weapon)) {
@@ -179,11 +219,11 @@ public class GameEngine implements Serializable{
   public void move(String moveDir) throws Exception {
     JSONObject moveSet = (JSONObject) currentScene.getMovement();
     String sceneCheck = (String) moveSet.get(moveDir);
-    if (sceneCheck.equals("victory") && MapFactory.totalNumZombies == 0) {
+    if (sceneCheck.equals("victory") && totalNumZombies == 0) {
       GameApp.getInstance().appendToCurActivity("Oh wow.  Did you survive?  I guess you made it then...");
       win = true;
       gameStatus.win();
-    } else if (sceneCheck.equals("victory") && MapFactory.totalNumZombies > 0){
+    } else if (sceneCheck.equals("victory") && totalNumZombies > 0){
       GameApp.getInstance().appendToCurActivity("There are still zombies somewhere out there. You need to go back and kill all the zombies to win!");
     }
     else if (sceneCheck.length() > 0) {
@@ -209,7 +249,7 @@ public class GameEngine implements Serializable{
       }
   }
 
-  public static void recordGameResults(){
+  public void recordGameResults(){
     PrintWriter writer = null;
     try {
       writer = new PrintWriter(new FileWriter("game/assets/game_results.txt", true));
@@ -227,4 +267,52 @@ public class GameEngine implements Serializable{
     writer.close();
   }
 
+  public GameState getGameState() {
+    GameState gameState = new GameState();
+    gameState.player = player;
+    gameState.zombie = zombie;
+    gameState.mode = mode;
+    gameState.currentScene = currentScene;
+    gameState.newScene = newScene;
+    gameState.win = win;
+    gameState.gameUniverse = gameUniverse;
+    gameState.realName = realName;
+    gameState.checkPoint = checkPoint;
+    gameState.activity = GameApp.getInstance().getGameController().getOutput().getText();
+    gameState.nameSet = nameSet;
+    gameState.totalZombies = totalNumZombies;
+    return gameState;
+  }
+
+  public void restoreGameState(final GameState gameState) {
+    player = gameState.player;
+    zombie = gameState.zombie;
+    mode = gameState.mode;
+    currentScene = gameState.currentScene;
+    newScene = gameState.newScene;
+    win = gameState.win;
+    gameUniverse = gameState.gameUniverse;
+    realName = gameState.realName;
+    targetCheckPoint = gameState.checkPoint;
+    GameApp.getInstance().getGameController().getOutput().setText(gameState.activity);
+    nameSet = gameState.nameSet;
+    totalNumZombies = gameState.totalZombies;
+    GameApp.getInstance().updateZombie();
+    GameApp.getInstance().updateUI();
+    if (GameApp.getInstance().isPendingInput()) {
+      if (targetCheckPoint != checkPoint) {
+        restoreInProgress = true;
+        // if checkpoint miss match, just skip the input
+        GameApp.getInstance().notifyInput();
+      }
+    }
+  }
+
+  public void checkRestoreCompletion() {
+    if (restoreInProgress) {
+      if (targetCheckPoint == checkPoint) {
+        restoreInProgress = false;
+      }
+    }
+  }
 }

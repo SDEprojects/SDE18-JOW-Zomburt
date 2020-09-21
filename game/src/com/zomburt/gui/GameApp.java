@@ -16,6 +16,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
@@ -34,10 +35,8 @@ public class GameApp extends Application{
     private String currentInput;
     private Mode modeInput = Mode.EASY;
     private GameEngine newGame;
-    private static com.zomburt.gui.GameApp instance;
-    private static Player currentPlayer;
-    private static com.zomburt.Scene currentScene;
-   // Serializing s = new Serializing();
+    private static GameApp instance;
+    private boolean pendingInput = false;
 
     public GameApp() {
         instance = this;
@@ -45,6 +44,14 @@ public class GameApp extends Application{
 
     public static GameApp getInstance() {
         return instance;
+    }
+
+    public static GameEngine getEngine() {
+        return getInstance().getGameEngine();
+    }
+
+    public GameEngine getGameEngine() {
+        return newGame;
     }
 
     @Override
@@ -55,6 +62,7 @@ public class GameApp extends Application{
         introLoader.setController(introController);
         introLoader.setLocation(com.zomburt.gui.GameApp.class.getResource("intro.fxml"));
         VBox introLayout = introLoader.load();
+      //  introLayout.setAlignment(Pos.CENTER);
         try {
             introController.getIntro().setImage(new Image("file:./game/assets/zombie.png"));
         } catch (Exception e) {
@@ -67,6 +75,11 @@ public class GameApp extends Application{
         primaryStage.show();
 
         Sound.playSound("intro");
+
+        //quit the game when click quit option in menu bar
+//        introController.getMenu().getItems().get(1).setOnAction(e->{
+//            System.exit(0);
+//        });
 
         // config the radio button
         introController.getEasyMode().selectedProperty().addListener(new ChangeListener<Boolean>() {
@@ -124,11 +137,6 @@ public class GameApp extends Application{
                                 }
                             });
 
-                            //quit the game when click quit option in menu bar
-                            gameController.getMenu().getMenus().get(0).getItems().get(11).setOnAction(e->{
-                                System.exit(0);
-                            });
-
                             // Show the scene containing the root layout.
                             Scene gameScene = new Scene(gameLayout);
                             Stage gameStage = new Stage();
@@ -141,15 +149,20 @@ public class GameApp extends Application{
                             runGameThread();
 
                             //save game when click save option in menu bar
-                            gameController.getMenu().getMenus().get(0).getItems().get(5).setOnAction(e->{
-                                Serializing s = new Serializing();
-                                s.saveGame();
+                            gameController.getMenu().getMenus().get(0).getItems().get(0).setOnAction(e->{
+                                 Serializing s = new Serializing();
+                                 s.saveGameSate(newGame.getGameState());
                             });
 
                             //reload game when click resume option in menu bar
-                            gameController.getMenu().getMenus().get(0).getItems().get(7).setOnAction(e->{
-                                Serializing s = new Serializing();
-                                s.reloadGame();
+                            gameController.getMenu().getMenus().get(0).getItems().get(1).setOnAction(e->{
+                                 Serializing s = new Serializing();
+                                 newGame.restoreGameState(s.loadGameState());
+                            });
+
+                            //quit the game when click quit option in menu bar
+                            gameController.getMenu().getMenus().get(0).getItems().get(2).setOnAction(e->{
+                                System.exit(0);
                             });
 
                         } catch (IOException e) {
@@ -207,8 +220,10 @@ public class GameApp extends Application{
 
     // game thread logic, so we should also wrap the UI access calls
     private void executeGameLoop() throws Exception {
-        MapFactory.getInstance().createMap("./game/assets/store.json");
+        MapFactory mapFactory = MapFactory.getInstance();
+        mapFactory.createMap("./game/assets/store.json");
         newGame = new GameEngine();
+        newGame.totalNumZombies = mapFactory.getTotalNumZombies();
         newGame.run();
     }
 
@@ -219,11 +234,11 @@ public class GameApp extends Application{
                 new Runnable() {
                     @Override
                     public void run() {
-                       gameController.getRemainZombies().setText(Integer.toString(MapFactory.totalNumZombies));
-                       gameController.getHealth().setText(Integer.toString(GameEngine.player.getHealth()));
-                       gameController.getScore().setText(Integer.toString(GameEngine.player.getScore()));
-                       gameController.getCurrentLocation().setText(GameEngine.currentScene.getSceneName());
-                       String location = GameEngine.currentScene.getSceneName();
+                       gameController.getRemainZombies().setText(Integer.toString(newGame.totalNumZombies));
+                       gameController.getHealth().setText(Integer.toString(newGame.player.getHealth()));
+                       gameController.getScore().setText(Integer.toString(newGame.player.getScore()));
+                       gameController.getCurrentLocation().setText(newGame.currentScene.getSceneName());
+                       String location = newGame.currentScene.getSceneName();
                         switch (location) {
                             case "parking lot":
                                 gameController.getImage1().setImage(new Image("file:./game/assets/ParkingLot1.jpg"));
@@ -272,16 +287,15 @@ public class GameApp extends Application{
                     public void run() {
                         try {
                             gameController.getInventory().getItems().clear();
-                            for (Weapon weapon : GameEngine.player.getInventory()) {
+                            for (Weapon weapon : newGame.player.getInventory()) {
                                 gameController.getInventory().getItems().add(weapon.getName() + "(" + weapon.getDamage() + ")");
                             }
-
                             gameController.getRoomInventory().getItems().clear();
                             gameController.getWeaponsRoom().getItems().clear();
-                            for (Weapon weapon : GameEngine.currentScene.getRoomLoot()) {
+                            for (Weapon weapon : newGame.currentScene.getRoomLoot()) {
                                 gameController.getWeaponsRoom().getItems().add(weapon.getName() + "(" + weapon.getDamage() + ")");
                             }
-                            for (Zombie zombie : GameEngine.currentScene.getFeature()) {
+                            for (Zombie zombie : newGame.currentScene.getFeature()) {
                                 gameController.getRoomInventory().getItems().add(zombie.getName());
                             }
                         } catch (Exception e) {
@@ -290,7 +304,6 @@ public class GameApp extends Application{
                     }
                 });
     }
-
     // update game status LOST
     public void updateGameStatusLost() {
         // update total number of remaing zombies
@@ -324,16 +337,23 @@ public class GameApp extends Application{
             new Runnable() {
                 @Override
                 public void run() {
-                    if (GameEngine.zombie.getHealth() > 0) {
-                        gameController.getFightingZombie().setText(GameEngine.zombie.getName());
+                    if (newGame.zombie != null && newGame.zombie.getHealth() > 0) {
+                        gameController.getFightingZombie().setText(newGame.zombie.getName());
                     } else {
                         gameController.getFightingZombie().setText("None");
                     }
-                    gameController.getZombieHealth().setText(Integer.toString(GameEngine.zombie.getHealth()));
-                    if (GameEngine.zombie.getInventory().size() > 0 && GameEngine.zombie.getHealth() > 0) {
-                        gameController.getZombieWeapon().setText(GameEngine.zombie.getInventory().get(0).getName() +"(" + GameEngine.zombie.getInventory().get(0).getDamage() + ")");
+
+                    if (newGame.zombie != null) {
+                        gameController.getZombieHealth().setText(Integer.toString(newGame.zombie.getHealth()));
+                    } else {
+                        gameController.getZombieHealth().setText("");
                     }
-                    if (GameEngine.zombie.getInventory().size() == 0) {
+
+                    if (newGame.zombie != null && newGame.zombie.getInventory().size() > 0 && newGame.zombie.getHealth() > 0) {
+                        gameController.getZombieWeapon().setText(newGame.zombie.getInventory().get(0).getName() +"(" + newGame.zombie.getInventory().get(0).getDamage() + ")");
+                    }
+
+                    if (newGame.zombie == null || newGame.zombie.getInventory().size() == 0) {
                         gameController.getZombieWeapon().setText("None");
                     }
                 }
@@ -348,6 +368,7 @@ public class GameApp extends Application{
     public void waitInput() {
         synchronized (inputSignal) {
             try {
+                pendingInput = true;
                 inputSignal.wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -357,8 +378,13 @@ public class GameApp extends Application{
 
     public void notifyInput() {
         synchronized (inputSignal) {
+            pendingInput = false;
             inputSignal.notify();
         }
+    }
+
+    public boolean isPendingInput() {
+        return pendingInput;
     }
 
     // call from game logic thread to get the input
