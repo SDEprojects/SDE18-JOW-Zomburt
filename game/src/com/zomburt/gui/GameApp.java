@@ -77,9 +77,9 @@ public class GameApp extends Application{
         Sound.playSound("intro");
 
         //quit the game when click quit option in menu bar
-//        introController.getMenu().getItems().get(1).setOnAction(e->{
-//            System.exit(0);
-//        });
+        introController.getIntroMenu().getItems().get(1).setOnAction(e->{
+            System.exit(0);
+        });
 
         // config the radio button
         introController.getEasyMode().selectedProperty().addListener(new ChangeListener<Boolean>() {
@@ -229,7 +229,7 @@ public class GameApp extends Application{
 
     // update UI status
     public void updateUI() {
-        // update total number of remaing zombies
+        // update total number of remaining zombies
         Platform.runLater(
                 new Runnable() {
                     @Override

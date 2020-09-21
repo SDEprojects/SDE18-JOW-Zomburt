@@ -21,9 +21,9 @@
 
 <VBox prefHeight="712.0" prefWidth="897.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <children>
-    <MenuBar fx:id="menu" VBox.vgrow="NEVER">
+    <MenuBar fx:id="introMenu" VBox.vgrow="NEVER">
       <menus>
-        <Menu fx:id="file" mnemonicParsing="false" text="Options">
+        <Menu fx:id="introFile" mnemonicParsing="false" text="Options">
           <items>
             <MenuItem fx:id="reload" mnemonicParsing="false" text="Load" />
             <MenuItem fx:id="quit" mnemonicParsing="false" text="Quit" />
@@ -51,8 +51,8 @@
                <effect>
                   <InnerShadow />
                </effect></Button>
-            <RadioButton fx:id="easyMode" layoutX="302.0" layoutY="588.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="132.0" selected="true" text="Easy Mode" />
-            <RadioButton fx:id="hardMode" layoutX="456.0" layoutY="588.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="132.0" text="Hard Mode" />
+            <RadioButton fx:id="easyMode" contentDisplay="CENTER" layoutX="302.0" layoutY="588.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="132.0" selected="true" text="Easy Mode" />
+            <RadioButton fx:id="hardMode" contentDisplay="CENTER" layoutX="456.0" layoutY="588.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="132.0" text="Hard Mode" />
          </children>
     </AnchorPane>
   </children>

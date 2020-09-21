@@ -13,7 +13,7 @@ public class IntroController {
     @FXML private ImageView intro;
     @FXML private RadioButton easyMode;
     @FXML private RadioButton hardMode;
-    @FXML private Menu menu;
+    @FXML private Menu introMenu;
     @FXML private MenuItem reload;
 
     public IntroController() {}
@@ -34,7 +34,7 @@ public class IntroController {
         return hardMode;
     }
 
-    public Menu getMenu() { return menu;}
+    public Menu getIntroMenu() { return introMenu;}
 
     public MenuItem getReload() { return reload;}
 }
