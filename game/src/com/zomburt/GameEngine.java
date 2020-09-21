@@ -161,7 +161,7 @@ public class GameEngine implements Serializable {
       GameApp.getInstance().appendToCurActivity("The current game mode: " + GameApp.getInstance().getModeInput());
     }
     else if (commands.get(0).contains("fight")) {
-      GameApp.getInstance().appendToCurActivity("There is no zombies approaching you, you better move now! Otherwise more zombies will approach you.\n");
+      GameApp.getInstance().appendToCurActivity(" Oh too late...You have to fight now.\n");
     }
     else {
       GameApp.getInstance().appendToCurActivity(Arrays.toString(commands.toArray()));
