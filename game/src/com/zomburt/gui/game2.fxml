@@ -74,15 +74,15 @@
          <effect>
             <InnerShadow />
          </effect></TextField>
-      <TextField fx:id="input" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="22">
+      <TextField fx:id="input" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="23">
          <effect>
             <InnerShadow />
          </effect></TextField>
-      <Button fx:id="enter" mnemonicParsing="false" prefHeight="31.0" prefWidth="102.0" text="Enter" GridPane.columnIndex="8" GridPane.rowIndex="22">
+      <Button fx:id="enter" mnemonicParsing="false" prefHeight="31.0" prefWidth="102.0" text="Enter" GridPane.columnIndex="8" GridPane.rowIndex="23">
          <effect>
             <InnerShadow />
          </effect></Button>
-      <TextArea fx:id="output" editable="false" maxHeight="1.7976931348623157E308" prefHeight="366.0" prefWidth="961.0" wrapText="true" GridPane.columnIndex="4" GridPane.columnSpan="8" GridPane.rowIndex="11" GridPane.rowSpan="9">
+      <TextArea fx:id="output" editable="false" maxHeight="1.7976931348623157E308" prefHeight="366.0" prefWidth="961.0" wrapText="true" GridPane.columnIndex="4" GridPane.columnSpan="8" GridPane.rowIndex="11" GridPane.rowSpan="10">
          <effect>
             <InnerShadow />
          </effect></TextArea>
@@ -91,7 +91,7 @@
             <Image url="@../../../../assets/pictures/ParkingLot1.jpg" />
          </image></ImageView>
       <Separator prefWidth="200.0" GridPane.columnIndex="4" GridPane.columnSpan="8" GridPane.rowIndex="10" />
-      <Label prefHeight="21.0" prefWidth="252.0" text="Player's Input:" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="21" />
+      <Label prefHeight="21.0" prefWidth="252.0" text="Player's Input:" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="22" />
       <ListView fx:id="inventory" prefHeight="90.0" prefWidth="192.0" GridPane.columnIndex="1" GridPane.rowIndex="13" GridPane.rowSpan="3">
          <effect>
             <InnerShadow />
@@ -100,7 +100,7 @@
          <image>
             <Image url="@../../../../assets/pictures/ShoppingMall.jpg" />
          </image></ImageView>
-      <Button fx:id="mapButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="133.0" text="Map" GridPane.columnIndex="10" GridPane.rowIndex="22">
+      <Button fx:id="mapButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="133.0" text="Map" GridPane.columnIndex="10" GridPane.rowIndex="23">
          <effect>
             <InnerShadow />
          </effect></Button>

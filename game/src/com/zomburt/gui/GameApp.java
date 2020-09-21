@@ -1,11 +1,8 @@
 package com.zomburt.gui;
 
-import com.sun.media.jfxmedia.MediaPlayer;
-import com.zomburt.Game;
 import com.zomburt.GameEngine;
 import com.zomburt.MapFactory;
 import com.zomburt.Mode;
-import com.zomburt.characters.Player;
 import com.zomburt.characters.Zombie;
 import com.zomburt.combat.Weapon;
 import com.zomburt.utility.Serializing;
@@ -26,7 +23,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class GameApp extends Application{
     private IntroController introController;
@@ -38,6 +38,7 @@ public class GameApp extends Application{
     private GameEngine newGame;
     private static GameApp instance;
     private boolean pendingInput = false;
+    public boolean loadToStart = false;
 
     public GameApp() {
         instance = this;
@@ -76,17 +77,6 @@ public class GameApp extends Application{
         primaryStage.show();
 
         Sound.playSound("intro");
-
-        //reload game when click resume option in menu bar
-        introController.getIntroMenu().getMenus().get(0).getItems().get(0).setOnAction(e->{
-            Serializing s = new Serializing();
-            try {
-                newGame = new GameEngine();
-            } catch (Exception exception) {
-                exception.printStackTrace();
-            }
-            newGame.restoreGameState(s.loadGameState());
-        });
 
         //quit the game when click quit option in menu bar
         introController.getIntroMenu().getMenus().get(0).getItems().get(1).setOnAction(e->{
@@ -191,7 +181,11 @@ public class GameApp extends Application{
                         }
                     }
                 };
-
+        //reload game when click resume option in menu bar
+        introController.getIntroMenu().getMenus().get(0).getItems().get(0).setOnAction(e-> {
+            loadToStart = true;
+            nextHandler.handle(e);
+        });
         // connect next button to the handler event
         introController.getStartGame().setOnAction(nextHandler);
     }
