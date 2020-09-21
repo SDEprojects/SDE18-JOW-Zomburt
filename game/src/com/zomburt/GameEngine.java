@@ -31,7 +31,7 @@ public class GameEngine implements Serializable {
   public Scene currentScene;
   Boolean newScene = true;
   Boolean win = false;
-  Universe gameUniverse = new Universe();
+  public Universe gameUniverse = new Universe();
   Random rand = new Random();
   public String realName;
   public int totalNumZombies = 0;
@@ -53,6 +53,11 @@ public class GameEngine implements Serializable {
             mode = GameApp.getInstance().getModeInput();
             player = PlayerFactory.createPlayer(mode);
             GameApp.getInstance().updateUI();
+            for(Scene scene:gameUniverse.world.values()){
+              if(scene.getFeature().size()>0)
+              GameApp.getInstance().updateMap();
+            }
+
             GameApp.getInstance().appendToCurActivity("What is your name?");
           }
           // sometimes we are waiting on this, then load the game
@@ -106,6 +111,7 @@ public class GameEngine implements Serializable {
         }
         runCommands(input);
         GameApp.getInstance().updateUI();
+        GameApp.getInstance().updateMap();
       }
   }
 
@@ -179,6 +185,7 @@ public class GameEngine implements Serializable {
         GameApp.getInstance().appendToCurActivity(player.getName() + " doesn't have that item");
       }
       GameApp.getInstance().updateUI();
+      GameApp.getInstance().updateMap();
     }
     if (action.equals("pick up")) {
       if (currentScene.getRoomLoot().contains(weapon)) {
@@ -193,6 +200,7 @@ public class GameEngine implements Serializable {
         GameApp.getInstance().appendToCurActivity("That item isn't here");
       }
       GameApp.getInstance().updateUI();
+      GameApp.getInstance().updateMap();
     }
   }
 
@@ -303,6 +311,7 @@ public class GameEngine implements Serializable {
     totalNumZombies = gameState.totalZombies;
     GameApp.getInstance().updateZombie();
     GameApp.getInstance().updateUI();
+    GameApp.getInstance().updateMap();
     if (GameApp.getInstance().isPendingInput()) {
       if (targetCheckPoint != checkPoint) {
         restoreInProgress = true;
