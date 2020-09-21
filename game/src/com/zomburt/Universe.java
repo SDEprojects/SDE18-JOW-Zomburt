@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 public class Universe implements Serializable {
-    public static HashMap<String, Scene> world = new HashMap<>();
+    public  HashMap<String, Scene> world = new HashMap<>();
 
     public Universe() throws Exception {
         JSONObject obj = (JSONObject) new JSONParser().parse(new FileReader("./game/assets/JSON_Objects/store.json"));
@@ -18,11 +18,11 @@ public class Universe implements Serializable {
         }
     }
 
-    public static HashMap<String, Scene> getWorld() {
+    public  HashMap<String, Scene> getWorld() {
         return world;
     }
 
-    public static Scene getScene(String scene){
+    public  Scene getScene(String scene){
         return world.get(scene);
     }
 }
