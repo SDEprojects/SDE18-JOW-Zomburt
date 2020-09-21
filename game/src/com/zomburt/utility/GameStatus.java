@@ -20,7 +20,7 @@ public class GameStatus {
 
   public void win() {
     GameApp.getInstance().getGameController().getVictory().setVisible(true);
-    GameApp.getInstance().getGameController().getVictory().setImage(new Image("file:./game/assets/win.jpg"));
+    GameApp.getInstance().getGameController().getVictory().setImage(new Image("file:./game/assets/pictures/win.jpg"));
     GameApp.getInstance().getGameController().getInput().setDisable(true);
     GameApp.getInstance().getGameController().getEnter().setDisable(true);
     GameApp.getInstance().updateGameStatusWON();
@@ -30,7 +30,7 @@ public class GameStatus {
 
   public void lose() {
     GameApp.getInstance().getGameController().getVictory().setVisible(true);
-    GameApp.getInstance().getGameController().getVictory().setImage(new Image("file:./game/assets/lose.jpg"));
+    GameApp.getInstance().getGameController().getVictory().setImage(new Image("file:./game/assets/pictures/lose.jpg"));
     GameApp.getInstance().getGameController().getInput().setDisable(true);
     GameApp.getInstance().getGameController().getEnter().setDisable(true);
     GameApp.getInstance().updateGameStatusLost();

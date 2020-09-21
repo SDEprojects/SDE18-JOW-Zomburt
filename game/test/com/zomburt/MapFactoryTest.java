@@ -12,7 +12,7 @@ class MapFactoryTest<string> {
     private static FileWriter file;
     private static MapFactory generateMap = null;
     JSONObject mapJson;
-    private String path = "./game/assets/store.json";
+    private String path = "./game/assets/JSON_Objects/store.json";
 
     @Test
     void createEasyMap() {

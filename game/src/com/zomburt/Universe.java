@@ -11,7 +11,7 @@ public class Universe implements Serializable {
     public static HashMap<String, Scene> world = new HashMap<>();
 
     public Universe() throws Exception {
-        JSONObject obj = (JSONObject) new JSONParser().parse(new FileReader("./game/assets/store.json"));
+        JSONObject obj = (JSONObject) new JSONParser().parse(new FileReader("./game/assets/JSON_Objects/store.json"));
         JSONObject jo = (JSONObject) obj;
         for (Object sceneName : jo.keySet()) {
             world.put((String) sceneName, new Scene((String) sceneName));
