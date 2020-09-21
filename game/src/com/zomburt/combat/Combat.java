@@ -1,5 +1,6 @@
 package com.zomburt.combat;
 
+import com.zomburt.Game;
 import com.zomburt.characters.Player;
 import com.zomburt.characters.Zombie;
 import com.zomburt.gamestate.CheckPoint;
@@ -39,7 +40,7 @@ public class Combat implements Serializable {
             GameApp.getEngine().totalNumZombies -= 1;
             GameApp.getEngine().currentScene.removeFeature(zombie);
             GameApp.getInstance().appendToCurActivity("Congratulations! You've killed the " + zombie.getName() + " and are able to progress. \n You better move now! Otherwise more zombies will approach you.");
-
+            GameApp.getInstance().updateMap();
         }
         player.setScore(score);
     }
