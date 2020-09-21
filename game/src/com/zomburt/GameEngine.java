@@ -61,10 +61,8 @@ public class GameEngine implements Serializable {
             mode = GameApp.getInstance().getModeInput();
             player = PlayerFactory.createPlayer(mode);
             GameApp.getInstance().updateUI();
-            for(Scene scene:gameUniverse.world.values()){
-              if(scene.getFeature().size()>0)
-              GameApp.getInstance().updateMap();
-            }
+            GameApp.getInstance().updateMap();
+
 
             GameApp.getInstance().appendToCurActivity("What is your name?");
           }
