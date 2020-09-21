@@ -93,7 +93,7 @@ public class MapFactory {
             }
         }
         try {
-            file = new FileWriter("./game/assets/store.json");
+            file = new FileWriter("./game/assets/JSON_Objects/store.json");
             file.write(mapJson.toJSONString()) ;
         } catch (IOException e) {
             e.printStackTrace();

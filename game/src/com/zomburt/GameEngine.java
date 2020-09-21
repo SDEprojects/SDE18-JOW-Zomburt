@@ -161,7 +161,7 @@ public class GameEngine implements Serializable {
       GameApp.getInstance().appendToCurActivity("The current game mode: " + GameApp.getInstance().getModeInput());
     }
     else if (commands.get(0).contains("fight")) {
-      GameApp.getInstance().appendToCurActivity("There is no zombies approaching you, you better move now! Otherwise more zombies will approach you.\n");
+      GameApp.getInstance().appendToCurActivity(" Oh too late...You have to fight now.\n");
     }
     else {
       GameApp.getInstance().appendToCurActivity(Arrays.toString(commands.toArray()));
@@ -205,15 +205,19 @@ public class GameEngine implements Serializable {
   }
 
   public void help() {
-    GameApp.getInstance().appendToCurActivity("\n  These are some commands you can perform: \n" +
-        "    -move <direction>-\n" +
-        "    -inv <view inventory>-\n" +
-        "    -pick up <item>-\n" +
-        "    -drop <item>-\n" +
-        "    -look/search-\n" +
-        "    -check <current scene and # of zombies>- \n" +
-        "    -mode <show current game mode>- \n" +
-        "    -quit\n");
+    if(nameSet) {
+      GameApp.getInstance().appendToCurActivity("\n  These are some commands you can perform: \n" +
+              "    -move <direction>-\n" +
+              "    -inv <view inventory>-\n" +
+              "    -pick up <item>-\n" +
+              "    -drop <item>-\n" +
+              "    -look/search-\n" +
+              "    -check <current scene and # of zombies>- \n" +
+              "    -mode <show current game mode>- \n" +
+              "    -quit\n");
+    } else {
+      GameApp.getInstance().appendToCurActivity("Please enter your name first!!");
+    }
   }
 
   public void move(String moveDir) throws Exception {
