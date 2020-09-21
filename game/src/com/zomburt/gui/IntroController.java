@@ -1,10 +1,7 @@
 package com.zomburt.gui;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.RadioButton;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 
 public class IntroController {
@@ -13,7 +10,7 @@ public class IntroController {
     @FXML private ImageView intro;
     @FXML private RadioButton easyMode;
     @FXML private RadioButton hardMode;
-    @FXML private Menu menu;
+    @FXML private MenuBar introMenu;
     @FXML private MenuItem reload;
 
     public IntroController() {}
@@ -34,7 +31,7 @@ public class IntroController {
         return hardMode;
     }
 
-    public Menu getMenu() { return menu;}
+    public MenuBar getIntroMenu() { return introMenu;}
 
     public MenuItem getReload() { return reload;}
 }

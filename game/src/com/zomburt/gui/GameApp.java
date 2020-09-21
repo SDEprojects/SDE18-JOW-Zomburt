@@ -1,6 +1,7 @@
 package com.zomburt.gui;
 
 import com.sun.media.jfxmedia.MediaPlayer;
+import com.zomburt.Game;
 import com.zomburt.GameEngine;
 import com.zomburt.MapFactory;
 import com.zomburt.Mode;
@@ -16,6 +17,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
@@ -61,8 +63,9 @@ public class GameApp extends Application{
         introLoader.setController(introController);
         introLoader.setLocation(com.zomburt.gui.GameApp.class.getResource("intro.fxml"));
         VBox introLayout = introLoader.load();
+        introLayout.setAlignment(Pos.CENTER);
         try {
-            introController.getIntro().setImage(new Image("file:./game/assets/zombie.jpg"));
+            introController.getIntro().setImage(new Image("file:./game/assets/pictures/zombie.png"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -73,6 +76,22 @@ public class GameApp extends Application{
         primaryStage.show();
 
         Sound.playSound("intro");
+
+        //reload game when click resume option in menu bar
+        introController.getIntroMenu().getMenus().get(0).getItems().get(0).setOnAction(e->{
+            Serializing s = new Serializing();
+            try {
+                newGame = new GameEngine();
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+            newGame.restoreGameState(s.loadGameState());
+        });
+
+        //quit the game when click quit option in menu bar
+        introController.getIntroMenu().getMenus().get(0).getItems().get(1).setOnAction(e->{
+            System.exit(0);
+        });
 
         // config the radio button
         introController.getEasyMode().selectedProperty().addListener(new ChangeListener<Boolean>() {
@@ -107,13 +126,6 @@ public class GameApp extends Application{
                             gameViewLoader.setController(gameController);
                             gameViewLoader.setLocation(com.zomburt.gui.GameApp.class.getResource("game2.fxml"));
                             GridPane gameLayout = gameViewLoader.load();
-                            //load pictures
-                            try {
-                                gameController.getImage1().setImage(new Image("file:./game/assets/ParkingLot1.jpg"));
-                                gameController.getImage2().setImage(new Image("file:./game/assets/ShoppingMall.jpg"));
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
 
                             //show game map when click map button
                             gameController.getMapButton().setOnAction(e -> {
@@ -137,11 +149,6 @@ public class GameApp extends Application{
                                 }
                             });
 
-                            //quit the game when click quit option in menu bar
-                            gameController.getMenu().getMenus().get(0).getItems().get(2).setOnAction(e->{
-                                System.exit(0);
-                            });
-
                             // Show the scene containing the root layout.
                             Scene gameScene = new Scene(gameLayout);
                             Stage gameStage = new Stage();
@@ -153,6 +160,10 @@ public class GameApp extends Application{
                             // start the background game thread
                             runGameThread();
 
+                            gameController.getImage1().setImage(new Image("file:./game/assets/pictures/zombie.gif"));
+                            gameController.getImage1().fitWidthProperty().bind(gameLayout.widthProperty());
+                            gameController.getImage1().fitWidthProperty().bind(gameLayout.widthProperty());
+
                             //save game when click save option in menu bar
                             gameController.getMenu().getMenus().get(0).getItems().get(0).setOnAction(e->{
                                  Serializing s = new Serializing();
@@ -163,6 +174,16 @@ public class GameApp extends Application{
                             gameController.getMenu().getMenus().get(0).getItems().get(1).setOnAction(e->{
                                  Serializing s = new Serializing();
                                  newGame.restoreGameState(s.loadGameState());
+                            });
+
+                            //quit the game when click quit option in menu bar
+                            gameController.getMenu().getMenus().get(0).getItems().get(2).setOnAction(e->{
+                                System.exit(0);
+                            });
+
+                            //show help menu when click help option in menu bar
+                            gameController.getMenu().getMenus().get(0).getItems().get(3).setOnAction(e->{
+                                newGame.help();
                             });
 
                         } catch (IOException e) {
@@ -221,7 +242,7 @@ public class GameApp extends Application{
     // game thread logic, so we should also wrap the UI access calls
     private void executeGameLoop() throws Exception {
         MapFactory mapFactory = MapFactory.getInstance();
-        mapFactory.createMap("./game/assets/store.json");
+        mapFactory.createMap("./game/assets/JSON_Objects/store.json");
         newGame = new GameEngine();
         newGame.totalNumZombies = mapFactory.getTotalNumZombies();
         newGame.run();
@@ -229,7 +250,7 @@ public class GameApp extends Application{
 
     // update UI status
     public void updateUI() {
-        // update total number of remaing zombies
+        // update total number of remaining zombies
         Platform.runLater(
                 new Runnable() {
                     @Override
@@ -238,6 +259,51 @@ public class GameApp extends Application{
                        gameController.getHealth().setText(Integer.toString(newGame.player.getHealth()));
                        gameController.getScore().setText(Integer.toString(newGame.player.getScore()));
                        gameController.getCurrentLocation().setText(newGame.currentScene.getSceneName());
+                       if(newGame.currentScene.getFeature().size()>0){
+                           gameController.getImage2().setImage(new Image("file:./game/assets/pictures/zombie1.jpg"));
+                       }
+                       else{
+                           gameController.getImage2().setImage(new Image("file:./game/assets/pictures/ShoppingMall.jpg"));
+                       }
+                       String location = newGame.currentScene.getSceneName();
+                        switch (location) {
+                            case "parking lot":
+                                gameController.getImage1().setImage(new Image("file:./game/assets/pictures/ParkingLot1.jpg"));
+                                break;
+                            case "west entrance":
+                                gameController.getImage1().setImage(new Image("file:./game/assets/pictures/west_entrance.jpg"));
+                                break;
+                            case "restaurant":
+                                gameController.getImage1().setImage(new Image("file:./game/assets/pictures/restaurant.jpg"));
+                                break;
+                            case "gun store":
+                                gameController.getImage1().setImage(new Image("file:./game/assets/pictures/guns_store.jpg"));
+                                break;
+                            case "pharmacy":
+                                gameController.getImage1().setImage(new Image("file:./game/assets/pictures/pharmacy.jpg"));
+                                break;
+                            case "discount bin":
+                                gameController.getImage1().setImage(new Image("file:./game/assets/pictures/discount_bin.jpg"));
+                                break;
+                            case "sporting goods":
+                                gameController.getImage1().setImage(new Image("file:./game/assets/pictures/sporting_goods.jpg"));
+                                break;
+                            case "restroom":
+                                gameController.getImage1().setImage(new Image("file:./game/assets/pictures/restroom.jpg"));
+                                break;
+                            case "starbucks":
+                                gameController.getImage1().setImage(new Image("file:./game/assets/pictures/starbucks.jpg"));
+                                break;
+                            case "east entrance":
+                                gameController.getImage1().setImage(new Image("file:./game/assets/pictures/east_entrance.jpg"));
+                                break;
+                            case "parking lot 2":
+                                gameController.getImage1().setImage(new Image("file:./game/assets/pictures/parking_lot_2.jpg"));
+                                break;
+                            case "gas station":
+                                gameController.getImage1().setImage(new Image("file:./game/assets/pictures/gas_station.png"));
+                                break;
+                        }
                     }
                 });
 
@@ -251,7 +317,6 @@ public class GameApp extends Application{
                             for (Weapon weapon : newGame.player.getInventory()) {
                                 gameController.getInventory().getItems().add(weapon.getName() + "(" + weapon.getDamage() + ")");
                             }
-
                             gameController.getRoomInventory().getItems().clear();
                             gameController.getWeaponsRoom().getItems().clear();
                             for (Weapon weapon : newGame.currentScene.getRoomLoot()) {
@@ -268,7 +333,7 @@ public class GameApp extends Application{
     }
     // update game status LOST
     public void updateGameStatusLost() {
-        // update total number of remaing zombies
+        // update total number of remaining zombies
         Platform.runLater(
             new Runnable() {
                 @Override
@@ -294,7 +359,7 @@ public class GameApp extends Application{
 
     // update zombies status
     public void updateZombie() {
-        // update total number of remaing zombies
+        // update total number of remaining zombies
         Platform.runLater(
             new Runnable() {
                 @Override
@@ -380,8 +445,6 @@ public class GameApp extends Application{
                     }
                 });
     }
-
-
 
     public GameController getGameController() {
         return gameController;

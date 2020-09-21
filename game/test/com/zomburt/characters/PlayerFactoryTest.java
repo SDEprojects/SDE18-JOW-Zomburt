@@ -18,10 +18,11 @@ public class PlayerFactoryTest {
     @Test
     public void testCreatePlayer_EASY_positive(){
         Player player3 = PlayerFactory.createPlayer(Mode.EASY);
-        assertEquals(player1.toString(), player3.toString());
         Weapon[] weapons = {};
         weapons = player3.getInventory().toArray(weapons);
         assertTrue(Arrays.stream(Weapon.values()).anyMatch(weapons[0]::equals));
+        player3.getInventory().clear();
+        assertEquals(player1.toString(), player3.toString());
     }
 
     @Test

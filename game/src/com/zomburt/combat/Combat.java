@@ -40,7 +40,7 @@ public class Combat {
         GameApp.getEngine().totalNumZombies -= 1;
         GameApp.getEngine().currentScene.removeFeature(zombie);
 
-        GameApp.getInstance().appendToCurActivity("Congratulations! You've killed the " + zombie.getName() + " and are able to progress.");
+        GameApp.getInstance().appendToCurActivity("Congratulations! You've killed the " + zombie.getName() + " and are able to progress. \n You better move now! Otherwise more zombies will approach you.");
     }
 
     public static void combatCommands(String input, Player player, Zombie zombie) throws Exception {
