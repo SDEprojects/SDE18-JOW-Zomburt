@@ -27,9 +27,7 @@ import java.io.*;
 
 public class GameApp extends Application {
     private IntroController introController;
-    private VideoController videoController;
     private GameController gameController;
-    private MapController mapController;
     private MapController2 mapController2;
     private String currentInput;
     private Mode modeInput = Mode.EASY;
@@ -149,7 +147,6 @@ public class GameApp extends Application {
                             gameStage.show();
                             // start the background game thread
                             runGameThread();
-
                             gameController.getImage1().setImage(new Image("file:./game/assets/pictures/zombie.gif"));
                             gameController.getImage1().fitWidthProperty().bind(gameLayout.widthProperty());
                             gameController.getImage1().fitWidthProperty().bind(gameLayout.widthProperty());
@@ -330,149 +327,80 @@ public class GameApp extends Application {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-              if(mapController2 != null) {
-                  for (com.zomburt.Scene scene : newGame.gameUniverse.world.values()) {
-                      String location = scene.getSceneName();
-                      switch (location) {
-                          case "west entrance":
-                              if (scene.getFeature().size() > 0)
-                                  mapController2.getWestEntrance().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
-                              else
-                                  mapController2.getWestEntrance().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
-                              break;
-                          case "restaurant":
-                              if (scene.getFeature().size() > 0)
-                                  mapController2.getRestaurant().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
-                              else
-                                  mapController2.getRestaurant().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
-                              break;
-                          case "gun store":
-                              if (scene.getFeature().size() > 0)
-                                  mapController2.getGunStore().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
-                              else
-                                  mapController2.getGunStore().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
-                              break;
-                          case "pharmacy":
-                              if (scene.getFeature().size() > 0)
-                                  mapController2.getPharmacy().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
-                              else
-                                  mapController2.getPharmacy().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
-                              break;
-                          case "discount bin":
-                              if (scene.getFeature().size() > 0)
-                                  mapController2.getDiscountBin().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
-                              else
-                                  mapController2.getDiscountBin().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
-                              break;
-                          case "sporting goods":
-                              if (scene.getFeature().size() > 0)
-                                  mapController2.getSportingGoods().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
-                              else
-                                  mapController2.getSportingGoods().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
-                              break;
-                          case "restroom":
-                              if (scene.getFeature().size() > 0)
-                                  mapController2.getRestRoom().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
-                              else
-                                  mapController2.getRestRoom().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
-                              break;
-                          case "starbucks":
-                              if (scene.getFeature().size() > 0)
-                                  mapController2.getStarBucks().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
-                              else
-                                  mapController2.getStarBucks().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
-                              break;
-                          case "east entrance":
-                              if (scene.getFeature().size() > 0)
-                                  mapController2.getEastEntrance().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
-                              else
-                                  mapController2.getEastEntrance().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
-                              break;
-                          case "parking lot 2":
-                              if (scene.getFeature().size() > 0)
-                                  mapController2.getParkingLot2().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
-                              else
-                                  mapController2.getParkingLot2().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
-                              break;
-                          case "gas station":
-                              if (scene.getFeature().size() > 0)
-                                  mapController2.getGasStation().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
-                              else
-                                  mapController2.getGasStation().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
-                              break;
-                      }
-                  }
-              }
+                if (mapController2 != null) {
+                    for (com.zomburt.Scene scene : newGame.gameUniverse.world.values()) {
+                        String location = scene.getSceneName();
+                        switch (location) {
+                            case "west entrance":
+                                if (scene.getFeature().size() > 0)
+                                    mapController2.getWestEntrance().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
+                                else
+                                    mapController2.getWestEntrance().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
+                                break;
+                            case "restaurant":
+                                if (scene.getFeature().size() > 0)
+                                    mapController2.getRestaurant().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
+                                else
+                                    mapController2.getRestaurant().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
+                                break;
+                            case "gun store":
+                                if (scene.getFeature().size() > 0)
+                                    mapController2.getGunStore().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
+                                else
+                                    mapController2.getGunStore().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
+                                break;
+                            case "pharmacy":
+                                if (scene.getFeature().size() > 0)
+                                    mapController2.getPharmacy().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
+                                else
+                                    mapController2.getPharmacy().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
+                                break;
+                            case "discount bin":
+                                if (scene.getFeature().size() > 0)
+                                    mapController2.getDiscountBin().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
+                                else
+                                    mapController2.getDiscountBin().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
+                                break;
+                            case "sporting goods":
+                                if (scene.getFeature().size() > 0)
+                                    mapController2.getSportingGoods().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
+                                else
+                                    mapController2.getSportingGoods().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
+                                break;
+                            case "restroom":
+                                if (scene.getFeature().size() > 0)
+                                    mapController2.getRestRoom().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
+                                else
+                                    mapController2.getRestRoom().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
+                                break;
+                            case "starbucks":
+                                if (scene.getFeature().size() > 0)
+                                    mapController2.getStarBucks().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
+                                else
+                                    mapController2.getStarBucks().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
+                                break;
+                            case "east entrance":
+                                if (scene.getFeature().size() > 0)
+                                    mapController2.getEastEntrance().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
+                                else
+                                    mapController2.getEastEntrance().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
+                                break;
+                            case "parking lot 2":
+                                if (scene.getFeature().size() > 0)
+                                    mapController2.getParkingLot2().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
+                                else
+                                    mapController2.getParkingLot2().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
+                                break;
+                            case "gas station":
+                                if (scene.getFeature().size() > 0)
+                                    mapController2.getGasStation().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
+                                else
+                                    mapController2.getGasStation().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
+                                break;
+                        }
+                    }
+                }
 
-//                String location = newGame.currentScene.getSceneName();
-//                switch (location) {
-//                    case "west entrance":
-//                        if (newGame.currentScene.getFeature().size() > 0)
-//                            mapController2.getWestEntrance().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
-//                        else
-//                            mapController2.getWestEntrance().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
-//                        break;
-//                    case "restaurant":
-//                        if (newGame.currentScene.getFeature().size() > 0)
-//                            mapController2.getRestaurant().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
-//                        else
-//                            mapController2.getRestaurant().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
-//                        break;
-//                    case "gun store":
-//                        if (newGame.currentScene.getFeature().size() > 0)
-//                            mapController2.getGunStore().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
-//                        else
-//                            mapController2.getGunStore().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
-//                        break;
-//                    case "pharmacy":
-//                        if (newGame.currentScene.getFeature().size() > 0)
-//                            mapController2.getPharmacy().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
-//                        else
-//                            mapController2.getPharmacy().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
-//                        break;
-//                    case "discount bin":
-//                        if (newGame.currentScene.getFeature().size() > 0)
-//                            mapController2.getDiscountBin().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
-//                        else
-//                            mapController2.getDiscountBin().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
-//                        break;
-//                    case "sporting goods":
-//                        if (newGame.currentScene.getFeature().size() > 0)
-//                            mapController2.getSportingGoods().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
-//                        else
-//                            mapController2.getSportingGoods().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
-//                        break;
-//                    case "restroom":
-//                        if (newGame.currentScene.getFeature().size() > 0)
-//                            mapController2.getRestRoom().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
-//                        else
-//                            mapController2.getRestRoom().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
-//                        break;
-//                    case "starbucks":
-//                        if (newGame.currentScene.getFeature().size() > 0)
-//                            mapController2.getStarBucks().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
-//                        else
-//                            mapController2.getStarBucks().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
-//                        break;
-//                    case "east entrance":
-//                        if (newGame.currentScene.getFeature().size() > 0)
-//                            mapController2.getEastEntrance().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
-//                        else
-//                            mapController2.getEastEntrance().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
-//                        break;
-//                    case "parking lot 2":
-//                        if (newGame.currentScene.getFeature().size() > 0)
-//                            mapController2.getParkingLot2().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
-//                        else
-//                            mapController2.getParkingLot2().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
-//                        break;
-//                    case "gas station":
-//                        if (newGame.currentScene.getFeature().size() > 0)
-//                            mapController2.getGasStation().setImage(new Image("file:./game/assets/pictures/zombie Icon.jpg"));
-//                        else
-//                            mapController2.getGasStation().setImage(new Image("file:./game/assets/pictures/no zombie.jpg"));
-//                        break;
-//                }
             }
         });
     }
@@ -602,7 +530,4 @@ public class GameApp extends Application {
         return modeInput;
     }
 
-    public MapController getMapController() {
-        return mapController;
-    }
 }

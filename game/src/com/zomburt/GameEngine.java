@@ -174,7 +174,11 @@ public class GameEngine implements Serializable {
       GameApp.getInstance().appendToCurActivity("The current game mode: " + GameApp.getInstance().getModeInput());
     }
     else if (commands.get(0).contains("fight")) {
-      GameApp.getInstance().appendToCurActivity(" Oh too late...You have to fight now.\n");
+      if (zombie != null && GameApp.getInstance().getGameController().getFightingZombie().getText() == "None") {
+        GameApp.getInstance().appendToCurActivity(" Oh too late...You have to fight now.\n");
+      } else if (currentScene.getFeature().size() == 0) {
+        GameApp.getInstance().appendToCurActivity(" Are you sure you want to fight? \n");
+      }
     }
     else {
       GameApp.getInstance().appendToCurActivity(Arrays.toString(commands.toArray()));

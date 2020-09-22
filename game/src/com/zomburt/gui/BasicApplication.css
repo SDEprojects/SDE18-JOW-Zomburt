@@ -52,3 +52,15 @@
 .list-cell {
 -fx-alignment: center;
 }
+
+#remainZombies {
+-fx-text-inner-color: red;
+}
+
+#health {
+-fx-text-inner-color: green;
+}
+
+#zombieHealth {
+-fx-text-inner-color: green;
+}

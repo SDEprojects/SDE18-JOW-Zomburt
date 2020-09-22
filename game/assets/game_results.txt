@@ -7,3 +7,6 @@ WEi: HARD Mode, 25 points, lost the game
 <Final score for this game @2020-09-21T08:34:03.872>
 Wei: EASY Mode, 67 points, won the game 
 
+<Final score for this game @2020-09-21T15:49:04.997637>
+jane: EASY Mode, 344 points, won the game 
+
